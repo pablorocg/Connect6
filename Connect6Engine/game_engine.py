@@ -5,7 +5,16 @@ from search_engine import SearchEngine
 import time
 
 class GameEngine:
+    """
+    The GameEngine class represents the game engine for Connect6 game. It provides methods to initialize the game, 
+    search for the next move, and run the game. It also provides methods to handle user input and output.
+    """
     def __init__(self, name=Defines.ENGINE_NAME):
+        """
+        Initializes a new instance of the GameEngine class.
+
+        :param name: The name of the game engine.
+        """
         if name and len(name) > 0:
             if len(name) < Defines.MSG_LENGTH:
                 self.m_engine_name = name
@@ -19,9 +28,15 @@ class GameEngine:
         self.m_best_move = StoneMove()
 
     def init_game(self):
+        """
+        Initializes the game board.
+        """
         init_board(self.m_board)
 
     def on_help(self):
+        """
+        Prints the help menu for the game engine.
+        """
         print(
             f"On help for GameEngine {self.m_engine_name}\n"
             " name        - print the name of the Game Engine.\n"
@@ -40,6 +55,9 @@ class GameEngine:
             " help        - print this help.\n")
 
     def run(self):
+        """
+        Runs the game engine and handles user input and output.
+        """
         msg = ""
         self.on_help()
         while True:
@@ -101,11 +119,20 @@ class GameEngine:
         return 0
 
     def search_a_move(self, ourColor, bestMove):
+        """
+        Searches for the next move for the given color.
+
+        :param ourColor: The color of the player (black or white).
+        :param bestMove: The best move for the player.
+        :return: True if the search was successful, False otherwise.
+        """
         score = 0
         start = 0
         end = 0
 
         start = time.perf_counter()
+        print(self.m_board)
+        show_m_board(self.m_board)
         self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
         score = self.m_search_engine.alpha_beta_search(self.m_alphabeta_depth, Defines.MININT, Defines.MAXINT, ourColor, bestMove, bestMove)
         end = time.perf_counter()
@@ -122,3 +149,10 @@ def flush_output():
 if __name__ == "__main__":
     game_engine = GameEngine()
     game_engine.run()
+
+
+
+
+
+
+

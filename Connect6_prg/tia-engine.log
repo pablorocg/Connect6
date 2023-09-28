@@ -1,0 +1,10 @@
+[Fri Sep 22 11:58:11 202] - print
+[Fri Sep 22 11:58:29 202] - new black
+[Fri Sep 22 11:58:35 202] - print
+[Fri Sep 22 11:59:11 202] - move jk
+[Fri Sep 22 11:59:24 202] - new white
+[Fri Sep 22 11:59:32 202] - move JJ
+[Fri Sep 22 11:59:38 202] - print
+[Fri Sep 22 12:00:09 202] - move CS
+[Fri Sep 22 12:00:16 202] - print
+[Fri Sep 22 12:16:44 202] - & C:/Users/pablo/anaconda3/envs/TIA/python.exe c:/Users/pablo/GitHub/p1-TIA/Connect6Engine/game_engine.py
