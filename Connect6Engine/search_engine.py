@@ -1,6 +1,6 @@
 from tools import *
 from heuristicas import *
-import random
+from tqdm import tqdm
 
 class SearchEngine():
     def __init__(self):
@@ -26,13 +26,68 @@ class SearchEngine():
         """
         Funcion que verifica si es el primer movimiento
         """
-        for i in range(1,len(self.m_board)-1):
-            for j in range(1, len(self.m_board[i])-1):
-                if(self.m_board[i][j] != Defines.NOSTONE):
-                    return False
-        return True
+
+        board = np.array(self.m_board)[1:-1, 1:-1]
+        if np.any(board != 0):
+            return False
+        else:
+            return True
+
+    def get_valid_locations(self, m_board):
+        """
+        Funcion que obtiene las posiciones no ocupadas en el tablero (posibles movimientos). Devuelve una lista de tuplas (x,y)
+        :param m_board: Tablero de juego
+        """
+        # Lista de posiciones no ocupadas
+        valid_locations = []
+        for idx, fila in enumerate(m_board):
+            for idy, elemento in enumerate(fila):
+                if elemento == 0:
+                    valid_locations.append((idx, idy))
+        return valid_locations
     
+    def generate_children(self, m_board):
+        """
+        Funcion que genera los hijos de un nodo
+        :param m_board: Tablero de juego
+        """
+        children = []
+        for move in self.get_valid_locations(m_board):
+            child = m_board.copy()
+            child[move[0]][move[1]] = self.m_chess_type
+            children.append(child)
+        return children
+
+    def is_terminal_node(self, m_board, preMove):
+            """
+            Funcion que verifica si un nodo es terminal
+            :param m_board: Tablero de juego
+            """
+            return is_win_by_premove(m_board, preMove)  or len(self.get_valid_locations(m_board)) == 0
     
+
+    def alphabeta(self, node, depth, alpha, beta, maximizingPlayer, preMove, player):
+        if depth == 0 or self.is_terminal_node(node, preMove):
+            return self.get_score(node, player)
+
+        if maximizingPlayer:
+            value = -np.inf
+            for child in tqdm(self.generate_children(node)):
+                value = max(value, self.alphabeta(child, depth - 1, alpha, beta, False, preMove, player))
+                if value >= beta:
+                    break  # β cutoff
+                alpha = max(alpha, value)
+            return value
+        else:
+            value = +np.inf
+            for child in tqdm(self.generate_children(node)):
+                value = min(value, self.alphabeta(child, depth - 1, alpha, beta, True, preMove, player))
+                if value <= alpha:
+                    break  # α cutoff
+                beta = min(beta, value)
+            return value
+
+
     
     def get_window_scoring(window, player):
         """
@@ -104,16 +159,105 @@ class SearchEngine():
             return -1 + 1/(1 + diferencia)  
     
 
-    
+    def elegir_mejor_movimiento(self, estado_actual, profundidad, alpha, beta, es_maximizador, player, preMove):
+        mejor_evaluacion = -np.inf if es_maximizador else +np.inf
+        mejor_movimiento = None
+
+        posibles_movimientos = self.get_valid_locations(estado_actual)  # Debes tener una función para generar los posibles movimientos
+        
+        estado_actual = np.array(estado_actual)
+        for mov_x, mov_y in posibles_movimientos:
+            nuevo_estado = estado_actual
+            nuevo_estado[mov_x, mov_y] = player  # Debes tener una función para aplicar un movimiento
+            evaluacion = self.alphabeta(node = nuevo_estado, 
+                                        depth = profundidad-1, 
+                                        alpha = alpha, 
+                                        beta = beta, 
+                                        maximizingPlayer = not es_maximizador, 
+                                        preMove = preMove, 
+                                        player = player)  # Debes tener una función para evaluar un estado (heurística
+
+            if es_maximizador:
+                if evaluacion > mejor_evaluacion:
+                    mejor_evaluacion = evaluacion
+                    mejor_movimiento = (mov_x, mov_y)
+                    alpha = max(alpha, evaluacion)
+            else:
+                if evaluacion < mejor_evaluacion:
+                    mejor_evaluacion = evaluacion
+                    mejor_movimiento = (mov_x, mov_y)
+                    beta = min(beta, evaluacion)
+
+            if beta <= alpha:
+                break
+        return mejor_movimiento
+
+
+    def alpha_beta_search(self, depth, alpha, beta, ourColor, bestMove, preMove):
+        #Check game result
+        if (is_win_by_premove(self.m_board, preMove)):
+            if (ourColor == self.m_chess_type):
+                #Opponent wins.
+                return 0;
+            else:
+                #Self wins.
+                return Defines.MININT + 1;
+        
+        alpha = 0
+        if(self.check_first_move()):
+            bestMove.positions[0].x = 10
+            bestMove.positions[0].y = 10
+            bestMove.positions[1].x = 10
+            bestMove.positions[1].y = 10
+        else:   
+            move1 = self.elegir_mejor_movimiento(self.m_board, profundidad = depth, alpha = alpha, beta = beta, es_maximizador = False, player = ourColor, preMove = preMove)
+            bestMove.positions[0].x = move1[0]
+            bestMove.positions[0].y = move1[1]
+            bestMove.positions[1].x = move1[0]
+            bestMove.positions[1].y = move1[1]
+            make_move(self.m_board,bestMove,ourColor)
+            
+            '''#Check game result
+            if (is_win_by_premove(self.m_board, bestMove)):
+                #Self wins.
+                return Defines.MININT + 1;'''
+            
+            move2 = self.elegir_mejor_movimiento(self.m_board, profundidad = depth, alpha = alpha, beta = beta, es_maximizador = False, player = ourColor, preMove = preMove)
+            bestMove.positions[1].x = move2[0]
+            bestMove.positions[1].y = move2[1]
+            make_move(self.m_board,bestMove,ourColor)
+
+        return alpha    
+
+
+    def check_win(self, state):
+        """
+        Comprueba si un jugador ha ganado el juego (6 en línea)
+        """
+        sim_state = np.array(state)[1:-1, 1:-1]
+        for i in range(19):
+            for j in range(14):
+                if np.all(sim_state[i][j:j+6] == 1) or np.all(sim_state[i][j:j+6] == 2):
+                    return True
+                
+        # Comprobar columnas
+        for i in range(14):
+            for j in range(19):
+                if np.all(sim_state[i:i+6, j] == 1) or np.all(sim_state[i:i+6, j] == 2):
+                    return True
+        
+        # Comprobar todas las diagonales
+        for i in range(14):
+            for j in range(14):
+                if np.all(np.diag(sim_state[i:i+6, j:j+6]) == 1) or np.all(np.diag(sim_state[i:i+6, j:j+6]) == 2):
+                    return True
+                if np.all(np.diag(np.fliplr(sim_state[i:i+6, j:j+6])) == 1) or np.all(np.diag(np.fliplr(sim_state[i:i+6, j:j+6])) == 2):
+                    return True
+        return False
 
 
     
-    def is_terminal_node(self, m_board, preMove):
-            """
-            Funcion que verifica si un nodo es terminal
-            :param m_board: Tablero de juego
-            """
-            return self.check_win(m_board)  or len(self.get_valid_locations(m_board)) == 0
+    
 
 
 
@@ -141,55 +285,15 @@ class SearchEngine():
         return mejor_movimiento
 
 
-    def minimax_alphabeta(self, nodo, depth, es_max, alpha, beta, ourColor, preMove=None):
-        if depth == 0 or self.is_terminal_node(nodo, preMove):
-            return self.get_score(nodo, ourColor)
+    
+        
+    
+    
+    
+    
 
-        if es_max:
-            max_eval = -np.inf
-            for hijo in self.generar_hijos(nodo):
-                eval = self.minimax_alphabeta(hijo, depth-1, False, alpha, beta)
-                max_eval = max(max_eval, eval)
-                alpha = max(alpha, eval)
-                if beta <= alpha:
-                    break
-            return max_eval
-        else:
-            min_eval = np.inf
-            for hijo in self.generar_hijos(nodo):
-                eval = self.minimax_alphabeta(hijo, depth-1, True, alpha, beta)
-                min_eval = min(min_eval, eval)
-                beta = min(beta, eval)
-                if beta <= alpha:
-                    break
-            return min_eval
         
-    def generar_hijos(self, nodo, ourColor):
-        hijos = []
-        for move in self.get_valid_locations(nodo):
-            hijo = [row[:] for row in nodo]
-            make_move(hijo, move, ourColor)
-            hijos.append(hijo)
-        return hijos
     
-    
-    
-    
-    def get_valid_locations(self, m_board):
-        """
-        Funcion que obtiene las posiciones no ocupadas en el tablero (posibles movimientos). Devuelve una lista de tuplas (x,y)
-        :param m_board: Tablero de juego
-        """
-        # Lista de posiciones no ocupadas
-        valid_locations = []
-        for idx, fila in enumerate(m_board):
-            for idy, elemento in enumerate(fila):
-                if elemento == 0:
-                    valid_locations.append((idx, idy))
-        return valid_locations
-        
-    def is_terminal_node(self, m_board):
-	    return is_win_by_premove(m_board, 1) or is_win_by_premove(m_board, 2) or len(self.get_valid_locations(m_board)) == 0
           
 def flush_output():
     import sys
