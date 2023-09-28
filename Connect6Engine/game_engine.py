@@ -129,12 +129,14 @@ class GameEngine:
         score = 0
         start = 0
         end = 0
-
+        show_m_board(self.m_board)#Muestra el tablero con el estado actual de la partida 
+        
         start = time.perf_counter()
-        print(self.m_board)
-        show_m_board(self.m_board)
         self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
         score = self.m_search_engine.alpha_beta_search(self.m_alphabeta_depth, Defines.MININT, Defines.MAXINT, ourColor, bestMove, bestMove)
+        print(score)
+        # score = self.m_search_engine.get_score(self.m_board, ourColor)
+        print('Estado actual: ', )# Scoring function for the board
         end = time.perf_counter()
 
         print(f"AB Time:\t{end - start:.3f}")
