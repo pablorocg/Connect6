@@ -65,6 +65,103 @@ class SearchEngine():
             """
             return is_win_by_premove(m_board, preMove)  or len(self.get_valid_locations(m_board)) == 0
 
+
+    def generate_moves(self, ourColor):
+        """
+        Generate all possible moves for the given color.
+        
+        :param ourColor: The color for which to generate moves.
+        :return: A list of possible moves.
+        """
+        moves = []
+        
+        empty_positions = [(i, j) for i in range(len(self.m_board)) for j in range(len(self.m_board[i])) if self.m_board[i][j] == Defines.NOSTONE]
+        
+        # If it's the first move of the game, generate single stone moves.
+        if self.check_first_move():
+            for pos in empty_positions:
+                move = StoneMove()
+                move.positions[0].x = pos[0]
+                move.positions[0].y = pos[1]
+                moves.append(move)
+        else:
+            # Generate two stone moves.
+            for i in range(len(empty_positions)):
+                for j in range(i+1, len(empty_positions)):
+                    move = StoneMove()
+                    move.positions[0].x = empty_positions[i][0]
+                    move.positions[0].y = empty_positions[i][1]
+                    move.positions[1].x = empty_positions[j][0]
+                    move.positions[1].y = empty_positions[j][1]
+                    moves.append(move)
+        
+        return moves
+
+    def alpha_beta_search(self, depth, alpha, beta, ourColor, bestMove, preMove):
+        # Check if the current state is terminal (win, lose, draw)
+        if is_win_by_premove(self.m_board, preMove):
+            if ourColor == self.m_chess_type:
+                return 0  # Opponent wins.
+            else:
+                return Defines.MININT + 1  # Self wins.
+
+        if depth == 0:
+            return self.get_score(self.m_board)
+        
+        moves = self.generate_moves(ourColor)
+        
+        if ourColor == self.m_chess_type:  # Maximizing player
+            max_eval = -float('inf')
+            for move in moves:
+                self.make_move(move, ourColor)
+                eval = self.alpha_beta_search(depth-1, alpha, beta, 3-ourColor, bestMove, move)
+                self.undo_move(move)
+                
+                if eval > max_eval:
+                    max_eval = eval
+                    if depth == self.m_alphabeta_depth:
+                        bestMove = move
+
+                alpha = max(alpha, eval)
+                if beta <= alpha:
+                    break  # Beta cut-off
+            return max_eval
+            
+        else:  # Minimizing player
+            min_eval = float('inf')
+            for move in moves:
+                self.make_move(move, ourColor)
+                eval = self.alpha_beta_search(depth-1, alpha, beta, 3-ourColor, bestMove, move)
+                self.undo_move(move)
+                
+                min_eval = min(min_eval, eval)
+                beta = min(beta, eval)
+                if beta <= alpha:
+                    break  # Alpha cut-off
+            return min_eval
+
+
+    def get_best_move(self):
+        """
+        Get the best move for the current player using the alpha-beta search.
+        
+        :return: The best move for the current player.
+        """
+        alpha = -float('inf')
+        beta = float('inf')
+        bestMove = StoneMove()
+        
+        # Use the alpha-beta search to find the best move
+        self.alpha_beta_search(self.m_alphabeta_depth, alpha, beta, self.m_chess_type, bestMove, None)
+        
+        return bestMove.positions[0].x, bestMove.positions[0].y, bestMove.positions[1].x, bestMove.positions[1].y
+
+
+
+
+
+
+
     def minimax_alphabeta(self, m_board, depth, maximizingPlayer, alpha, beta, ourColor):
         """
         Funcion que implementa el algoritmo minimax con poda alfa-beta
@@ -211,43 +308,43 @@ class SearchEngine():
         return mejor_movimiento
 
 
-    def alpha_beta_search(self, depth, alpha, beta, ourColor, bestMove, preMove):
-        #Check game result
-        if (is_win_by_premove(self.m_board, preMove)):
-            if (ourColor == self.m_chess_type):
-                #Opponent wins.
-                return 0;
-            else:
-                #Self wins.
-                return Defines.MININT + 1;
+    # def alpha_beta_search(self, depth, alpha, beta, ourColor, bestMove, preMove):
+    #     #Check game result
+    #     if (is_win_by_premove(self.m_board, preMove)):
+    #         if (ourColor == self.m_chess_type):
+    #             #Opponent wins.
+    #             return 0;
+    #         else:
+    #             #Self wins.
+    #             return Defines.MININT + 1;
         
-        alpha = 0
-        if(self.check_first_move()):
-            # Movimientos de apertura 
+    #     alpha = 0
+    #     if(self.check_first_move()):
+    #         # Movimientos de apertura 
             
-            bestMove.positions[0].x = 10
-            bestMove.positions[0].y = 10
-            bestMove.positions[1].x = 10
-            bestMove.positions[1].y = 10
-        else:   
-            move1 = self.elegir_mejor_movimiento(self.m_board, profundidad = depth, alpha = alpha, beta = beta, es_maximizador = False, player = ourColor, preMove = preMove)
-            bestMove.positions[0].x = move1[0]
-            bestMove.positions[0].y = move1[1]
-            # bestMove.positions[1].x = move1[0]
-            # bestMove.positions[1].y = move1[1]
-            make_move(self.m_board,bestMove,ourColor)
+    #         bestMove.positions[0].x = 10
+    #         bestMove.positions[0].y = 10
+    #         bestMove.positions[1].x = 10
+    #         bestMove.positions[1].y = 10
+    #     else:   
+    #         move1 = self.elegir_mejor_movimiento(self.m_board, profundidad = depth, alpha = alpha, beta = beta, es_maximizador = False, player = ourColor, preMove = preMove)
+    #         bestMove.positions[0].x = move1[0]
+    #         bestMove.positions[0].y = move1[1]
+    #         # bestMove.positions[1].x = move1[0]
+    #         # bestMove.positions[1].y = move1[1]
+    #         make_move(self.m_board,bestMove,ourColor)
             
-            '''#Check game result
-            if (is_win_by_premove(self.m_board, bestMove)):
-                #Self wins.
-                return Defines.MININT + 1;'''
+    #         '''#Check game result
+    #         if (is_win_by_premove(self.m_board, bestMove)):
+    #             #Self wins.
+    #             return Defines.MININT + 1;'''
             
-            move2 = self.elegir_mejor_movimiento(self.m_board, profundidad = depth, alpha = alpha, beta = beta, es_maximizador = False, player = ourColor, preMove = preMove)
-            bestMove.positions[1].x = move2[0]
-            bestMove.positions[1].y = move2[1]
-            make_move(self.m_board,bestMove,ourColor)
+    #         move2 = self.elegir_mejor_movimiento(self.m_board, profundidad = depth, alpha = alpha, beta = beta, es_maximizador = False, player = ourColor, preMove = preMove)
+    #         bestMove.positions[1].x = move2[0]
+    #         bestMove.positions[1].y = move2[1]
+    #         make_move(self.m_board,bestMove,ourColor)
 
-        return alpha    
+    #     return alpha    
 
 
     def check_win(self, state):
@@ -287,22 +384,22 @@ class SearchEngine():
 
 
     
-    def get_best_move(self, m_board, ourColor, depth=3):
+    # def get_best_move(self, m_board, ourColor, depth=3):
        
-        posibles_movimientos = self.get_valid_locations(m_board)
-        mejor_movimiento = None
-        mejor_evaluacion = -np.inf
+    #     posibles_movimientos = self.get_valid_locations(m_board)
+    #     mejor_movimiento = None
+    #     mejor_evaluacion = -np.inf
 
-        for movimiento in posibles_movimientos:
-            nuevo_estado = m_board.copy()
-            nuevo_estado[movimiento[0]][movimiento[1]] = ourColor
-            evaluacion = self.minimax_alphabeta(nuevo_estado, depth-1, False, -np.inf, np.inf, ourColor)
+    #     for movimiento in posibles_movimientos:
+    #         nuevo_estado = m_board.copy()
+    #         nuevo_estado[movimiento[0]][movimiento[1]] = ourColor
+    #         evaluacion = self.minimax_alphabeta(nuevo_estado, depth-1, False, -np.inf, np.inf, ourColor)
 
-            if evaluacion > mejor_evaluacion:
-                mejor_evaluacion = evaluacion
-                mejor_movimiento = movimiento
+    #         if evaluacion > mejor_evaluacion:
+    #             mejor_evaluacion = evaluacion
+    #             mejor_movimiento = movimiento
 
-        return mejor_movimiento
+    #     return mejor_movimiento
 
 
     
