@@ -64,28 +64,45 @@ class SearchEngine():
             :param m_board: Tablero de juego
             """
             return is_win_by_premove(m_board, preMove)  or len(self.get_valid_locations(m_board)) == 0
-    
 
-    def alphabeta(self, node, depth, alpha, beta, maximizingPlayer, preMove, player):
-        if depth == 0 or self.is_terminal_node(node, preMove):
-            return self.get_score(node, player)
+    def minimax_alphabeta(self, m_board, depth, maximizingPlayer, alpha, beta, ourColor):
+        """
+        Funcion que implementa el algoritmo minimax con poda alfa-beta
+        :param m_board: Tablero de juego
+        :param depth: Profundidad de busqueda
+        :param maximizingPlayer: True si es el jugador que maximiza, False en caso contrario
+        :param alpha: Valor de alfa
+        :param beta: Valor de beta
+        :param ourColor: Color de nuestro jugador
+        """
+        JUGADOR = ourColor
+        OPONENTE = 1 if ourColor == 2 else 2
 
+
+        value = self.get_score(m_board, ourColor)
+
+        if depth == 0 or self.is_terminal_node(m_board, None):
+            return value
+        
         if maximizingPlayer:
-            value = -np.inf
-            for child in tqdm(self.generate_children(node)):
-                value = max(value, self.alphabeta(child, depth - 1, alpha, beta, False, preMove, player))
-                if value >= beta:
-                    break  # β cutoff
-                alpha = max(alpha, value)
-            return value
+            max_eval = -np.inf
+            for child in self.generate_children(m_board, JUGADOR):
+                eval = self.minimax_alphabeta(child, depth-1, False, alpha, beta, ourColor)
+                max_eval = max(max_eval, eval)
+                alpha = max(alpha, eval)
+                if beta <= alpha:
+                    break
+            return max_eval
+        
         else:
-            value = +np.inf
-            for child in tqdm(self.generate_children(node)):
-                value = min(value, self.alphabeta(child, depth - 1, alpha, beta, True, preMove, player))
-                if value <= alpha:
-                    break  # α cutoff
-                beta = min(beta, value)
-            return value
+            min_eval = +np.inf
+            for child in self.generate_children(m_board, OPONENTE):
+                eval = self.minimax_alphabeta(child, depth-1, True, alpha, beta, ourColor)
+                min_eval = min(min_eval, eval)
+                beta = min(beta, eval)
+                if beta <= alpha:
+                    break
+            return min_eval
 
 
     
@@ -160,8 +177,9 @@ class SearchEngine():
     
 
     def elegir_mejor_movimiento(self, estado_actual, profundidad, alpha, beta, es_maximizador, player, preMove):
-        mejor_evaluacion = -np.inf if es_maximizador else +np.inf
+        
         mejor_movimiento = None
+        mejor_evaluacion = -np.inf if player == JUGADOR else np.inf
 
         posibles_movimientos = self.get_valid_locations(estado_actual)  # Debes tener una función para generar los posibles movimientos
         
@@ -205,6 +223,8 @@ class SearchEngine():
         
         alpha = 0
         if(self.check_first_move()):
+            # Movimientos de apertura 
+            
             bestMove.positions[0].x = 10
             bestMove.positions[0].y = 10
             bestMove.positions[1].x = 10
@@ -213,8 +233,8 @@ class SearchEngine():
             move1 = self.elegir_mejor_movimiento(self.m_board, profundidad = depth, alpha = alpha, beta = beta, es_maximizador = False, player = ourColor, preMove = preMove)
             bestMove.positions[0].x = move1[0]
             bestMove.positions[0].y = move1[1]
-            bestMove.positions[1].x = move1[0]
-            bestMove.positions[1].y = move1[1]
+            # bestMove.positions[1].x = move1[0]
+            # bestMove.positions[1].y = move1[1]
             make_move(self.m_board,bestMove,ourColor)
             
             '''#Check game result

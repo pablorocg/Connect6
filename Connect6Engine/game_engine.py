@@ -135,7 +135,6 @@ class GameEngine:
         self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
         score = self.m_search_engine.alpha_beta_search(2, None, None, ourColor, bestMove, bestMove)#self.m_alphabeta_depth
         print(score)
-        # score = self.m_search_engine.get_score(self.m_board, ourColor)
         
         end = time.perf_counter()
 
