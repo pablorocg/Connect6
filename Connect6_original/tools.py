@@ -225,7 +225,7 @@ def print_score(move_list, n):
 
 # ------------------------------------------------------------
 
-@mide_tiempo
+
 def get_window_scoring(window, player):
     k=0
     """
@@ -238,7 +238,7 @@ def get_window_scoring(window, player):
         return player_count ** (player_count + k)
     return 0
     
-@mide_tiempo
+
 def get_score(m_board, player):
     """
     Función que evalúa el estado de una partida basándose en el número de amenazas de cada
