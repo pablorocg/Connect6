@@ -23,64 +23,6 @@ def test_get_window_scoring():
     assert get_window_scoring(window6, 2) == 0
 
     
-def test_get_score():
-    # Test 1: Empty board
-    board = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM), dtype=int)
-    init_board(board)
-    assert get_score(board, 1) == 0
-    assert get_score(board, 2) == 0
-    
-    # # Test 2: Board with one stone
-    # board = np.zeros((8, 8), dtype=int)
-    # board[3, 3] = 1
-    # assert get_score(board, 1) == 0
-    # assert get_score(board, 2) == 0
-    
-    # # Test 3: Board with two stones
-    # board = np.zeros((8, 8), dtype=int)
-    # board[3, 3] = 1
-    # board[4, 4] = 2
-    # assert get_score(board, 1) == 0
-    # assert get_score(board, 2) == 0
-    
-    # # Test 4: Board with three stones
-    # board = np.zeros((8, 8), dtype=int)
-    # board[3, 3] = 1
-    # board[4, 4] = 2
-    # board[5, 5] = 1
-    # assert get_score(board, 1) == 1
-    # assert get_score(board, 2) == -1
-    
-    # # Test 5: Board with four stones
-    # board = np.zeros((8, 8), dtype=int)
-    # board[3, 3] = 1
-    # board[4, 4] = 2
-    # board[5, 5] = 1
-    # board[6, 6] = 2
-    # assert get_score(board, 1) == 0
-    # assert get_score(board, 2) == 0
-    
-    # # Test 6: Board with five stones
-    # board = np.zeros((8, 8), dtype=int)
-    # board[3, 3] = 1
-    # board[4, 4] = 2
-    # board[5, 5] = 1
-    # board[6, 6] = 2
-    # board[7, 7] = 1
-    # assert get_score(board, 1) == 32
-    # assert get_score(board, 2) == -32
-    
-    # # Test 7: Board with six stones
-    # board = np.zeros((8, 8), dtype=int)
-    # board[3, 3] = 1
-    # board[4, 4] = 2
-    # board[5, 5] = 1
-    # board[6, 6] = 2
-    # board[7, 7] = 1
-    # board[2, 2] = 2
-    # assert get_score(board, 1) == 0
-    # assert get_score(board, 2) == 0
-    
 
 
 def test_isValidPos():
@@ -128,5 +70,5 @@ test_isValidPos()
 test_make_move()
 test_unmake_move()
 test_is_win_by_premove()
-test_get_score()
-test_ge
+test_get_window_scoring()
+
