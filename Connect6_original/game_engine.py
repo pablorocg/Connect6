@@ -5,38 +5,22 @@ from search_engine import SearchEngine
 import time
 
 class GameEngine:
-    """
-    The GameEngine class represents the game engine for Connect6 game. It provides methods to initialize the game, 
-    search for the next move, and run the game. It also provides methods to handle user input and output.
-    """
     def __init__(self, name=Defines.ENGINE_NAME):
-        """
-        Initializes a new instance of the GameEngine class.
-
-        :param name: The name of the game engine.
-        """
         if name and len(name) > 0:
             if len(name) < Defines.MSG_LENGTH:
                 self.m_engine_name = name
             else:
                 print(f"Too long Engine Name: {name}, should be less than: {Defines.MSG_LENGTH}")
-        self.m_alphabeta_depth = 6
-        self.m_board = t = [ [0]*Defines.GRID_NUM for i in range(Defines.GRID_NUM)]
-        
+        self.m_alphabeta_depth = 1
+        self.m_board = t = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))#[ [0]*Defines.GRID_NUM for i in range(Defines.GRID_NUM)]
         self.init_game()
         self.m_search_engine = SearchEngine()
         self.m_best_move = StoneMove()
 
     def init_game(self):
-        """
-        Initializes the game board.
-        """
         init_board(self.m_board)
 
     def on_help(self):
-        """
-        Prints the help menu for the game engine.
-        """
         print(
             f"On help for GameEngine {self.m_engine_name}\n"
             " name        - print the name of the Game Engine.\n"
@@ -55,9 +39,6 @@ class GameEngine:
             " help        - print this help.\n")
 
     def run(self):
-        """
-        Runs the game engine and handles user input and output.
-        """
         msg = ""
         self.on_help()
         while True:
@@ -119,31 +100,19 @@ class GameEngine:
         return 0
 
     def search_a_move(self, ourColor, bestMove):
-        """
-        Searches for the next move for the given color.
+        score = 0
+        start = 0
+        end = 0
 
-        :param ourColor: The color of the player (black or white).
-        :param bestMove: The best move for the player.
-        :return: True if the search was successful, False otherwise.
-        """
         start = time.perf_counter()
-        
-        # Initialize the search engine and get the best move
         self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
-        x1, y1, x2, y2 = self.m_search_engine.get_best_move()
-        bestMove.positions[0].x, bestMove.positions[0].y = x1, y1
-        bestMove.positions[1].x, bestMove.positions[1].y = x2, y2
-        
+        score = self.m_search_engine.alpha_beta_search(self.m_alphabeta_depth, Defines.MININT, Defines.MAXINT, ourColor, bestMove, bestMove)
         end = time.perf_counter()
 
-        # Display the board and search metrics
-        show_m_board(self.m_board)
         print(f"AB Time:\t{end - start:.3f}")
         print(f"Node:\t{self.m_search_engine.m_total_nodes}\n")
-        print(f"Score:\t{self.m_search_engine.get_score(self.m_board)}")
-
+        print(f"Score:\t{score:.3f}")
         return True
-    
 
 def flush_output():
     sys.stdout.flush()
@@ -152,10 +121,3 @@ def flush_output():
 if __name__ == "__main__":
     game_engine = GameEngine()
     game_engine.run()
-
-
-
-
-
-
-
