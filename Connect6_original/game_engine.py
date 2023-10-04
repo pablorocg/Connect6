@@ -12,7 +12,7 @@ class GameEngine:
             else:
                 print(f"Too long Engine Name: {name}, should be less than: {Defines.MSG_LENGTH}")
         self.m_alphabeta_depth = 1
-        self.m_board = t = [ [0]*Defines.GRID_NUM for i in range(Defines.GRID_NUM)]
+        self.m_board = t = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))#[ [0]*Defines.GRID_NUM for i in range(Defines.GRID_NUM)]
         self.init_game()
         self.m_search_engine = SearchEngine()
         self.m_best_move = StoneMove()
