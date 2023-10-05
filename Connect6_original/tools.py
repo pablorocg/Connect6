@@ -37,14 +37,16 @@ def make_move(board, move, color):
 
     Args:
         board (numpy.ndarray): The Connect6 board.
-        move (Move): The move to make.
+        move (tuple): The move to make ((x1, y1), (x2, y2)).
         color (int): The color of the player making the move.
 
     Returns:
         None
     """
+    
     board[move.positions[0].x, move.positions[0].y] = color
     board[move.positions[1].x, move.positions[1].y] = color
+    
 
 def unmake_move(board, move):
     """
@@ -59,6 +61,14 @@ def unmake_move(board, move):
     """
     board[move.positions[0].x, move.positions[0].y] = Defines.NOSTONE
     board[move.positions[1].x, move.positions[1].y] = Defines.NOSTONE
+
+def create_move(positions):
+    move = StoneMove()
+    move.positions[0].x = positions[0][0]
+    move.positions[0].y = positions[0][1]
+    move.positions[1].x = positions[1][0]
+    move.positions[1].y = positions[1][1]
+    return move
 
 def is_win_by_premove(board, preMove):
     """
