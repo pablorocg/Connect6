@@ -70,7 +70,7 @@ class SearchEngine():
             make_move(self.state, move, ourColor)
             return self.evaluate_board(self.player)
               
-        if self.is_terminal(self.state, preMove):
+        if self.is_terminal(self.state, preMove) or depth == 0:
             return self.evaluate_board(self.player)
         
         moves = self.get_available_moves(self.state)
@@ -99,6 +99,7 @@ class SearchEngine():
                 beta = min(beta, eval_score)
             if beta <= alpha:
                 break
+        make_move(self.state, create_move(best_move), 3-ourColor)
         return best_score
             
     # Codigo intentando paralelizar ------------------------------------------------------------------------------
@@ -117,7 +118,7 @@ class SearchEngine():
             make_move(self.state, move, ourColor)
             return self.evaluate_board(self.player)
                 
-        if self.is_terminal(self.state, preMove):
+        if self.is_terminal(self.state, preMove) or depth == 0:
             return self.evaluate_board(self.player)
             
         moves = self.get_available_moves(self.state)
