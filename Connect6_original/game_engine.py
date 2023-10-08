@@ -103,12 +103,16 @@ class GameEngine:
         score = 0
         start = 0
         end = 0
-        print()
+        
         start = time.perf_counter()
         self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
-        # print('Evaluacion antes del mov: ', self.m_search_engine.evaluate_board(self.m_chess_type))
+        
         print('Searching...')
-        score = self.m_search_engine.alpha_beta_search_paralel(self.m_alphabeta_depth, Defines.MININT, Defines.MAXINT, ourColor, bestMove, bestMove)
+        score = self.m_search_engine.alfa_beta(nodo = self.m_board, 
+                                               depth = self.m_alphabeta_depth, 
+                                               alfa = Defines.MININT, 
+                                               beta = Defines.MAXINT, 
+                                               jugador = ourColor)
         end = time.perf_counter()
 
         print(f"AB Time:\t{end - start:.3f}")

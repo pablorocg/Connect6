@@ -111,6 +111,58 @@ def is_win_by_premove(board, preMove):
 
     return False
 
+# Define the is_win function based on is_win_by_premove
+
+def is_win(board):
+    """
+    Determines if a player has won the game.
+
+    Args:
+    - board (numpy.ndarray): The game board
+
+    Returns:
+    - True if there is a win for a player, False otherwise
+    """
+    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+    rows, cols = board.shape
+
+    for row in range(rows):
+        for col in range(cols):
+            position = (row, col)
+            movStone = board[row, col]
+
+            if (movStone == Defines.BORDER or movStone == Defines.NOSTONE):
+                continue
+
+            for direction in directions:
+                count = 0
+                x, y = position
+
+                while 0 <= x < rows and 0 <= y < cols and board[x, y] == movStone:
+                    x += direction[0]
+                    y += direction[1]
+                    count += 1
+
+                x, y = position
+                x -= direction[0]
+                y -= direction[1]
+
+                while 0 <= x < rows and 0 <= y < cols and board[x, y] == movStone:
+                    x -= direction[0]
+                    y -= direction[1]
+                    count += 1
+
+                # We subtract 1 because the position itself is counted twice
+                if count - 1 >= 6:
+                    return True
+
+    return False
+
+
+
+
+
+
 def get_msg(max_len):
     """
     Reads a string from standard input and returns a substring of it with a maximum length of max_len.

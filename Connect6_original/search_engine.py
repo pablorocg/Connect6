@@ -21,13 +21,13 @@ class SearchEngine():
         self.depth = depth
     
     
-    @mide_tiempo
-    def evaluate_board(self, player):
+    
+    def evaluate_board(self, board,  player):
         """
         Función que evalúa el estado de una partida basándose en el número de amenazas de cada
         jugador y la diferencia entre ellas para determinar quién tiene ventaja en la partida.
         """
-        board = self.state[1:-1, 1:-1]
+        board = board[1:-1, 1:-1]
         
         JUGADOR = player
         OPONENTE = 1 if JUGADOR == 2 else 2
@@ -62,7 +62,9 @@ class SearchEngine():
 
     @mide_tiempo
     def alpha_beta_search(self, depth, alpha, beta, ourColor, bestMove, preMove):
-   
+        """
+        
+        """
         
 
         if self.check_first_move():
@@ -74,9 +76,10 @@ class SearchEngine():
             return self.evaluate_board(self.player)
         
         moves = self.get_available_moves(self.state)
+        print(moves)
         # moves = self.order_moves_heuristic(moves)
         
-        is_maximizing = ourColor == self.player
+        is_maximizing = ourColor != self.player
         best_score = -np.inf if is_maximizing else np.inf
 
         
@@ -99,9 +102,87 @@ class SearchEngine():
                 beta = min(beta, eval_score)
             if beta <= alpha:
                 break
-        make_move(self.state, create_move(best_move), 3-ourColor)
+        # Apply the best move to the board
+        if best_move:
+            # Crear el movimiento
+            best_move = create_move(best_move)
+            make_move(self.state, best_move, ourColor)
+
         return best_score
+
+
+    # Implementacion minimax con poda alfa-beta---------------------------------------------------------------------
+#     función alfa-beta(nodo //en nuestro caso el tablero, profundidad, α, β, jugador)
+    @mide_tiempo
+    def alfa_beta(self, nodo, depth, alfa, beta, jugador):
+        """
+        Alpha-beta search algorithm.
+        
+        Parameters:
+        ----------
+        nodo (int): Nodo a explorar.
+        depth (int): Depth of the search tree.
+        alpha (int): Alpha value.
+        beta (int): Beta value.
+        jugador (int): Color of the player.
+
+        Returns:
+        -------
+        int: The best score found.
+        """
+
+        best_move = None
+
+        if self.check_first_move():
+            best_move = create_move((10,10),(10,10))
+            make_move(self.state, best_move, self.player)
+            return self.evaluate_board(nodo, jugador)
+        
+        # Si nodo es un nodo terminal o profundidad = 0 --> devolver el valor heurístico del nodo
+        if self.is_terminal(nodo) or depth == 0:
+
+            return self.evaluate_board(nodo, jugador)
+        
+        # Si jugador == max
+        if jugador == self.player:
             
+            for move, child in self.get_moves_and_children(nodo, jugador):
+                
+                score = self.alfa_beta(child, depth-1, alfa, beta, 3 - jugador)
+                
+                if score > alfa:
+                    alfa = score
+                    best_move = move
+
+                if beta <= alfa:    
+                    break
+            if best_move:
+                best_move = create_move(best_move)
+                make_move(self.state, best_move, self.player)
+            return alfa
+        # Si no
+        else:
+            
+            for move, child in self.get_moves_and_children(nodo, 3 - jugador):
+                
+                score = self.alfa_beta(child, depth-1, alfa, beta, 3 - jugador)
+                
+                if score < beta:
+                    beta = score
+                    best_move = move
+
+                if beta <= alfa:
+                    break
+
+            if best_move:
+                best_move = create_move(best_move)
+                make_move(self.state, best_move, self.player)
+            
+            return beta
+
+
+
+
     # Codigo intentando paralelizar ------------------------------------------------------------------------------
     
 
@@ -113,16 +194,35 @@ class SearchEngine():
         return eval_score, move
 
     def alpha_beta_search_paralel(self, depth, alpha, beta, ourColor, bestMove, preMove):
-        if self.check_first_move():
-            move = create_move((10,10),(10,10))
-            make_move(self.state, move, ourColor)
-            return self.evaluate_board(self.player)
-                
-        if self.is_terminal(self.state, preMove) or depth == 0:
-            return self.evaluate_board(self.player)
+        """
+        Alpha-beta search algorithm with parallel evaluation of moves.
+        
+        Parameters:
+        ----------
+        depth (int): Depth of the search tree.
+        alpha (int): Alpha value.
+        beta (int): Beta value.
+        ourColor (int): Color of the player.
+        bestMove (Move): Best move found so far.
+        preMove (Move): Previous move made on the board.
+
+        Returns:
+        -------
+        int: The best score found.
+        """
+
+        if self.check_first_move():# Comprobar si es el primer movimiento
+            move = create_move((10,10),(10,10)) # Crear el movimiento
+            make_move(self.state, move, ourColor) # Realizar el movimiento en el tablero
+            return self.evaluate_board(self.player) # Evaluar el tablero resultante
+
+
+        if self.is_terminal(self.state, preMove) or depth == 0: # Comprobar si es un nodo terminal
+
+            return self.evaluate_board(self.player) # Evaluar el tablero resultante
             
         moves = self.get_available_moves(self.state)
-        is_maximizing = ourColor == self.player
+        is_maximizing = ourColor != self.player
 
         # Parallel evaluation of moves
         results = Parallel(n_jobs=-1)(delayed(self.evaluate_move_parallel)(move, depth, alpha, beta, ourColor, bestMove) for move in moves)
@@ -148,13 +248,13 @@ class SearchEngine():
 
     
     #-------------------------------------------------------------------------------------------------------------
-    def is_terminal(self, board, preMove):
-        return is_win_by_premove(board, preMove) or len(self.get_available_moves(board)) == 0
+    def is_terminal(self, board):
+        return is_win(board) or len(self.get_available_moves(board)) == 0
     
     def check_first_move(self):
         return all(self.state[i][j] == Defines.NOSTONE for i in range(1, len(self.state)-1) for j in range(1, len(self.state[i])-1))
     
-    @mide_tiempo
+    
     def get_available_moves(self, board):
         """
         Returns a list of available moves on the board.
@@ -173,6 +273,23 @@ class SearchEngine():
         # Devuelve todas las combinaciones de 2 movimientos posibles
         return list(it.combinations(map(tuple, empty_coords), 2))
     
+    def get_moves_and_children(self, node, player):
+        #Obtener los movimientos disponibles
+        moves = self.get_available_moves(node)
+
+        # Crear los hijos
+        children = []
+        for move1, move2 in moves:
+            child = node.copy()
+            child[move1[0], move1[1]] = player
+            child[move2[0], move2[1]] = player
+
+            children.append([(move1, move2), child])
+        return children
+
+
+
+
     @mide_tiempo
     def order_moves_heuristic(self, moves):
         """
@@ -181,19 +298,8 @@ class SearchEngine():
         print('Ordenando movimientos...')
         return sorted(moves, key=lambda move: self.evaluate_move(move), reverse=True)
     
-    @mide_tiempo
-    def evaluate_move(self, move):
-        """
-        Evalúa un movimiento según la heurística de ordenación.
-        """
-        
-        move = create_move(move)
-        # Realiza el movimiento en el tablero copiado
-        make_move(self.state, move, self.player)
-        # Evalúa el tablero resultante
-        score = self.evaluate_board(self.player)
-        unmake_move(self.state, move)
-        return score
+    
+    
     
 
 def flush_output():
