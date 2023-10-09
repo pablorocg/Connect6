@@ -13,12 +13,14 @@ class SearchEngine():
         self.state = None
         self.player = None
         self.depth = None
+        self.m_best_move = None
         self.m_total_nodes = 0
 
-    def before_search(self, state, player, depth):
+    def before_search(self, state, player, depth, best_move):
         self.state = state
         self.player = player
         self.depth = depth
+        self.m_best_move = best_move
     
     
     
@@ -106,7 +108,8 @@ class SearchEngine():
         if best_move:
             # Crear el movimiento
             best_move = create_move(best_move)
-            make_move(self.state, best_move, ourColor)
+            # make_move(self.state, best_move, ourColor)
+            self.m_best_move = best_move
 
         return best_score
 
@@ -135,7 +138,8 @@ class SearchEngine():
 
         if self.check_first_move():
             best_move = create_move((10,10),(10,10))
-            make_move(self.state, best_move, self.player)
+            # make_move(self.state, best_move, self.player)
+            self.m_best_move = best_move
             return self.evaluate_board(nodo, jugador)
         
         # Si nodo es un nodo terminal o profundidad = 0 --> devolver el valor heurístico del nodo
@@ -158,7 +162,8 @@ class SearchEngine():
                     break
             if best_move:
                 best_move = create_move(best_move)
-                make_move(self.state, best_move, self.player)
+                self.m_best_move = best_move
+                # make_move(self.state, best_move, self.player)
             return alfa
         # Si no
         else:
@@ -176,7 +181,8 @@ class SearchEngine():
 
             if best_move:
                 best_move = create_move(best_move)
-                make_move(self.state, best_move, self.player)
+                self.m_best_move = best_move
+                # make_move(self.state, best_move, 3-self.player)
             
             return beta
 

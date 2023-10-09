@@ -2,6 +2,7 @@ from defines import *
 from tools import *
 import sys
 from search_engine import SearchEngine
+from search_algorithms import *
 import time
 
 class GameEngine:
@@ -14,7 +15,8 @@ class GameEngine:
         self.m_alphabeta_depth = 1
         self.m_board = t = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))#[ [0]*Defines.GRID_NUM for i in range(Defines.GRID_NUM)]
         self.init_game()
-        self.m_search_engine = SearchEngine()
+        # self.m_search_engine = SearchEngine()
+        self.m_search_engine = MiniMax()
         self.m_best_move = StoneMove()
 
     def init_game(self):
@@ -69,25 +71,34 @@ class GameEngine:
                     msg = f"move {move2msg(self.m_best_move)}"
                     print(msg)
                     flush_output()
-            elif msg.startswith("new"):
-                self.init_game()
-                if msg[4:] == "black":
-                    self.m_best_move = msg2move("JJ")
-                    make_move(self.m_board, self.m_best_move, Defines.BLACK)
-                    self.m_chess_type = Defines.BLACK
+            elif msg.startswith("new"):# Comando para iniciar una nueva partida
+
+                self.init_game()# Inicializa el tablero
+
+                if msg[4:] == "black":# Si el comando es new black
+                    self.m_best_move = msg2move("JJ")# Se asigna la mejor jugada
+                    make_move(self.m_board, self.m_best_move, Defines.BLACK)# Se hace la jugada
+                    self.m_chess_type = Defines.BLACK# Se asigna el color de la ficha
                     msg = "move JJ"
                     print(msg)
-                    flush_output()
+                    flush_output()# Se imprime la jugada
+
                 else:
-                    self.m_chess_type = Defines.WHITE
-            elif msg.startswith("move"):
-                self.m_best_move = msg2move(msg[5:])
-                make_move(self.m_board, self.m_best_move, self.m_chess_type ^ 3)
-                if is_win_by_premove(self.m_board, self.m_best_move):
+                    
+                    self.m_chess_type = Defines.WHITE # Si el comando es new white
+
+            elif msg.startswith("move"):# Comando para hacer una jugada
+
+                self.m_best_move = msg2move(msg[5:])# Se asigna la mejor jugada
+
+                make_move(self.m_board, self.m_best_move, self.m_chess_type)# Se hace la jugada
+
+                if is_win_by_premove(self.m_board, self.m_best_move):# Si la jugada es ganadora
                     print("We lost!")
-                if self.search_a_move(self.m_chess_type, self.m_best_move):
-                    msg = f"move {move2msg(self.m_best_move)}"
-                    make_move(self.m_board, self.m_best_move, self.m_chess_type)
+
+                if self.search_a_move(self.m_chess_type, self.m_best_move):# Se busca la mejor jugada
+                    msg = f"move {move2msg(self.m_best_move)}"# Se asigna el mensaje
+                    make_move(self.m_board, self.m_best_move, self.m_chess_type)# Se hace la jugada
                     print(msg)
                     flush_output()
             elif msg.startswith("depth"):
@@ -103,20 +114,19 @@ class GameEngine:
         score = 0
         start = 0
         end = 0
-        
+
         start = time.perf_counter()
-        self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth, bestMove)
+        self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
+        score = self.m_search_engine.get_best_move()
         
-        print('Searching...')
-        score = self.m_search_engine.alfa_beta(nodo = self.m_board, 
-                                               depth = self.m_alphabeta_depth, 
-                                               alfa = Defines.MININT, 
-                                               beta = Defines.MAXINT, 
-                                               jugadorprint = ourColor)
+        
+        
+        # score = self.m_search_engine.alpha_beta_search(self.m_alphabeta_depth, Defines.MININT, Defines.MAXINT, ourColor, bestMove, bestMove)
+        
         end = time.perf_counter()
 
         print(f"AB Time:\t{end - start:.3f}")
-        print(f"Node:\t{self.m_search_engine.m_total_nodes}\n")
+        # print(f"Node:\t{self.m_search_engine.m_total_nodes}\n")
         print(f"Score:\t{score:.3f}")
         return True
 
