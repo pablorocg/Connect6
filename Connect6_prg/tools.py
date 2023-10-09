@@ -1,6 +1,8 @@
 from defines import *
 import time
 import numpy as np
+import random
+import itertools as it
 
 
 def isValidPos(x,y):
@@ -15,9 +17,9 @@ def isValidPos(x,y):
     bool: True if the position is valid, False otherwise.
     """
     return x>0 and x<Defines.GRID_NUM-1 and y>0 and y<Defines.GRID_NUM-1
- 
 
-def init_board(board):
+
+def init_board(board):    
     """
     Initializes the game board with NOSTONE values, and sets the border values to BORDER.
 
@@ -25,50 +27,46 @@ def init_board(board):
     board (numpy.ndarray): The game board to be initialized.
 
     Returns:
-    None
+    numpy.ndarray: The initialized game board.
     """
     board[:] = Defines.NOSTONE
     board[0, :] = board[-1, :] = board[:, 0] = board[:, -1] = Defines.BORDER
+    return board
 
-
-def make_move(board, move, color):
-    """
-    Updates the board with the given move and color.
-
-    Args:
-        board (numpy.ndarray): The Connect6 board.
-        move (tuple): The move to make ((x1, y1), (x2, y2)).
-        color (int): The color of the player making the move.
-
-    Returns:
-        None
-    """
-    
-    board[move.positions[0].x, move.positions[0].y] = color
-    board[move.positions[1].x, move.positions[1].y] = color
-    
-
-def unmake_move(board, move):
-    """
-    Undo a move on the board by setting the positions of the move to Defines.NOSTONE.
-
-    Args:
-    - board (numpy.ndarray): The Connect6 board
-    - move (Move): a Move object representing the move to be undone
-
-    Returns:
-    - None
-    """
-    board[move.positions[0].x, move.positions[0].y] = Defines.NOSTONE
-    board[move.positions[1].x, move.positions[1].y] = Defines.NOSTONE
 
 def create_move(positions):
+    """
+    Creates a move from the given positions.
+
+    Args:
+    positions (list): A list of positions ((x1, y1), (x2, y2)).
+
+    """
     move = StoneMove()
     move.positions[0].x = positions[0][0]
     move.positions[0].y = positions[0][1]
     move.positions[1].x = positions[1][0]
     move.positions[1].y = positions[1][1]
+
+    
     return move
+
+
+def make_move(board, move, color):
+    """
+    Hacer un movimiento sobre board
+    """
+    board[move.positions[0].x, move.positions[0].y] = color
+    board[move.positions[1].x, move.positions[1].y] = color
+
+
+def unmake_move(board, move):
+    """
+    Deshacer un movimiento sobre board
+    """
+    board[move.positions[0].x, move.positions[0].y] = Defines.NOSTONE
+    board[move.positions[1].x, move.positions[1].y] = Defines.NOSTONE
+
 
 def is_win_by_premove(board, preMove):
     """
@@ -111,70 +109,30 @@ def is_win_by_premove(board, preMove):
 
     return False
 
-# Define the is_win function based on is_win_by_premove
 
-def is_win(board):
-    """
-    Determines if a player has won the game.
-
-    Args:
-    - board (numpy.ndarray): The game board
-
-    Returns:
-    - True if there is a win for a player, False otherwise
-    """
-    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+def check_winner(board):
+    board = board[1:-1, 1:-1]
     rows, cols = board.shape
-
-    for row in range(rows):
-        for col in range(cols):
-            position = (row, col)
-            movStone = board[row, col]
-
-            if (movStone == Defines.BORDER or movStone == Defines.NOSTONE):
-                continue
-
-            for direction in directions:
-                count = 0
-                x, y = position
-
-                while 0 <= x < rows and 0 <= y < cols and board[x, y] == movStone:
-                    x += direction[0]
-                    y += direction[1]
-                    count += 1
-
-                x, y = position
-                x -= direction[0]
-                y -= direction[1]
-
-                while 0 <= x < rows and 0 <= y < cols and board[x, y] == movStone:
-                    x -= direction[0]
-                    y -= direction[1]
-                    count += 1
-
-                # We subtract 1 because the position itself is counted twice
-                if count - 1 >= 6:
-                    return True
-
-    return False
-
-
-
+    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+    
+    for x in range(rows):
+        for y in range(cols):
+            if board[x, y] != 0:
+                for dx, dy in directions:
+                    if 0 <= x + 5*dx < rows and 0 <= y + 5*dy < cols:
+                        if all(board[x + i*dx, y + i*dy] == board[x, y] for i in range(6)):
+                            return board[x, y]
+    return 0
 
 
 
 def get_msg(max_len):
     """
-    Reads a string from standard input and returns a substring of it with a maximum length of max_len.
-
-    Args:
-        max_len (int): The maximum length of the substring to return.
-
-    Returns:
-        str: A substring of the input string with a maximum length of max_len.
+    Input a message from the console.
     """
     buf = input().strip()
     return buf[:max_len]
+
 
 def log_to_file(msg):
     """
@@ -186,6 +144,7 @@ def log_to_file(msg):
     Returns:
         int: 0 if the message was successfully logged, -1 otherwise.
     """
+
     g_log_file_name = Defines.LOG_FILE
     try:
         with open(g_log_file_name, "a") as file:
@@ -198,16 +157,8 @@ def log_to_file(msg):
         print(f"Error: Can't open log file - {g_log_file_name}")
         return -1
 
+
 def move2msg(move):
-    """
-    Converts a move object to a message string.
-
-    Args:
-        move (Move): A move object containing two Position objects.
-
-    Returns:
-        str: A message string representing the move.
-    """
     if move.positions[0].x == move.positions[1].x and move.positions[0].y == move.positions[1].y:
         msg = f"{chr(ord('S') - move.positions[0].x + 1)}{chr(move.positions[0].y + ord('A') - 1)}"
         return msg
@@ -217,15 +168,6 @@ def move2msg(move):
         return msg
 
 def msg2move(msg):
-    """
-    Converts a message string to a StoneMove object.
-
-    Args:
-        msg (str): A string representing the move.
-
-    Returns:
-        StoneMove: A StoneMove object representing the move.
-    """
     move = StoneMove()
     if len(msg) == 2:
         move.positions[0].x = move.positions[1].x = ord('S') - ord(msg[1]) + 1
@@ -285,11 +227,37 @@ def print_score(move_list, n):
         print("".join(row_strings))
 
 
-# ------------------------------------------------------------
+def get_available_moves(board):
+    """
+    Returns a list of available moves on the board.
+
+    Parameters:
+    board (numpy.ndarray): A numpy array representing the Connect6 board.
+
+    Returns:
+    list: A list of tuples representing the available moves on the board.
+    """
+    
+    # Encuentra las coordenadas de las casillas vacías
+    empty_coords = np.argwhere(board == Defines.NOSTONE)
+
+    # Devuelve todas las combinaciones de 2 movimientos posibles
+    coords = list(it.combinations(map(tuple, empty_coords), 2))
+    
+    return [create_move(coord) for coord in coords]
 
 
-def get_window_scoring(window, player):
-    k=0
+
+def get_random_move(board):
+    """
+    Devuelve un movimiento aleatorio de la lista de movimientos posibles
+    """
+    moves = get_available_moves(board)
+    return moves[random.randint(0, len(moves) - 1)]
+
+
+def get_window_scoring(window, player, k=0):
+    
     """
     Calcula el score de una ventana de 6 fichas, para un jugador dado. 
     """
@@ -301,15 +269,15 @@ def get_window_scoring(window, player):
     return 0
     
 
-def get_score(m_board, player):
+def get_score(m_board):
     """
     Función que evalúa el estado de una partida basándose en el número de amenazas de cada
     jugador y la diferencia entre ellas para determinar quién tiene ventaja en la partida.
+
+    negro  ->  + inf (maximiza)
+    blanco -> - inf (minimiza)
     """
     board = m_board[1:-1, 1:-1]
-    
-    JUGADOR = player
-    OPONENTE = 1 if JUGADOR == 2 else 2
     
     score = 0
     
@@ -319,27 +287,30 @@ def get_score(m_board, player):
             
             # Amenazas horizontales
             horizontal_window = board[i,j:j+6]
-            score += get_window_scoring(horizontal_window, JUGADOR)
-            score -= get_window_scoring(horizontal_window, OPONENTE)
+            score += get_window_scoring(horizontal_window, Defines.BLACK)
+            score -= get_window_scoring(horizontal_window, Defines.WHITE)
             
             # Amenazas verticales
             vertical_window = board[j:j+6,i]
-            score += get_window_scoring(vertical_window, JUGADOR)
-            score -= get_window_scoring(vertical_window, OPONENTE)   
+            score += get_window_scoring(vertical_window, Defines.BLACK)
+            score -= get_window_scoring(vertical_window, Defines.WHITE)   
             
             # Amenazas diagonales
             diagonal_window = [board[i+k,j+k] for k in range(6)]
-            score += get_window_scoring(diagonal_window, JUGADOR)
-            score -= get_window_scoring(diagonal_window, OPONENTE)
+            score += get_window_scoring(diagonal_window, Defines.BLACK)
+            score -= get_window_scoring(diagonal_window, Defines.WHITE)
             
             anti_diagonal_window = [board[i+k,j+5-k] for k in range(6)]
-            score += get_window_scoring(anti_diagonal_window, JUGADOR)
-            score -= get_window_scoring(anti_diagonal_window, OPONENTE)
+            score += get_window_scoring(anti_diagonal_window, Defines.BLACK)
+            score -= get_window_scoring(anti_diagonal_window, Defines.WHITE)
 
     return score
 
 
-        
+
+
+
+
 def mide_tiempo(funcion):
     def funcion_medida(*args, **kwargs):
         inicio = time.time()
@@ -348,3 +319,17 @@ def mide_tiempo(funcion):
         return c
     return funcion_medida
 
+
+
+test = False
+
+if test:
+    test_board = init_board(np.zeros((Defines.GRID_NUM, Defines.GRID_NUM), dtype=int))
+    moves = get_available_moves(test_board)
+    
+
+    move = create_move(moves[1])
+    comando = move2msg(move)
+    print(comando)
+    make_move(test_board, move, Defines.BLACK)
+    print_board(test_board)

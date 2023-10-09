@@ -236,3 +236,170 @@
 [Wed Oct  4 20:23:21 202] - new white
 [Wed Oct  4 20:23:25 202] - move JJ
 [Wed Oct  4 20:24:35 202] - quit
+[Thu Oct  5 12:27:51 202] - new black
+[Thu Oct  5 12:27:55 202] - move JKJL
+[Thu Oct  5 12:32:59 202] - new black
+[Thu Oct  5 12:33:02 202] - move JKJL
+[Thu Oct  5 13:07:40 202] - new black
+[Thu Oct  5 13:07:43 202] - move JKJL
+[Thu Oct  5 13:27:42 202] - new white
+[Thu Oct  5 13:27:47 202] - move JJ
+[Thu Oct  5 13:35:21 202] - new black
+[Thu Oct  5 13:39:09 202] - new black
+[Thu Oct  5 13:43:31 202] - new black
+[Thu Oct  5 13:43:34 202] - move JKJL
+[Thu Oct  5 14:05:12 202] - new black
+[Thu Oct  5 14:05:16 202] - move JKJL
+[Thu Oct  5 14:05:48 202] - new black
+[Thu Oct  5 14:05:52 202] - move JKJL
+[Thu Oct  5 14:19:00 202] - new black
+[Thu Oct  5 14:19:50 202] - new black
+[Thu Oct  5 14:22:17 202] - 
+[Thu Oct  5 14:22:33 202] - new white
+[Thu Oct  5 14:24:25 202] - new black
+[Thu Oct  5 14:25:04 202] - new black
+[Thu Oct  5 14:28:05 202] - new black
+[Thu Oct  5 14:28:11 202] - move JKJL
+[Thu Oct  5 14:30:11 202] - new black
+[Thu Oct  5 14:30:15 202] - move JKJL
+[Thu Oct  5 14:32:37 202] - new black
+[Thu Oct  5 14:32:39 202] - move JKJL
+[Thu Oct  5 14:33:15 202] - new black
+[Thu Oct  5 14:33:19 202] - move JKJL
+[Thu Oct  5 14:40:29 202] - new white
+[Thu Oct  5 14:40:34 202] - move JJ
+[Thu Oct  5 16:16:46 202] - new white
+[Thu Oct  5 16:16:54 202] - move JJ
+[Thu Oct  5 16:22:08 202] - new white
+[Thu Oct  5 16:22:17 202] - move JJ
+[Thu Oct  5 16:24:17 202] - new white
+[Thu Oct  5 16:24:23 202] - move JJ
+[Thu Oct  5 16:29:01 202] - new white
+[Thu Oct  5 16:29:02 202] - move JJ
+[Thu Oct  5 16:29:20 202] - new black
+[Thu Oct  5 16:29:22 202] - move JKJL
+[Thu Oct  5 16:32:07 202] - new black
+[Thu Oct  5 16:32:09 202] - move JKJL
+[Thu Oct  5 16:34:10 202] - new black
+[Thu Oct  5 16:34:15 202] - move JKJL
+[Thu Oct  5 16:45:39 202] - new black
+[Thu Oct  5 16:45:44 202] - move JKJL
+[Fri Oct  6 10:23:10 202] - & C:/Users/pablo/anaconda3/envs/TIA/python.exe c:/Users/pablo/GitHub/Connect6/Connect6_original/search_engine.py
+[Fri Oct  6 10:23:33 202] - new black
+[Fri Oct  6 10:23:38 202] - move JK
+[Fri Oct  6 10:25:10 202] - new black
+[Fri Oct  6 10:25:14 202] - move JKJL
+[Fri Oct  6 10:25:36 202] - move JOJP
+[Fri Oct  6 10:25:41 202] - print
+[Fri Oct  6 10:31:09 202] - quit
+[Fri Oct  6 10:31:14 202] - new black
+[Fri Oct  6 10:31:19 202] - move JKJL
+[Fri Oct  6 10:31:41 202] - move JOJP
+[Fri Oct  6 10:31:45 202] - print
+[Fri Oct  6 10:31:53 202] - quit
+[Fri Oct  6 10:32:23 202] - new black
+[Fri Oct  6 10:32:29 202] - move HH
+[Fri Oct  6 10:36:00 202] - new black
+[Fri Oct  6 10:36:05 202] - move JKJL
+[Fri Oct  6 10:39:34 202] - print
+[Sun Oct  8 19:06:56 202] - new black
+[Sun Oct  8 19:06:59 202] - move JKJL
+[Sun Oct  8 19:18:05 202] - quit
+[Sun Oct  8 19:18:15 202] - new white
+[Sun Oct  8 19:18:19 202] - move JJ
+[Sun Oct  8 19:20:34 202] - print
+[Sun Oct  8 19:21:52 202] - quit
+[Sun Oct  8 19:21:58 202] - new black
+[Sun Oct  8 19:22:03 202] - move JKJL
+[Sun Oct  8 19:24:11 202] - print
+[Sun Oct  8 19:28:58 202] - quit
+[Sun Oct  8 19:29:08 202] - new black
+[Sun Oct  8 19:29:15 202] - move JKJL
+[Sun Oct  8 19:30:58 202] - print
+[Sun Oct  8 20:23:37 202] - quit
+[Sun Oct  8 20:23:44 202] - new black
+[Sun Oct  8 20:23:47 202] - move JKJL
+[Sun Oct  8 20:24:16 202] - new black
+[Sun Oct  8 20:24:20 202] - move JKJL
+[Sun Oct  8 20:24:47 202] - new black
+[Sun Oct  8 20:24:50 202] - move JKJL
+[Sun Oct  8 20:35:57 202] - new black
+[Sun Oct  8 20:35:59 202] - move JKJL
+[Sun Oct  8 20:36:56 202] - new black
+[Sun Oct  8 20:36:58 202] - move JKJL
+[Sun Oct  8 20:38:35 202] - new black
+[Sun Oct  8 20:38:39 202] - move JKJL
+[Sun Oct  8 20:46:53 202] - print
+[Sun Oct  8 20:48:09 202] - quit
+[Sun Oct  8 20:48:23 202] - new white
+[Sun Oct  8 20:48:26 202] - move JJ
+[Sun Oct  8 20:56:40 202] - print
+[Sun Oct  8 20:58:28 202] - move EQJK
+[Sun Oct  8 21:06:40 202] - print
+[Sun Oct  8 21:11:37 202] - quit
+[Sun Oct  8 21:11:44 202] - new white
+[Sun Oct  8 21:11:48 202] - move JJ
+[Sun Oct  8 21:12:50 202] - new white
+[Sun Oct  8 21:12:51 202] - move JJ
+[Sun Oct  8 21:13:49 202] - new white
+[Sun Oct  8 21:13:53 202] - move JJ
+[Mon Oct  9 13:15:20 202] - new black
+[Mon Oct  9 13:15:25 202] - move JKJL
+[Mon Oct  9 13:15:58 202] - new black
+[Mon Oct  9 13:16:02 202] - move JKJL
+[Mon Oct  9 13:16:39 202] - new black
+[Mon Oct  9 13:16:41 202] - move JKJL
+[Mon Oct  9 13:29:14 202] - new black
+[Mon Oct  9 13:29:18 202] - move JKJL
+[Mon Oct  9 13:31:55 202] - new black
+[Mon Oct  9 13:31:57 202] - print
+[Mon Oct  9 13:32:25 202] - move JKJL
+[Mon Oct  9 13:40:17 202] - new black
+[Mon Oct  9 13:40:22 202] - move JKJL
+[Mon Oct  9 13:51:48 202] - new white
+[Mon Oct  9 13:51:52 202] - move JJ
+[Mon Oct  9 13:53:42 202] - new black
+[Mon Oct  9 13:53:46 202] - move JKJL
+[Mon Oct  9 13:54:49 202] - new white
+[Mon Oct  9 13:54:53 202] - move JJ
+[Mon Oct  9 13:55:14 202] - new black
+[Mon Oct  9 13:55:17 202] - move JKJL
+[Mon Oct  9 13:56:45 202] - new black
+[Mon Oct  9 13:56:48 202] - move JKJL
+[Mon Oct  9 13:59:12 202] - new black
+[Mon Oct  9 13:59:15 202] - move JKJL
+[Mon Oct  9 14:04:38 202] - new black
+[Mon Oct  9 14:04:41 202] - move JKJL
+[Mon Oct  9 14:10:10 202] - print
+[Mon Oct  9 14:14:21 202] - quit
+[Mon Oct  9 14:14:29 202] - new black
+[Mon Oct  9 14:14:32 202] - move JKJL
+[Mon Oct  9 14:17:50 202] - print
+[Mon Oct  9 14:30:51 202] - quit
+[Mon Oct  9 14:30:56 202] - new black
+[Mon Oct  9 14:30:59 202] - move JKJL
+[Mon Oct  9 14:35:09 202] - print
+[Mon Oct  9 14:35:32 202] - move JIJH
+[Mon Oct  9 14:38:57 202] - print
+[Mon Oct  9 14:40:20 202] - move NEJM
+[Mon Oct  9 14:40:46 202] - new black
+[Mon Oct  9 14:40:50 202] - move JKJL
+[Mon Oct  9 14:44:35 202] - print
+[Mon Oct  9 14:47:53 202] - quit
+[Mon Oct  9 14:47:59 202] - new black
+[Mon Oct  9 14:48:01 202] - move JKJL
+[Mon Oct  9 14:52:08 202] - print
+[Mon Oct  9 14:53:15 202] - new black
+[Mon Oct  9 14:53:18 202] - move JKJL
+[Mon Oct  9 15:03:31 202] - print
+[Mon Oct  9 19:05:54 202] - new black
+[Mon Oct  9 19:05:58 202] - move JKJL
+[Mon Oct  9 19:06:41 202] - new black
+[Mon Oct  9 19:06:44 202] - move JKJL
+[Mon Oct  9 19:15:35 202] - & C:/Users/pablo/anaconda3/envs/TIA/python.exe c:/Users/pablo/GitHub/Connect6/Connect6_prg/test_tools.py
+[Mon Oct  9 19:16:18 202] - 
+[Mon Oct  9 19:16:18 202] - 
+[Mon Oct  9 21:15:10 202] - new black
+[Mon Oct  9 21:15:23 202] - print
+[Mon Oct  9 21:15:36 202] - move JKJL
+[Mon Oct  9 21:19:31 202] - print
