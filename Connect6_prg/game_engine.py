@@ -52,6 +52,8 @@ class GameEngine:
                 break
             elif msg == "print":
                 print_board(self.m_board, self.m_best_move)
+                print(f"Best move: {move2msg(self.m_best_move)}")
+                print(f"Chess type: {self.m_chess_type}")
             elif msg == "vcf":
                 self.m_vcf = True
             elif msg == "unvcf":
@@ -65,7 +67,7 @@ class GameEngine:
                 make_move(self.m_board, self.m_best_move, Defines.WHITE)
                 self.m_chess_type = Defines.WHITE
             elif msg == "next":
-                self.m_chess_type = self.m_chess_type ^ 3
+                self.m_chess_type = 3 - self.m_chess_type# ^ 3
                 if self.search_a_move(self.m_chess_type, self.m_best_move):
                     make_move(self.m_board, self.m_best_move, self.m_chess_type)
                     msg = f"move {move2msg(self.m_best_move)}"
@@ -117,7 +119,8 @@ class GameEngine:
 
         start = time.perf_counter()
         self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
-        score = self.m_search_engine.get_best_move()
+        score, bestMove = self.m_search_engine.get_best_move()
+        self.m_best_move = bestMove
         
         
         

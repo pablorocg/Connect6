@@ -75,11 +75,11 @@ class MiniMax:
                 best_score = score
                 best_move = move
 
-        # Apply the best move to the actual game board
-        if best_move:
-            tl.make_move(self.m_board, best_move, self.m_chess_type)
+        # # Apply the best move to the actual game board
+        # if best_move:
+        #     tl.make_move(self.m_board, best_move, self.m_chess_type)
 
-        return best_score
+        return best_score, best_move
 
 
     def get_children(self, state):

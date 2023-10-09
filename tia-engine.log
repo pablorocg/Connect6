@@ -403,3 +403,77 @@
 [Mon Oct  9 21:15:23 202] - print
 [Mon Oct  9 21:15:36 202] - move JKJL
 [Mon Oct  9 21:19:31 202] - print
+[Mon Oct  9 21:29:14 202] - next
+[Mon Oct  9 21:34:30 202] - PRINT
+[Mon Oct  9 21:34:33 202] - print
+[Mon Oct  9 21:34:58 202] - move JMJI
+[Mon Oct  9 21:38:34 202] - next
+[Mon Oct  9 21:42:22 202] - 
+[Mon Oct  9 21:42:22 202] - print
+[Mon Oct  9 21:42:33 202] - print
+[Mon Oct  9 21:42:40 202] - next
+[Mon Oct  9 21:46:32 202] - print
+[Mon Oct  9 21:48:20 202] - quit
+[Mon Oct  9 21:48:27 202] - new black
+[Mon Oct  9 21:48:54 202] - print
+[Mon Oct  9 21:49:10 202] - next
+[Mon Oct  9 21:49:55 202] - new black
+[Mon Oct  9 21:50:10 202] - white JKJL
+[Mon Oct  9 21:50:17 202] - print
+[Mon Oct  9 21:50:22 202] - next
+[Mon Oct  9 21:53:53 202] - print
+[Mon Oct  9 21:54:22 202] - & C:/Users/pablo/anaconda3/envs/TIA/python.exe c:/Users/pablo/GitHub/Connect6/Connect6GUI/ConnectMore.py
+[Mon Oct  9 22:02:06 202] - new black
+[Mon Oct  9 22:02:08 202] - print
+[Mon Oct  9 22:02:40 202] - white KJLJ
+[Mon Oct  9 22:02:42 202] - print
+[Mon Oct  9 22:06:55 202] - next
+[Mon Oct  9 22:11:19 202] - print
+[Mon Oct  9 22:16:52 202] - print
+[Mon Oct  9 22:18:38 202] - quit
+[Mon Oct  9 22:18:46 202] - new black
+[Mon Oct  9 22:18:48 202] - print
+[Mon Oct  9 22:19:19 202] - white JKJL
+[Mon Oct  9 22:19:22 202] - print
+[Mon Oct  9 22:19:30 202] - black JLJM
+[Mon Oct  9 22:19:31 202] - print
+[Mon Oct  9 22:21:37 202] - quit
+[Mon Oct  9 22:21:52 202] - new black
+[Mon Oct  9 22:21:57 202] - print
+[Mon Oct  9 22:22:08 202] - white JKJL
+[Mon Oct  9 22:22:11 202] - print
+[Mon Oct  9 22:35:07 202] - quit
+[Mon Oct  9 22:35:13 202] - new black
+[Mon Oct  9 22:35:21 202] - print
+[Mon Oct  9 22:35:28 202] - white JKJL
+[Mon Oct  9 22:40:26 202] - next
+[Mon Oct  9 22:43:55 202] - print
+[Mon Oct  9 22:44:38 202] - white KJJM
+[Mon Oct  9 22:44:41 202] - print
+[Mon Oct  9 22:44:46 202] - next
+[Mon Oct  9 22:48:06 202] - print
+[Mon Oct  9 22:50:19 202] - white HJJN
+[Mon Oct  9 22:50:22 202] - print
+[Mon Oct  9 22:50:46 202] - black HJ
+[Mon Oct  9 22:50:48 202] - print
+[Mon Oct  9 22:51:09 202] - white FJ
+[Mon Oct  9 22:51:12 202] - print
+[Mon Oct  9 22:51:26 202] - black FJ
+[Mon Oct  9 22:51:32 202] - white GJ
+[Mon Oct  9 22:51:34 202] - print
+[Mon Oct  9 22:51:39 202] - next
+[Mon Oct  9 22:55:02 202] - print
+[Mon Oct  9 22:57:49 202] - white IKKI
+[Mon Oct  9 22:57:52 202] - print
+[Mon Oct  9 22:58:15 202] - next
+[Tue Oct 10 00:08:25 202] - print
+[Tue Oct 10 00:09:53 202] - white DJLI
+[Tue Oct 10 00:09:55 202] - print
+[Tue Oct 10 00:10:02 202] - next
+[Tue Oct 10 00:13:20 202] - print
+[Tue Oct 10 00:13:35 202] - white ILMH
+[Tue Oct 10 00:13:37 202] - print
+[Tue Oct 10 00:13:49 202] - next
+[Tue Oct 10 00:16:52 202] - print
+[Tue Oct 10 00:17:29 202] - white NGHN
+[Tue Oct 10 00:17:34 202] - print
