@@ -4,6 +4,10 @@ import numpy as np
 import random
 import itertools as it
 
+# Visualizacion del tablero
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+
 
 def isValidPos(x,y):
     """
@@ -248,15 +252,7 @@ def get_available_moves(board):
 
 
 
-def get_random_move(board):
-    """
-    Devuelve un movimiento aleatorio de la lista de movimientos posibles
-    """
-    moves = get_available_moves(board)
-    return moves[random.randint(0, len(moves) - 1)]
-
-
-def get_window_scoring(window, player, k=0):
+def get_window_scoring(window, player, k=1):
     
     """
     Calcula el score de una ventana de 6 fichas, para un jugador dado. 
@@ -306,6 +302,117 @@ def get_score(m_board):
 
     return score
 
+def offensive_evaluate_state(board):
+    """
+    Optimized evaluation of the board state for both players.
+
+    :param board: 2D numpy array representing the game board. 0 for empty, 1 for player 1, and 2 for player 2.
+    :return: Heuristic value of the board state for player 1 and player 2.
+    """
+    board = board[1:-1, 1:-1]
+    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+    values = {1: 1, 2: 10, 3: 50, 4: 200, 5: 1000}
+
+    scores = {1: 0, 2: 0}
+
+    for x in range(19):
+        for y in range(19):
+            current_cell = board[x, y]
+            if current_cell == 0:  # Skip empty cells
+                continue
+
+            for dx, dy in directions:
+                # Check if the sequence in this direction has already been counted
+                if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] == current_cell:
+                    continue
+
+                sequence_length = 1
+                blocked_left = False
+                blocked_right = False
+
+                # Check left
+                if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] != 0:
+                    blocked_left = True
+
+                # Count sequence length
+                nx, ny = x + dx, y + dy
+                while 0 <= nx < 19 and 0 <= ny < 19 and board[nx, ny] == current_cell:
+                    sequence_length += 1
+                    nx += dx
+                    ny += dy
+
+                # Check right
+                if 0 <= nx < 19 and 0 <= ny < 19 and board[nx, ny] != 0:
+                    blocked_right = True
+
+                # Update score based on sequence length
+                if sequence_length in values:
+                    score_increment = values[sequence_length]
+                    if not blocked_left and not blocked_right:
+                        score_increment *= 1.5
+                    elif blocked_left and blocked_right:
+                        score_increment *= 0.5
+                    scores[current_cell] += score_increment
+
+    return scores[1] - scores[2]
+
+def defensive_evaluate_state(board):
+    """
+    A more defensive heuristic for evaluating the board state.
+    Positive values favor player 1, negative values favor player 2.
+
+    :param board: 2D numpy array representing the game board. 0 for empty, 1 for player 1, and 2 for player 2.
+    :return: Heuristic value of the board state.
+    """
+    board = board[1:-1, 1:-1]
+
+    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+    offensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500}
+    defensive_values = {1: 1, 2: 10, 3: 60, 4: 300, 5: 1500}
+
+    scores = {1: 0, 2: 0}
+
+    for x in range(19):
+        for y in range(19):
+            current_cell = board[x, y]
+            if current_cell == 0:  # Skip empty cells
+                continue
+
+            for dx, dy in directions:
+                # Check if the sequence in this direction has already been counted
+                if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] == current_cell:
+                    continue
+
+                sequence_length = 1
+                blocked_left = False
+                blocked_right = False
+
+                # Check left
+                if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] != 0:
+                    blocked_left = True
+
+                # Count sequence length
+                nx, ny = x + dx, y + dy
+                while 0 <= nx < 19 and 0 <= ny < 19 and board[nx, ny] == current_cell:
+                    sequence_length += 1
+                    nx += dx
+                    ny += dy
+
+                # Check right
+                if 0 <= nx < 19 and 0 <= ny < 19 and board[nx, ny] != 0:
+                    blocked_right = True
+
+                # Update score based on sequence length
+                values = defensive_values if current_cell == 2 else offensive_values
+                if sequence_length in values:
+                    score_increment = values[sequence_length]
+                    if not blocked_left and not blocked_right:
+                        score_increment *= 1.5
+                    elif blocked_left and blocked_right:
+                        score_increment *= 0.5
+                    scores[current_cell] += score_increment
+
+    return scores[1] - scores[2]
 
 
 
@@ -321,15 +428,52 @@ def mide_tiempo(funcion):
 
 
 
-test = False
+def show_m_board(m_board):
+    """
+    Visualizacion del estado del juego
+    """
 
-if test:
-    test_board = init_board(np.zeros((Defines.GRID_NUM, Defines.GRID_NUM), dtype=int))
-    moves = get_available_moves(test_board)
+    col = 'ABCDEFGHIJKLMNOPQRS'
+    fil = 'SRQPONMLKJIHGFEDCBA'
+
+    # Array de anotaciones de 19x19
+    annot = []
+    for l1 in fil:
+        fila = []
+        for l2 in col:
+            fila.append(l2 + l1)
+        annot.append(fila)
+
+    #Obtener el tablero sin los bordes
+    m_board_rep = np.array(m_board)
+    m_board_rep = m_board_rep[1:20,1:20]
     
+    # Reemplazar los 2 por -1
+    m_board_rep = np.where(m_board_rep == 2, -1, m_board_rep)
+    
+    fontdict = {'fontsize': 10,
+                'fontweight' : 50}
+    # Crear un colormap personalizado en el que el negro = 1, blanco = -1 y naranja = 0.
+    # Define los colores
+    colors = [(1, 1, 1), (1, 0.8, 0.4), (0, 0, 0)]
 
-    move = create_move(moves[1])
-    comando = move2msg(move)
-    print(comando)
-    make_move(test_board, move, Defines.BLACK)
-    print_board(test_board)
+    # Crea el colormap
+    n_bins = 3  
+    cmap_name = "custom_colormap"
+    cm = mcolors.LinearSegmentedColormap.from_list(cmap_name, colors, N=n_bins)
+
+    # Normaliza los valores para que estén en el rango [0, 1]
+    norm = mcolors.Normalize(vmin=-1, vmax=1)
+
+    plt.figure(figsize=(6,6))
+    # Mostrar movimientos sobre el tablero
+    plt.imshow(m_board_rep, cmap=cm, norm=norm) 
+    
+    # Mostrar anotaciones sobre la imagen
+    for i in range(19):
+        for j in range(19):
+            plt.text(j, i, annot[i][j], ha="center", va="center", color="green", fontdict=fontdict)
+
+    plt.axis('off')
+    plt.tight_layout()
+    plt.show()

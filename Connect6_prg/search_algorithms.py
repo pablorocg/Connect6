@@ -1,11 +1,12 @@
 import numpy as np
 import random
 import tools as tl
+from joblib import Parallel, delayed
 
 # MINIMAX IMPLEMENTATION-------------------------------------------------------------------------
 class MiniMax:
     """
-    Implementacion del algoritmo de busqueda MiniMax. 
+    Implementacion del algoritmo de busqueda MiniMax sin optimizaciones. No poner a mas de 1 de profundidad, ya que es muy lento. 
 
     Atributos:
     m_board (np.ndarray): El estado del juego.
@@ -25,21 +26,11 @@ class MiniMax:
         self.m_board = board.copy() # Actualiza el tablero
         self.m_chess_type = color # Actualiza el color del jugador (1 o 2)
         self.m_depth = depth # Actualiza la profundidad de búsqueda
-        
-        # self.m_is_maximizing = True
-        #Si el color del jugador es 1, entonces el jugador es el maximizing player
-        if self.m_chess_type == 1:
-            self.m_is_maximizing = True
-        #Si el color del jugador es 2, entonces el jugador es el minimizing player
-        else:
-            self.m_is_maximizing = False
-
+        self.m_is_maximizing = True if self.m_chess_type == 1 else False
 
     def evaluate_board(self, board):
-        
-        return tl.get_score(board)#random.random()
-
-
+        #tl.get_score(board)
+        return tl.defensive_evaluate_state(board)
 
     def search(self, state, depth, is_maximizing):
         
@@ -65,19 +56,12 @@ class MiniMax:
 
         for move in tl.get_available_moves(self.m_board):
             child_state = self.m_board.copy()
-            # print(move)
-            # child_state[move[0][0], move[0][1]] = self.m_chess_type
-            # child_state[move[1][0], move[1][1]] = self.m_chess_type
             tl.make_move(child_state, move, self.m_chess_type)
             
             score = self.search(child_state, self.m_depth-1, not self.m_is_maximizing)
             if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
                 best_score = score
                 best_move = move
-
-        # # Apply the best move to the actual game board
-        # if best_move:
-        #     tl.make_move(self.m_board, best_move, self.m_chess_type)
 
         return best_score, best_move
 
@@ -86,94 +70,224 @@ class MiniMax:
         children = []
         for move in tl.get_available_moves(state):
             child_state = state.copy()
-            tl.make_move(child_state, tl.create_move(move), self.m_chess_type)
+            tl.make_move(child_state, move, self.m_chess_type)
+            children.append(child_state)
+        return children
+    
+# MINIMAX PARALELIZADO IMPLEMENTATION-------------------------------------------------------------------------
+class MiniMaxParalelizado:
+    """
+    Implementacion del algoritmo de busqueda MiniMax. 
+
+    Atributos:
+    m_board (np.ndarray): El estado del juego.
+    m_chess_type (int): El color del jugador (1 o 2).
+    m_depth (int): La profundidad de busqueda.
+
+    """
+    
+    def __init__(self):
+        self.m_board = None
+        self.m_chess_type = None
+        self.m_depth = None
+        self.m_is_maximizing = None
+
+
+    def before_search(self, board, color, depth):
+        self.m_board = board.copy() # Actualiza el tablero
+        self.m_chess_type = color # Actualiza el color del jugador (1 o 2)
+        self.m_depth = depth # Actualiza la profundidad de búsqueda
+        self.m_is_maximizing = True if self.m_chess_type == 1 else False
+
+    def evaluate_board(self, board):
+        return tl.defensive_evaluate_state(board)
+
+    def search(self, state, depth, is_maximizing):
+        
+        if depth == 0 or tl.check_winner(state) != 0 or len(tl.get_available_moves(state)) == 0:
+            return self.evaluate_board(state)
+
+        if is_maximizing:
+            max_value = -np.inf
+            for child in self.get_children(state):
+                value = self.search(child, depth-1, False)
+                max_value = max(max_value, value)
+            return max_value
+        else:
+            min_value = np.inf
+            for child in self.get_children(state):
+                value = self.search(child, depth-1, True)
+                min_value = min(min_value, value)
+            return min_value
+
+    def get_best_move(self):
+        best_score = -np.inf if self.m_is_maximizing else np.inf
+        best_move = None
+
+        # Paralelizamos la búsqueda usando joblib
+        moves = tl.get_available_moves(self.m_board)
+        scores = Parallel(n_jobs=-1)(delayed(self.search_parallel)(move) for move in moves)
+
+        # Buscamos el mejor movimiento basado en los resultados
+        for score, move in zip(scores, moves):
+            if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
+                best_score = score
+                best_move = move
+
+        return best_score, best_move
+
+    def search_parallel(self, move):
+        board_copy = self.m_board.copy()
+        tl.make_move(board_copy, move, self.m_chess_type)
+        return self.search(board_copy, self.m_depth-1, not self.m_is_maximizing)
+
+    def get_children(self, state):
+        children = []
+        for move in tl.get_available_moves(state):
+            child_state = state.copy()
+            tl.make_move(child_state, move, self.m_chess_type)
             children.append(child_state)
         return children
 
 
 
 # ALPHA-BETA PRUNING IMPLEMENTATION--------------------------------------------------------------
-class AlphaBeta:
-    def __init__(self, max_depth):
-        self.max_depth = max_depth
+class MiniMaxAlphaBeta:
+    def __init__(self):
+        self.m_board = None
+        self.m_chess_type = None
+        self.m_depth = None
+        self.m_is_maximizing = None
+        self.node_count = 0
 
-    def alphabeta(self, state, depth, alpha, beta, maximizing_player):
-        if depth == self.max_depth or state.is_terminal():
-            return state.evaluate(), None
 
-        if maximizing_player:
-            best_value = float('-inf')
-            best_move = None
-            for move in state.get_possible_moves():
-                new_state = state.make_move(move)
-                value, _ = self.alphabeta(new_state, depth + 1, alpha, beta, False)
-                if value > best_value:
-                    best_value = value
-                    best_move = move
-                alpha = max(alpha, best_value)
+    def before_search(self, board, color, depth):
+        self.m_board = board.copy()
+        self.m_chess_type = color
+        self.m_depth = depth
+        self.m_is_maximizing = True if self.m_chess_type == 1 else False
+        self.node_count = 0
+
+
+    def evaluate_board(self, board):
+        return tl.get_score(board)
+
+    def search(self, state, depth, is_maximizing, alpha=-np.inf, beta=np.inf):
+        self.node_count += 1
+
+        if depth == 0 or tl.check_winner(state) != 0 or len(tl.get_available_moves(state)) == 0:
+            return self.evaluate_board(state)
+
+        if is_maximizing:
+            max_value = -np.inf
+            for child in self.get_children(state):
+                value = self.search(child, depth-1, False, alpha, beta)
+                max_value = max(max_value, value)
+                alpha = max(alpha, value)
                 if beta <= alpha:
+                    print(f"Poda en profundidad {depth} con alpha={alpha} y beta={beta}")
                     break
-            return best_value, best_move
+            return max_value
         else:
-            best_value = float('inf')
-            best_move = None
-            for move in state.get_possible_moves():
-                new_state = state.make_move(move)
-                value, _ = self.alphabeta(new_state, depth + 1, alpha, beta, True)
-                if value < best_value:
-                    best_value = value
-                    best_move = move
-                beta = min(beta, best_value)
+            min_value = np.inf
+            for child in self.get_children(state):
+                value = self.search(child, depth-1, True, alpha, beta)
+                min_value = min(min_value, value)
+                beta = min(beta, value)
                 if beta <= alpha:
+                    print(f"Poda en profundidad {depth} con alpha={alpha} y beta={beta}")
                     break
-            return best_value, best_move
+            return min_value
+
+    def get_best_move(self):
+        best_score = -np.inf if self.m_is_maximizing else np.inf
+        best_move = None
+
+        moves = []
+        for move in tl.get_available_moves(self.m_board):
+            child_state = self.m_board.copy()
+            tl.make_move(child_state, move, self.m_chess_type)
+            
+            move.score = self.search(child_state, self.m_depth-1, not self.m_is_maximizing)
+            moves.append(move)
+
+        # Ordenamos los movimientos basados en los scores
+        moves.sort(key=lambda x: x.score, reverse=self.m_is_maximizing)
+
+        for move in moves:
+            if (self.m_is_maximizing and move.score > best_score) or (not self.m_is_maximizing and move.score < best_score):
+                best_score = move.score
+                best_move = move
+
+        return best_score, best_move
+
+    def get_children(self, state):
+        children = []
+        for move in tl.get_available_moves(state):
+            child_state = state.copy()
+            tl.make_move(child_state, move, self.m_chess_type)
+            children.append(child_state)
+        return children
 
 
 
 
 # NEGAMAX IMPLEMENTATION--------------------------------------------------------------        
-class NegaMax:
-    def __init__(self, game_state, depth=3):
-        self.game_state = game_state
-        self.depth = depth
+class NegaMaxAlphaBeta:
+    
+    def __init__(self):
+        self.m_board = None
+        self.m_chess_type = None
+        self.m_depth = None
 
-    def evaluate_board(self, state):
-        # This is a simple evaluation function that returns a random score.
-        # In a real-world scenario, this function should analyze the board 
-        # and return a score representing the advantage of one player over the other.
-        return random.random()
+    def before_search(self, board, color, depth):
+        self.m_board = board.copy()
+        self.m_chess_type = 1 if color == 1 else -1  # Convertir a 1 o -1
+        self.m_depth = depth
 
-    def search(self, state, depth):
-        if depth == 0 or state.check_winner() != 0:
+    def evaluate_board(self, board):
+        return self.m_chess_type * tl.get_score(board)  # Considerar el color
+
+    def negamax(self, state, depth, color, alpha, beta):
+        
+        if depth == 0 or tl.check_winner(state) != 0 or len(tl.get_available_moves(state)) == 0:
             return self.evaluate_board(state)
-
-        max_value = -float("inf")
-
+        
+        max_value = -np.inf
         for child in self.get_children(state):
-            value = -self.search(child, depth-1)
+            value = -self.negamax(child, depth-1, -color, -beta, -alpha)
             max_value = max(max_value, value)
-
+            alpha = max(alpha, value)
+            if alpha >= beta:
+                break
         return max_value
 
     def get_best_move(self):
-        best_score = -float("inf")
+        best_score = -np.inf
         best_move = None
+        alpha = -np.inf
+        beta = np.inf
 
-        for child in self.get_children(self.game_state):
-            score = -self.search(child, self.depth-1)
+        for move in tl.get_available_moves(self.m_board):
+            child_state = self.m_board.copy()
+            tl.make_move(child_state, move, 1 if self.m_chess_type == 1 else 2)  # Convertir de nuevo a 1 o 2 para el movimiento
+            
+            score = -self.negamax(child_state, self.m_depth-1, -self.m_chess_type, -beta, -alpha)
             if score > best_score:
                 best_score = score
-                best_move = child
+                best_move = move
+            alpha = max(alpha, score)
 
-        return best_move
+        return best_score, best_move
 
     def get_children(self, state):
         children = []
-        for move in state.get_available_moves():
+        for move in tl.get_available_moves(state):
             child_state = state.copy()
-            child_state.make_move(*move)
+            tl.make_move(child_state, move, 1 if self.m_chess_type == 1 else 2)  # Convertir de nuevo a 1 o 2 para el movimiento
             children.append(child_state)
         return children
+
 
     
 # NEGASCOUT IMPLEMENTATION--------------------------------------------------------------

@@ -1,7 +1,7 @@
 from defines import *
 from tools import *
 import sys
-from search_engine import SearchEngine
+# from search_engine import SearchEngine
 from search_algorithms import *
 import time
 
@@ -13,10 +13,27 @@ class GameEngine:
             else:
                 print(f"Too long Engine Name: {name}, should be less than: {Defines.MSG_LENGTH}")
         self.m_alphabeta_depth = 1
-        self.m_board = t = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))#[ [0]*Defines.GRID_NUM for i in range(Defines.GRID_NUM)]
+        self.m_board = t = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))
         self.init_game()
-        # self.m_search_engine = SearchEngine()
-        self.m_search_engine = MiniMax()
+        
+        if name == "MiniMax":
+            self.m_search_engine = MiniMax()
+
+        elif name == "MiniMaxParalelizado":
+            self.m_search_engine = MiniMaxParalelizado()
+
+        elif name == "MiniMaxAlphaBeta":
+            self.m_search_engine = MiniMaxAlphaBeta()
+
+        elif name == "NegaMaxAlphaBeta":
+            self.m_search_engine = NegaMaxAlphaBeta()
+
+        
+        
+        
+        
+        
+        
         self.m_best_move = StoneMove()
 
     def init_game(self):
@@ -51,7 +68,8 @@ class GameEngine:
             elif msg == "exit" or msg == "quit":
                 break
             elif msg == "print":
-                print_board(self.m_board, self.m_best_move)
+                # print_board(self.m_board, self.m_best_move)
+                show_m_board(self.m_board)
                 print(f"Best move: {move2msg(self.m_best_move)}")
                 print(f"Chess type: {self.m_chess_type}")
             elif msg == "vcf":
@@ -121,9 +139,6 @@ class GameEngine:
         self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
         score, bestMove = self.m_search_engine.get_best_move()
         self.m_best_move = bestMove
-        
-        
-        
         # score = self.m_search_engine.alpha_beta_search(self.m_alphabeta_depth, Defines.MININT, Defines.MAXINT, ourColor, bestMove, bestMove)
         
         end = time.perf_counter()
@@ -138,5 +153,5 @@ def flush_output():
 
 # Create an instance of GameEngine and run the game
 if __name__ == "__main__":
-    game_engine = GameEngine()
+    game_engine = GameEngine("MiniMaxParalelizado")
     game_engine.run()
