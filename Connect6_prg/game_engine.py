@@ -12,18 +12,21 @@ class GameEngine:
                 self.m_engine_name = name
             else:
                 print(f"Too long Engine Name: {name}, should be less than: {Defines.MSG_LENGTH}")
-        self.m_alphabeta_depth = 1
+        self.m_alphabeta_depth = 2
         self.m_board = t = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))
         self.init_game()
         
         if name == "MiniMax":
             self.m_search_engine = MiniMax()
+            self.m_alphabeta_depth = 1
 
         elif name == "MiniMaxParalelizado":
             self.m_search_engine = MiniMaxParalelizado()
+            self.m_alphabeta_depth = 1
 
         elif name == "MiniMaxAlphaBeta":
             self.m_search_engine = MiniMaxAlphaBeta()
+            self.m_alphabeta_depth = 6
 
         elif name == "NegaMaxAlphaBeta":
             self.m_search_engine = NegaMaxAlphaBeta()
@@ -153,5 +156,5 @@ def flush_output():
 
 # Create an instance of GameEngine and run the game
 if __name__ == "__main__":
-    game_engine = GameEngine("MiniMaxParalelizado")
+    game_engine = GameEngine("MiniMaxAlphaBeta")
     game_engine.run()

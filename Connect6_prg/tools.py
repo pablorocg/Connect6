@@ -252,6 +252,28 @@ def get_available_moves(board):
 
 
 
+def get_available_moves_with_score(board, color):
+    """
+    Returns a list of available moves on the board.
+
+    """
+    emtpy_coords = np.argwhere(board == Defines.NOSTONE)
+
+    coords = list(it.combinations(map(tuple, emtpy_coords), 2))
+
+    # Para cada movimiento, calcula el score de ese movimiento y crear un objeto StoneMove con el score y el movimiento
+    moves = [create_move(coord) for coord in coords]
+
+    for move in moves:
+        #Cpia el tablero
+        board_copy = np.array(board)
+        make_move(board_copy, move, color)
+        # Asigna el score al movimiento
+        move.score = offensive_evaluate_state(board_copy)
+
+    return moves
+        
+
 def get_window_scoring(window, player, k=1):
     
     """
