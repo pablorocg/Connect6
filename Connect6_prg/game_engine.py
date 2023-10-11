@@ -2,7 +2,7 @@ from defines import *
 from tools import *
 import sys
 # from search_engine import SearchEngine
-from search_algorithms import *
+from search_engine import *
 import time
 
 class GameEngine:
