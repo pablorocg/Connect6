@@ -389,8 +389,8 @@ def defensive_evaluate_state(board):
     board = board[1:-1, 1:-1]
 
     directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
-    offensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500}
-    defensive_values = {1: 1, 2: 10, 3: 60, 4: 300, 5: 1500}
+    offensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500, 6: 1000}
+    defensive_values = {1: 1, 2: 10, 3: 60, 4: 1000, 5: 10000, 6: 10000}
 
     scores = {1: 0, 2: 0}
 
@@ -436,7 +436,15 @@ def defensive_evaluate_state(board):
 
     return scores[1] - scores[2]
 
-
+def check_first_move(board):
+    """
+    Comprueba si es el primer movimiento de la partida
+    """
+    for i in range(1,len(board)-1):
+        for j in range(1, len(board[i])-1):
+            if(board[i][j] != Defines.NOSTONE):
+                return False
+    return True
 
 
 
