@@ -236,3 +236,466 @@
 [Wed Oct  4 20:23:21 202] - new white
 [Wed Oct  4 20:23:25 202] - move JJ
 [Wed Oct  4 20:24:35 202] - quit
+[Thu Oct  5 12:27:51 202] - new black
+[Thu Oct  5 12:27:55 202] - move JKJL
+[Thu Oct  5 12:32:59 202] - new black
+[Thu Oct  5 12:33:02 202] - move JKJL
+[Thu Oct  5 13:07:40 202] - new black
+[Thu Oct  5 13:07:43 202] - move JKJL
+[Thu Oct  5 13:27:42 202] - new white
+[Thu Oct  5 13:27:47 202] - move JJ
+[Thu Oct  5 13:35:21 202] - new black
+[Thu Oct  5 13:39:09 202] - new black
+[Thu Oct  5 13:43:31 202] - new black
+[Thu Oct  5 13:43:34 202] - move JKJL
+[Thu Oct  5 14:05:12 202] - new black
+[Thu Oct  5 14:05:16 202] - move JKJL
+[Thu Oct  5 14:05:48 202] - new black
+[Thu Oct  5 14:05:52 202] - move JKJL
+[Thu Oct  5 14:19:00 202] - new black
+[Thu Oct  5 14:19:50 202] - new black
+[Thu Oct  5 14:22:17 202] - 
+[Thu Oct  5 14:22:33 202] - new white
+[Thu Oct  5 14:24:25 202] - new black
+[Thu Oct  5 14:25:04 202] - new black
+[Thu Oct  5 14:28:05 202] - new black
+[Thu Oct  5 14:28:11 202] - move JKJL
+[Thu Oct  5 14:30:11 202] - new black
+[Thu Oct  5 14:30:15 202] - move JKJL
+[Thu Oct  5 14:32:37 202] - new black
+[Thu Oct  5 14:32:39 202] - move JKJL
+[Thu Oct  5 14:33:15 202] - new black
+[Thu Oct  5 14:33:19 202] - move JKJL
+[Thu Oct  5 14:40:29 202] - new white
+[Thu Oct  5 14:40:34 202] - move JJ
+[Thu Oct  5 16:16:46 202] - new white
+[Thu Oct  5 16:16:54 202] - move JJ
+[Thu Oct  5 16:22:08 202] - new white
+[Thu Oct  5 16:22:17 202] - move JJ
+[Thu Oct  5 16:24:17 202] - new white
+[Thu Oct  5 16:24:23 202] - move JJ
+[Thu Oct  5 16:29:01 202] - new white
+[Thu Oct  5 16:29:02 202] - move JJ
+[Thu Oct  5 16:29:20 202] - new black
+[Thu Oct  5 16:29:22 202] - move JKJL
+[Thu Oct  5 16:32:07 202] - new black
+[Thu Oct  5 16:32:09 202] - move JKJL
+[Thu Oct  5 16:34:10 202] - new black
+[Thu Oct  5 16:34:15 202] - move JKJL
+[Thu Oct  5 16:45:39 202] - new black
+[Thu Oct  5 16:45:44 202] - move JKJL
+[Fri Oct  6 10:23:10 202] - & C:/Users/pablo/anaconda3/envs/TIA/python.exe c:/Users/pablo/GitHub/Connect6/Connect6_original/search_engine.py
+[Fri Oct  6 10:23:33 202] - new black
+[Fri Oct  6 10:23:38 202] - move JK
+[Fri Oct  6 10:25:10 202] - new black
+[Fri Oct  6 10:25:14 202] - move JKJL
+[Fri Oct  6 10:25:36 202] - move JOJP
+[Fri Oct  6 10:25:41 202] - print
+[Fri Oct  6 10:31:09 202] - quit
+[Fri Oct  6 10:31:14 202] - new black
+[Fri Oct  6 10:31:19 202] - move JKJL
+[Fri Oct  6 10:31:41 202] - move JOJP
+[Fri Oct  6 10:31:45 202] - print
+[Fri Oct  6 10:31:53 202] - quit
+[Fri Oct  6 10:32:23 202] - new black
+[Fri Oct  6 10:32:29 202] - move HH
+[Fri Oct  6 10:36:00 202] - new black
+[Fri Oct  6 10:36:05 202] - move JKJL
+[Fri Oct  6 10:39:34 202] - print
+[Sun Oct  8 19:06:56 202] - new black
+[Sun Oct  8 19:06:59 202] - move JKJL
+[Sun Oct  8 19:18:05 202] - quit
+[Sun Oct  8 19:18:15 202] - new white
+[Sun Oct  8 19:18:19 202] - move JJ
+[Sun Oct  8 19:20:34 202] - print
+[Sun Oct  8 19:21:52 202] - quit
+[Sun Oct  8 19:21:58 202] - new black
+[Sun Oct  8 19:22:03 202] - move JKJL
+[Sun Oct  8 19:24:11 202] - print
+[Sun Oct  8 19:28:58 202] - quit
+[Sun Oct  8 19:29:08 202] - new black
+[Sun Oct  8 19:29:15 202] - move JKJL
+[Sun Oct  8 19:30:58 202] - print
+[Sun Oct  8 20:23:37 202] - quit
+[Sun Oct  8 20:23:44 202] - new black
+[Sun Oct  8 20:23:47 202] - move JKJL
+[Sun Oct  8 20:24:16 202] - new black
+[Sun Oct  8 20:24:20 202] - move JKJL
+[Sun Oct  8 20:24:47 202] - new black
+[Sun Oct  8 20:24:50 202] - move JKJL
+[Sun Oct  8 20:35:57 202] - new black
+[Sun Oct  8 20:35:59 202] - move JKJL
+[Sun Oct  8 20:36:56 202] - new black
+[Sun Oct  8 20:36:58 202] - move JKJL
+[Sun Oct  8 20:38:35 202] - new black
+[Sun Oct  8 20:38:39 202] - move JKJL
+[Sun Oct  8 20:46:53 202] - print
+[Sun Oct  8 20:48:09 202] - quit
+[Sun Oct  8 20:48:23 202] - new white
+[Sun Oct  8 20:48:26 202] - move JJ
+[Sun Oct  8 20:56:40 202] - print
+[Sun Oct  8 20:58:28 202] - move EQJK
+[Sun Oct  8 21:06:40 202] - print
+[Sun Oct  8 21:11:37 202] - quit
+[Sun Oct  8 21:11:44 202] - new white
+[Sun Oct  8 21:11:48 202] - move JJ
+[Sun Oct  8 21:12:50 202] - new white
+[Sun Oct  8 21:12:51 202] - move JJ
+[Sun Oct  8 21:13:49 202] - new white
+[Sun Oct  8 21:13:53 202] - move JJ
+[Mon Oct  9 13:15:20 202] - new black
+[Mon Oct  9 13:15:25 202] - move JKJL
+[Mon Oct  9 13:15:58 202] - new black
+[Mon Oct  9 13:16:02 202] - move JKJL
+[Mon Oct  9 13:16:39 202] - new black
+[Mon Oct  9 13:16:41 202] - move JKJL
+[Mon Oct  9 13:29:14 202] - new black
+[Mon Oct  9 13:29:18 202] - move JKJL
+[Mon Oct  9 13:31:55 202] - new black
+[Mon Oct  9 13:31:57 202] - print
+[Mon Oct  9 13:32:25 202] - move JKJL
+[Mon Oct  9 13:40:17 202] - new black
+[Mon Oct  9 13:40:22 202] - move JKJL
+[Mon Oct  9 13:51:48 202] - new white
+[Mon Oct  9 13:51:52 202] - move JJ
+[Mon Oct  9 13:53:42 202] - new black
+[Mon Oct  9 13:53:46 202] - move JKJL
+[Mon Oct  9 13:54:49 202] - new white
+[Mon Oct  9 13:54:53 202] - move JJ
+[Mon Oct  9 13:55:14 202] - new black
+[Mon Oct  9 13:55:17 202] - move JKJL
+[Mon Oct  9 13:56:45 202] - new black
+[Mon Oct  9 13:56:48 202] - move JKJL
+[Mon Oct  9 13:59:12 202] - new black
+[Mon Oct  9 13:59:15 202] - move JKJL
+[Mon Oct  9 14:04:38 202] - new black
+[Mon Oct  9 14:04:41 202] - move JKJL
+[Mon Oct  9 14:10:10 202] - print
+[Mon Oct  9 14:14:21 202] - quit
+[Mon Oct  9 14:14:29 202] - new black
+[Mon Oct  9 14:14:32 202] - move JKJL
+[Mon Oct  9 14:17:50 202] - print
+[Mon Oct  9 14:30:51 202] - quit
+[Mon Oct  9 14:30:56 202] - new black
+[Mon Oct  9 14:30:59 202] - move JKJL
+[Mon Oct  9 14:35:09 202] - print
+[Mon Oct  9 14:35:32 202] - move JIJH
+[Mon Oct  9 14:38:57 202] - print
+[Mon Oct  9 14:40:20 202] - move NEJM
+[Mon Oct  9 14:40:46 202] - new black
+[Mon Oct  9 14:40:50 202] - move JKJL
+[Mon Oct  9 14:44:35 202] - print
+[Mon Oct  9 14:47:53 202] - quit
+[Mon Oct  9 14:47:59 202] - new black
+[Mon Oct  9 14:48:01 202] - move JKJL
+[Mon Oct  9 14:52:08 202] - print
+[Mon Oct  9 14:53:15 202] - new black
+[Mon Oct  9 14:53:18 202] - move JKJL
+[Mon Oct  9 15:03:31 202] - print
+[Mon Oct  9 19:05:54 202] - new black
+[Mon Oct  9 19:05:58 202] - move JKJL
+[Mon Oct  9 19:06:41 202] - new black
+[Mon Oct  9 19:06:44 202] - move JKJL
+[Mon Oct  9 19:15:35 202] - & C:/Users/pablo/anaconda3/envs/TIA/python.exe c:/Users/pablo/GitHub/Connect6/Connect6_prg/test_tools.py
+[Mon Oct  9 19:16:18 202] - 
+[Mon Oct  9 19:16:18 202] - 
+[Mon Oct  9 21:15:10 202] - new black
+[Mon Oct  9 21:15:23 202] - print
+[Mon Oct  9 21:15:36 202] - move JKJL
+[Mon Oct  9 21:19:31 202] - print
+[Mon Oct  9 21:29:14 202] - next
+[Mon Oct  9 21:34:30 202] - PRINT
+[Mon Oct  9 21:34:33 202] - print
+[Mon Oct  9 21:34:58 202] - move JMJI
+[Mon Oct  9 21:38:34 202] - next
+[Mon Oct  9 21:42:22 202] - 
+[Mon Oct  9 21:42:22 202] - print
+[Mon Oct  9 21:42:33 202] - print
+[Mon Oct  9 21:42:40 202] - next
+[Mon Oct  9 21:46:32 202] - print
+[Mon Oct  9 21:48:20 202] - quit
+[Mon Oct  9 21:48:27 202] - new black
+[Mon Oct  9 21:48:54 202] - print
+[Mon Oct  9 21:49:10 202] - next
+[Mon Oct  9 21:49:55 202] - new black
+[Mon Oct  9 21:50:10 202] - white JKJL
+[Mon Oct  9 21:50:17 202] - print
+[Mon Oct  9 21:50:22 202] - next
+[Mon Oct  9 21:53:53 202] - print
+[Mon Oct  9 21:54:22 202] - & C:/Users/pablo/anaconda3/envs/TIA/python.exe c:/Users/pablo/GitHub/Connect6/Connect6GUI/ConnectMore.py
+[Mon Oct  9 22:02:06 202] - new black
+[Mon Oct  9 22:02:08 202] - print
+[Mon Oct  9 22:02:40 202] - white KJLJ
+[Mon Oct  9 22:02:42 202] - print
+[Mon Oct  9 22:06:55 202] - next
+[Mon Oct  9 22:11:19 202] - print
+[Mon Oct  9 22:16:52 202] - print
+[Mon Oct  9 22:18:38 202] - quit
+[Mon Oct  9 22:18:46 202] - new black
+[Mon Oct  9 22:18:48 202] - print
+[Mon Oct  9 22:19:19 202] - white JKJL
+[Mon Oct  9 22:19:22 202] - print
+[Mon Oct  9 22:19:30 202] - black JLJM
+[Mon Oct  9 22:19:31 202] - print
+[Mon Oct  9 22:21:37 202] - quit
+[Mon Oct  9 22:21:52 202] - new black
+[Mon Oct  9 22:21:57 202] - print
+[Mon Oct  9 22:22:08 202] - white JKJL
+[Mon Oct  9 22:22:11 202] - print
+[Mon Oct  9 22:35:07 202] - quit
+[Mon Oct  9 22:35:13 202] - new black
+[Mon Oct  9 22:35:21 202] - print
+[Mon Oct  9 22:35:28 202] - white JKJL
+[Mon Oct  9 22:40:26 202] - next
+[Mon Oct  9 22:43:55 202] - print
+[Mon Oct  9 22:44:38 202] - white KJJM
+[Mon Oct  9 22:44:41 202] - print
+[Mon Oct  9 22:44:46 202] - next
+[Mon Oct  9 22:48:06 202] - print
+[Mon Oct  9 22:50:19 202] - white HJJN
+[Mon Oct  9 22:50:22 202] - print
+[Mon Oct  9 22:50:46 202] - black HJ
+[Mon Oct  9 22:50:48 202] - print
+[Mon Oct  9 22:51:09 202] - white FJ
+[Mon Oct  9 22:51:12 202] - print
+[Mon Oct  9 22:51:26 202] - black FJ
+[Mon Oct  9 22:51:32 202] - white GJ
+[Mon Oct  9 22:51:34 202] - print
+[Mon Oct  9 22:51:39 202] - next
+[Mon Oct  9 22:55:02 202] - print
+[Mon Oct  9 22:57:49 202] - white IKKI
+[Mon Oct  9 22:57:52 202] - print
+[Mon Oct  9 22:58:15 202] - next
+[Tue Oct 10 00:08:25 202] - print
+[Tue Oct 10 00:09:53 202] - white DJLI
+[Tue Oct 10 00:09:55 202] - print
+[Tue Oct 10 00:10:02 202] - next
+[Tue Oct 10 00:13:20 202] - print
+[Tue Oct 10 00:13:35 202] - white ILMH
+[Tue Oct 10 00:13:37 202] - print
+[Tue Oct 10 00:13:49 202] - next
+[Tue Oct 10 00:16:52 202] - print
+[Tue Oct 10 00:17:29 202] - white NGHN
+[Tue Oct 10 00:17:34 202] - print
+[Tue Oct 10 11:53:58 202] - new white
+[Tue Oct 10 11:54:08 202] - black JJ
+[Tue Oct 10 11:54:13 202] - print
+[Tue Oct 10 11:54:22 202] - next
+[Tue Oct 10 11:57:54 202] - print
+[Tue Oct 10 11:58:08 202] - quit
+[Tue Oct 10 12:06:40 202] - new black
+[Tue Oct 10 12:06:42 202] - print
+[Tue Oct 10 12:06:48 202] - white JKJL
+[Tue Oct 10 12:06:52 202] - next
+[Tue Oct 10 12:10:15 202] - print
+[Tue Oct 10 12:10:53 202] - white JMJN
+[Tue Oct 10 12:10:56 202] - print
+[Tue Oct 10 12:11:01 202] - next
+[Tue Oct 10 12:14:29 202] - print
+[Tue Oct 10 12:15:14 202] - white EJKJ
+[Tue Oct 10 12:15:16 202] - print
+[Tue Oct 10 12:15:24 202] - next
+[Tue Oct 10 12:18:53 202] - print
+[Tue Oct 10 12:19:24 202] - white LIMH
+[Tue Oct 10 12:19:26 202] - print
+[Tue Oct 10 12:19:32 202] - next
+[Tue Oct 10 12:22:41 202] - print
+[Tue Oct 10 12:23:38 202] - white NGOF
+[Tue Oct 10 12:23:40 202] - print
+[Tue Oct 10 12:32:41 202] - new black
+[Tue Oct 10 12:32:56 202] - print
+[Tue Oct 10 12:33:09 202] - white JIJK
+[Tue Oct 10 12:33:12 202] - print
+[Tue Oct 10 12:33:15 202] - next
+[Tue Oct 10 12:36:52 202] - print
+[Tue Oct 10 12:37:18 202] - white GJJL
+[Tue Oct 10 12:37:24 202] - print
+[Tue Oct 10 12:37:32 202] - next
+[Tue Oct 10 12:44:43 202] - quit
+[Tue Oct 10 12:44:49 202] - new black
+[Tue Oct 10 12:45:07 202] - white JKJL
+[Tue Oct 10 12:45:10 202] - next
+[Tue Oct 10 12:48:58 202] - quit
+[Tue Oct 10 12:49:58 202] - new black
+[Tue Oct 10 12:50:03 202] - white JKJL
+[Tue Oct 10 12:50:06 202] - next
+[Tue Oct 10 12:52:26 202] - print
+[Tue Oct 10 12:52:54 202] - white KJIL
+[Tue Oct 10 12:52:58 202] - print
+[Tue Oct 10 12:53:04 202] - next
+[Tue Oct 10 12:54:08 202] - print
+[Tue Oct 10 12:54:30 202] - white GJLI
+[Tue Oct 10 12:54:32 202] - print
+[Tue Oct 10 12:54:38 202] - next
+[Tue Oct 10 12:55:33 202] - print
+[Tue Oct 10 12:55:53 202] - white HMGN
+[Tue Oct 10 12:55:55 202] - print
+[Tue Oct 10 12:56:05 202] - next
+[Tue Oct 10 12:57:00 202] - print
+[Tue Oct 10 12:57:45 202] - new black
+[Tue Oct 10 12:57:52 202] - white JKJL
+[Tue Oct 10 12:57:55 202] - next
+[Tue Oct 10 12:58:56 202] - new white
+[Tue Oct 10 12:59:08 202] - black JK
+[Tue Oct 10 12:59:11 202] - next
+[Tue Oct 10 13:05:09 202] - new black
+[Tue Oct 10 13:05:11 202] - white JKJL
+[Tue Oct 10 13:05:17 202] - next
+[Tue Oct 10 13:58:55 202] - new black
+[Tue Oct 10 13:59:42 202] - white JHJI
+[Tue Oct 10 13:59:43 202] - print
+[Tue Oct 10 13:59:49 202] - next
+[Tue Oct 10 14:03:38 202] - new black
+[Tue Oct 10 14:03:42 202] - white JKJL
+[Tue Oct 10 14:03:44 202] - next
+[Tue Oct 10 14:04:43 202] - new black
+[Tue Oct 10 14:04:48 202] - white JKJL
+[Tue Oct 10 14:04:51 202] - next
+[Tue Oct 10 16:23:24 202] - new black
+[Tue Oct 10 16:23:44 202] - white JIJK
+[Tue Oct 10 16:23:46 202] - next
+[Tue Oct 10 16:29:23 202] - new white
+[Tue Oct 10 16:29:29 202] - black JJ
+[Tue Oct 10 16:29:33 202] - next
+[Tue Oct 10 16:30:13 202] - new white
+[Tue Oct 10 16:30:16 202] - black JJ
+[Tue Oct 10 16:30:18 202] - print
+[Tue Oct 10 16:30:27 202] - next
+[Tue Oct 10 16:55:24 202] - new white
+[Tue Oct 10 16:55:29 202] - black JK
+[Tue Oct 10 16:55:31 202] - print
+[Tue Oct 10 16:55:35 202] - next
+[Tue Oct 10 17:00:46 202] - print
+[Tue Oct 10 17:08:26 202] - print
+[Tue Oct 10 17:08:35 202] - quit
+[Tue Oct 10 17:09:45 202] - new black
+[Tue Oct 10 17:09:56 202] - white JKJL
+[Tue Oct 10 17:10:00 202] - print
+[Tue Oct 10 17:10:05 202] - next
+[Tue Oct 10 17:10:57 202] - new black
+[Tue Oct 10 17:10:59 202] - white JKJL
+[Tue Oct 10 17:11:00 202] - print
+[Tue Oct 10 17:11:01 202] - next
+[Tue Oct 10 17:11:14 202] - print
+[Tue Oct 10 17:12:14 202] - white JMJN
+[Tue Oct 10 17:12:16 202] - print
+[Tue Oct 10 17:12:20 202] - next
+[Tue Oct 10 17:12:33 202] - print
+[Tue Oct 10 17:13:18 202] - white KIEO
+[Tue Oct 10 17:13:19 202] - print
+[Tue Oct 10 17:13:23 202] - next
+[Tue Oct 10 17:13:36 202] - print
+[Tue Oct 10 17:16:15 202] - white GOHN
+[Tue Oct 10 17:16:21 202] - next
+[Tue Oct 10 17:16:43 202] - print
+[Tue Oct 10 17:17:08 202] - white GJIM
+[Tue Oct 10 17:17:11 202] - print
+[Tue Oct 10 17:17:22 202] - next
+[Tue Oct 10 17:17:35 202] - print
+[Tue Oct 10 17:19:12 202] - white KKLJ
+[Tue Oct 10 17:19:13 202] - print
+[Tue Oct 10 17:22:54 202] - quit
+[Tue Oct 10 17:23:20 202] - new black
+[Tue Oct 10 17:25:32 202] - quit
+[Tue Oct 10 17:25:40 202] - new black
+[Tue Oct 10 17:25:47 202] - print
+[Tue Oct 10 17:26:54 202] - new black
+[Tue Oct 10 17:26:59 202] - print
+[Tue Oct 10 17:27:13 202] - white KKLL
+[Tue Oct 10 17:27:17 202] - print
+[Tue Oct 10 17:27:26 202] - next
+[Tue Oct 10 17:27:33 202] - print
+[Tue Oct 10 17:27:54 202] - white GMMM
+[Tue Oct 10 17:27:57 202] - print
+[Tue Oct 10 17:28:02 202] - next
+[Tue Oct 10 17:28:11 202] - print
+[Tue Oct 10 17:28:42 202] - white MGOO
+[Tue Oct 10 17:28:46 202] - next
+[Tue Oct 10 17:28:55 202] - print
+[Tue Oct 10 17:29:38 202] - white NNIN
+[Tue Oct 10 17:29:40 202] - next
+[Tue Oct 10 17:29:52 202] - print
+[Tue Oct 10 17:30:41 202] - print
+[Tue Oct 10 17:31:14 202] - white KMJM
+[Tue Oct 10 17:31:16 202] - next
+[Tue Oct 10 17:31:25 202] - print
+[Tue Oct 10 17:31:54 202] - white IHJN
+[Tue Oct 10 17:31:59 202] - next
+[Tue Oct 10 17:32:30 202] - print
+[Tue Oct 10 17:32:56 202] - white GIMI
+[Tue Oct 10 17:32:58 202] - print
+[Tue Oct 10 17:33:11 202] - next
+[Tue Oct 10 17:33:39 202] - print
+[Tue Oct 10 17:34:06 202] - white HPMK
+[Tue Oct 10 17:34:07 202] - print
+[Tue Oct 10 17:34:13 202] - next
+[Tue Oct 10 17:34:38 202] - print
+[Tue Oct 10 17:34:53 202] - quit
+[Tue Oct 10 17:36:20 202] - new black
+[Tue Oct 10 17:36:26 202] - white JKJL
+[Tue Oct 10 17:36:28 202] - next
+[Tue Oct 10 17:36:44 202] - print
+[Tue Oct 10 17:37:04 202] - white GMJM
+[Tue Oct 10 17:37:07 202] - next
+[Tue Oct 10 17:37:10 202] - print
+[Tue Oct 10 17:37:29 202] - white MHJO
+[Tue Oct 10 17:37:32 202] - next
+[Tue Oct 10 17:37:41 202] - print
+[Tue Oct 10 17:50:27 202] - quit
+[Tue Oct 10 17:50:33 202] - new black
+[Tue Oct 10 17:50:40 202] - white JKJL
+[Tue Oct 10 17:50:43 202] - next
+[Tue Oct 10 17:55:25 202] - new black
+[Tue Oct 10 17:55:32 202] - white JKJL
+[Tue Oct 10 17:55:34 202] - nexrt
+[Tue Oct 10 17:55:37 202] - next
+[Tue Oct 10 17:56:10 202] - new black
+[Tue Oct 10 17:56:12 202] - white JKJL
+[Tue Oct 10 17:56:13 202] - next
+[Tue Oct 10 17:57:16 202] - quit
+[Tue Oct 10 17:57:40 202] - new black
+[Tue Oct 10 17:57:42 202] - white JKJL
+[Tue Oct 10 17:57:44 202] - next
+[Tue Oct 10 18:09:01 202] - new black
+[Tue Oct 10 18:09:06 202] - white JKJL
+[Tue Oct 10 18:09:10 202] - next
+[Tue Oct 10 18:12:30 202] - new black
+[Tue Oct 10 18:12:31 202] - white JKJL
+[Tue Oct 10 18:12:32 202] - next
+[Tue Oct 10 18:23:47 202] - new black
+[Tue Oct 10 18:23:50 202] - white JKJL
+[Tue Oct 10 18:23:51 202] - next
+[Tue Oct 10 18:25:15 202] - quit
+[Tue Oct 10 18:25:25 202] - new black
+[Tue Oct 10 18:25:27 202] - white JKJL
+[Tue Oct 10 18:25:29 202] - next
+[Tue Oct 10 18:25:54 202] - quit
+[Tue Oct 10 18:26:16 202] - new black
+[Tue Oct 10 18:26:20 202] - white JKJL
+[Tue Oct 10 18:28:34 202] - next
+[Tue Oct 10 18:28:48 202] - pritn
+[Tue Oct 10 18:28:49 202] - print
+[Tue Oct 10 18:29:03 202] - white GMKI
+[Tue Oct 10 18:29:06 202] - next
+[Tue Oct 10 18:29:25 202] - print
+[Tue Oct 10 18:29:41 202] - white ILJM
+[Tue Oct 10 18:29:45 202] - next
+[Tue Oct 10 18:29:58 202] - print
+[Tue Oct 10 18:30:24 202] - white IFKL
+[Tue Oct 10 18:30:26 202] - next
+[Tue Oct 10 18:30:41 202] - print
+[Tue Oct 10 18:31:03 202] - white HHMM
+[Tue Oct 10 18:31:05 202] - next
+[Tue Oct 10 18:31:16 202] - print
+[Tue Oct 10 18:31:32 202] - white LJGJ
+[Tue Oct 10 18:31:34 202] - next
+[Tue Oct 10 18:31:44 202] - print
+[Tue Oct 10 18:32:10 202] - white HGML
+[Tue Oct 10 18:32:14 202] - next
+[Tue Oct 10 18:32:23 202] - print
+[Tue Oct 10 18:32:59 202] - white FMKH
+[Tue Oct 10 18:33:02 202] - next
+[Tue Oct 10 18:33:11 202] - print
+[Tue Oct 10 18:33:53 202] - white HOHI
+[Tue Oct 10 18:33:56 202] - next
+[Tue Oct 10 18:34:11 202] - print

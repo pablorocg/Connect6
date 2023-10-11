@@ -1,3 +1,5 @@
+import numpy as np
+
 class Defines:
     GRID_NUM=21          # Number of the board, 19*19 plus edges.
     GRID_COUNT=361         # Sum of the points in the board.
@@ -11,8 +13,8 @@ class Defines:
     LOG_FILE="tia-engine.log"
     ENGINE_NAME="TIA.Connect6"
     # Max values in the evaluation.
-    MAXINT=20000
-    MININT=-20000
+    MAXINT= np.inf
+    MININT= -np.inf
 
 class StonePosition:
     def __init__(self,x,y):

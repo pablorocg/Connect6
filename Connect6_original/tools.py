@@ -37,14 +37,16 @@ def make_move(board, move, color):
 
     Args:
         board (numpy.ndarray): The Connect6 board.
-        move (Move): The move to make.
+        move (tuple): The move to make ((x1, y1), (x2, y2)).
         color (int): The color of the player making the move.
 
     Returns:
         None
     """
+    
     board[move.positions[0].x, move.positions[0].y] = color
     board[move.positions[1].x, move.positions[1].y] = color
+    
 
 def unmake_move(board, move):
     """
@@ -59,6 +61,14 @@ def unmake_move(board, move):
     """
     board[move.positions[0].x, move.positions[0].y] = Defines.NOSTONE
     board[move.positions[1].x, move.positions[1].y] = Defines.NOSTONE
+
+def create_move(positions):
+    move = StoneMove()
+    move.positions[0].x = positions[0][0]
+    move.positions[0].y = positions[0][1]
+    move.positions[1].x = positions[1][0]
+    move.positions[1].y = positions[1][1]
+    return move
 
 def is_win_by_premove(board, preMove):
     """
@@ -100,6 +110,58 @@ def is_win_by_premove(board, preMove):
                 return True
 
     return False
+
+# Define the is_win function based on is_win_by_premove
+
+def is_win(board):
+    """
+    Determines if a player has won the game.
+
+    Args:
+    - board (numpy.ndarray): The game board
+
+    Returns:
+    - True if there is a win for a player, False otherwise
+    """
+    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+    rows, cols = board.shape
+
+    for row in range(rows):
+        for col in range(cols):
+            position = (row, col)
+            movStone = board[row, col]
+
+            if (movStone == Defines.BORDER or movStone == Defines.NOSTONE):
+                continue
+
+            for direction in directions:
+                count = 0
+                x, y = position
+
+                while 0 <= x < rows and 0 <= y < cols and board[x, y] == movStone:
+                    x += direction[0]
+                    y += direction[1]
+                    count += 1
+
+                x, y = position
+                x -= direction[0]
+                y -= direction[1]
+
+                while 0 <= x < rows and 0 <= y < cols and board[x, y] == movStone:
+                    x -= direction[0]
+                    y -= direction[1]
+                    count += 1
+
+                # We subtract 1 because the position itself is counted twice
+                if count - 1 >= 6:
+                    return True
+
+    return False
+
+
+
+
+
 
 def get_msg(max_len):
     """
