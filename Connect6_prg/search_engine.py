@@ -248,7 +248,10 @@ class MiniMaxAlphaBeta:
     def search(self, state, depth, is_maximizing, alpha=-np.inf, beta=np.inf):
         self.node_count += 1
 
-        if depth == 0 or tl.check_winner(state) != 0 or len(tl.get_available_moves(state)) == 0:
+        winner = tl.check_winner(state)
+        available_moves = tl.get_available_moves(state)
+
+        if depth == 0 or winner != 0 or not available_moves:
             return self.evaluate_board(state)
 
         children = self.get_ordered_children(state, is_maximizing)
@@ -260,7 +263,6 @@ class MiniMaxAlphaBeta:
                 max_value = max(max_value, value)
                 alpha = max(alpha, value)
                 if beta <= alpha:
-                    print(f"Poda en profundidad {depth} con alpha={alpha} y beta={beta}")
                     break
             return max_value
         else:
@@ -270,9 +272,9 @@ class MiniMaxAlphaBeta:
                 min_value = min(min_value, value)
                 beta = min(beta, value)
                 if beta <= alpha:
-                    print(f"Poda en profundidad {depth} con alpha={alpha} y beta={beta}")
                     break
             return min_value
+
 
     def get_best_move(self):
         best_score = -np.inf if self.m_is_maximizing else np.inf

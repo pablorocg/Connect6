@@ -247,7 +247,7 @@ def get_available_moves(board):
 
     # Devuelve todas las combinaciones de 2 movimientos posibles
     coords = list(it.combinations(map(tuple, empty_coords), 2))
-    
+    print(len(coords))
     return [create_move(coord) for coord in coords]
 
 
@@ -269,7 +269,7 @@ def get_available_moves_with_score(board, color):
         board_copy = np.array(board)
         make_move(board_copy, move, color)
         # Asigna el score al movimiento
-        move.score = offensive_evaluate_state(board_copy)
+        move.score = defensive_evaluate_state(board_copy)
 
     return moves
         
@@ -342,7 +342,7 @@ def offensive_evaluate_state(board):
             current_cell = board[x, y]
             if current_cell == 0:  # Skip empty cells
                 continue
-
+            
             for dx, dy in directions:
                 # Check if the sequence in this direction has already been counted
                 if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] == current_cell:
@@ -377,62 +377,78 @@ def offensive_evaluate_state(board):
                     scores[current_cell] += score_increment
 
     return scores[1] - scores[2]
+def get_center_multiplier(x, y, board_size=19):
+    center = board_size // 2
+    distance_to_center = abs(x - center) + abs(y - center)
+    max_distance = 2 * center
+    return 1 + (max_distance - distance_to_center) / max_distance
 
 def defensive_evaluate_state(board):
     """
-    A more defensive heuristic for evaluating the board state.
+    A heuristic for evaluating the board state with an offensive priority.
     Positive values favor player 1, negative values favor player 2.
-
-    :param board: 2D numpy array representing the game board. 0 for empty, 1 for player 1, and 2 for player 2.
-    :return: Heuristic value of the board state.
     """
     board = board[1:-1, 1:-1]
 
+    WINNING_SCORE = 100000000
+    BOARD_SIZE = 19
     directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
-    offensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500, 6: 1000}
-    defensive_values = {1: 1, 2: 10, 3: 60, 4: 1000, 5: 10000, 6: 10000}
+    offensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500, 6: WINNING_SCORE}
+    defensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500, 6: 750}
 
     scores = {1: 0, 2: 0}
+    player1_count = np.count_nonzero(board == 1)
+    
+    # Check for immediate winning move for the offensive player (player 1)
+    if player1_count > 3:
+        for x in range(BOARD_SIZE):
+            for y in range(BOARD_SIZE):
+                current_cell = board[x, y]
+                if current_cell == 1:  # Only check for player 1
+                    for dx, dy in directions:
+                        sequence_length = 1
+                        nx, ny = x + dx, y + dy
+                        while 0 <= nx < BOARD_SIZE and 0 <= ny < BOARD_SIZE and board[nx, ny] == current_cell:
+                            sequence_length += 1
+                            nx += dx
+                            ny += dy
+                        if sequence_length == 6:
+                            return WINNING_SCORE
 
-    for x in range(19):
-        for y in range(19):
+    # Continue with normal evaluation
+    for x in range(BOARD_SIZE):
+        for y in range(BOARD_SIZE):
             current_cell = board[x, y]
-            if current_cell == 0:  # Skip empty cells
+            if current_cell == 0:
                 continue
-
+            if player1_count > 3:
+                center_multiplier = get_center_multiplier(x, y)
+            else:
+                center_multiplier=1
             for dx, dy in directions:
-                # Check if the sequence in this direction has already been counted
-                if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] == current_cell:
+                sequence_length = 1
+
+                # Skip already counted sequences
+                if 0 <= x - dx < BOARD_SIZE and 0 <= y - dy < BOARD_SIZE and board[x - dx, y - dy] == current_cell:
                     continue
 
-                sequence_length = 1
-                blocked_left = False
-                blocked_right = False
-
-                # Check left
-                if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] != 0:
-                    blocked_left = True
-
-                # Count sequence length
                 nx, ny = x + dx, y + dy
-                while 0 <= nx < 19 and 0 <= ny < 19 and board[nx, ny] == current_cell:
+                while 0 <= nx < BOARD_SIZE and 0 <= ny < BOARD_SIZE and board[nx, ny] == current_cell:
                     sequence_length += 1
                     nx += dx
                     ny += dy
 
-                # Check right
-                if 0 <= nx < 19 and 0 <= ny < 19 and board[nx, ny] != 0:
-                    blocked_right = True
-
-                # Update score based on sequence length
                 values = defensive_values if current_cell == 2 else offensive_values
                 if sequence_length in values:
+                    blocked_left = 0 <= x - dx < BOARD_SIZE and 0 <= y - dy < BOARD_SIZE and board[x - dx, y - dy] != 0
+                    blocked_right = 0 <= nx < BOARD_SIZE and 0 <= ny < BOARD_SIZE and board[nx, ny] != 0
+
                     score_increment = values[sequence_length]
                     if not blocked_left and not blocked_right:
-                        score_increment *= 1.5
+                        score_increment *= 2
                     elif blocked_left and blocked_right:
-                        score_increment *= 0.5
-                    scores[current_cell] += score_increment
+                        score_increment *= 0.25
+                    scores[current_cell] += score_increment * center_multiplier
 
     return scores[1] - scores[2]
 

@@ -687,3 +687,640 @@
 [Wed Oct 11 19:33:28 202] - black JPDK
 [Wed Oct 11 19:33:28 202] - white CMGI
 [Wed Oct 11 19:33:28 202] - next
+[Wed Oct 18 17:06:31 202] - name
+[Wed Oct 18 17:06:31 202] - depth 4
+[Wed Oct 18 17:06:37 202] - name
+[Wed Oct 18 17:06:37 202] - depth 4
+[Wed Oct 18 17:06:37 202] - vcf
+[Wed Oct 18 17:06:39 202] - new xxx
+[Wed Oct 18 17:06:39 202] - black JJJJ
+[Wed Oct 18 17:06:39 202] - next
+[Wed Oct 18 17:06:51 202] - new xxx
+[Wed Oct 18 17:06:51 202] - black JJJJ
+[Wed Oct 18 17:06:51 202] - white ASBS
+[Wed Oct 18 17:06:51 202] - black CSAR
+[Wed Oct 18 17:06:51 202] - next
+[Wed Oct 18 17:07:05 202] - new xxx
+[Wed Oct 18 17:07:05 202] - black JJJJ
+[Wed Oct 18 17:07:05 202] - white ASBS
+[Wed Oct 18 17:07:05 202] - black CSAR
+[Wed Oct 18 17:07:05 202] - white BRBQ
+[Wed Oct 18 17:07:05 202] - black IJHJ
+[Wed Oct 18 17:07:05 202] - next
+[Wed Oct 18 17:07:19 202] - new xxx
+[Wed Oct 18 17:07:19 202] - black JJJJ
+[Wed Oct 18 17:07:19 202] - white ASBS
+[Wed Oct 18 17:07:19 202] - black CSAR
+[Wed Oct 18 17:07:19 202] - white BRBQ
+[Wed Oct 18 17:07:19 202] - black IJHJ
+[Wed Oct 18 17:07:19 202] - white BPBO
+[Wed Oct 18 17:07:19 202] - black BNGJ
+[Wed Oct 18 17:07:19 202] - next
+[Wed Oct 18 17:07:55 202] - new xxx
+[Wed Oct 18 17:07:55 202] - black JJJJ
+[Wed Oct 18 17:07:55 202] - white ASBS
+[Wed Oct 18 17:07:55 202] - black CSAR
+[Wed Oct 18 17:07:55 202] - white BRBQ
+[Wed Oct 18 17:07:55 202] - black IJHJ
+[Wed Oct 18 17:07:55 202] - white BPBO
+[Wed Oct 18 17:07:55 202] - black BNGJ
+[Wed Oct 18 17:07:55 202] - white CQDP
+[Wed Oct 18 17:07:55 202] - black EOFJ
+[Wed Oct 18 17:07:55 202] - next
+[Wed Oct 18 17:08:17 202] - new xxx
+[Wed Oct 18 17:08:17 202] - black JJJJ
+[Wed Oct 18 17:08:17 202] - white ASBS
+[Wed Oct 18 17:08:17 202] - black CSAR
+[Wed Oct 18 17:08:17 202] - white BRBQ
+[Wed Oct 18 17:08:17 202] - black IJHJ
+[Wed Oct 18 17:08:17 202] - white BPBO
+[Wed Oct 18 17:08:17 202] - black BNGJ
+[Wed Oct 18 17:08:17 202] - white CQDP
+[Wed Oct 18 17:08:17 202] - black EOFJ
+[Wed Oct 18 17:08:17 202] - white EJKJ
+[Wed Oct 18 17:08:17 202] - black ENDN
+[Wed Oct 18 17:08:17 202] - next
+[Wed Oct 18 17:08:37 202] - new xxx
+[Wed Oct 18 17:08:37 202] - black JJJJ
+[Wed Oct 18 17:08:37 202] - white ASBS
+[Wed Oct 18 17:08:37 202] - black CSAR
+[Wed Oct 18 17:08:37 202] - white BRBQ
+[Wed Oct 18 17:08:37 202] - black IJHJ
+[Wed Oct 18 17:08:37 202] - white BPBO
+[Wed Oct 18 17:08:37 202] - black BNGJ
+[Wed Oct 18 17:08:37 202] - white CQDP
+[Wed Oct 18 17:08:37 202] - black EOFJ
+[Wed Oct 18 17:08:37 202] - white EJKJ
+[Wed Oct 18 17:08:37 202] - black ENDN
+[Wed Oct 18 17:08:37 202] - white APCP
+[Wed Oct 18 17:08:37 202] - black EPEM
+[Wed Oct 18 17:08:37 202] - next
+[Wed Oct 18 17:29:45 202] - name
+[Wed Oct 18 17:29:45 202] - depth 4
+[Wed Oct 18 17:31:56 202] - name
+[Wed Oct 18 17:31:56 202] - depth 4
+[Wed Oct 18 17:32:08 202] - name
+[Wed Oct 18 17:32:08 202] - depth 4
+[Wed Oct 18 17:32:13 202] - name
+[Wed Oct 18 17:32:13 202] - depth 4
+[Wed Oct 18 17:32:13 202] - vcf
+[Wed Oct 18 17:32:14 202] - name
+[Wed Oct 18 17:32:14 202] - depth 4
+[Wed Oct 18 17:32:14 202] - vcf
+[Wed Oct 18 17:32:14 202] - new xxx
+[Wed Oct 18 17:32:14 202] - next
+[Wed Oct 18 17:32:15 202] - new xxx
+[Wed Oct 18 17:32:15 202] - black JJJJ
+[Wed Oct 18 17:32:15 202] - next
+[Wed Oct 18 17:32:22 202] - new xxx
+[Wed Oct 18 17:32:22 202] - black JJJJ
+[Wed Oct 18 17:32:22 202] - white ASBS
+[Wed Oct 18 17:32:22 202] - next
+[Wed Oct 18 17:32:30 202] - new xxx
+[Wed Oct 18 17:32:30 202] - black JJJJ
+[Wed Oct 18 17:32:30 202] - white ASBS
+[Wed Oct 18 17:32:30 202] - black HLIK
+[Wed Oct 18 17:32:30 202] - next
+[Wed Oct 18 17:32:38 202] - new xxx
+[Wed Oct 18 17:32:38 202] - black JJJJ
+[Wed Oct 18 17:32:38 202] - white ASBS
+[Wed Oct 18 17:32:38 202] - black HLIK
+[Wed Oct 18 17:32:38 202] - white CSDS
+[Wed Oct 18 17:32:38 202] - next
+[Wed Oct 18 17:32:47 202] - new xxx
+[Wed Oct 18 17:32:47 202] - black JJJJ
+[Wed Oct 18 17:32:47 202] - white ASBS
+[Wed Oct 18 17:32:47 202] - black HLIK
+[Wed Oct 18 17:32:47 202] - white CSDS
+[Wed Oct 18 17:32:47 202] - black FNGM
+[Wed Oct 18 17:32:47 202] - next
+[Wed Oct 18 17:32:56 202] - new xxx
+[Wed Oct 18 17:32:56 202] - black JJJJ
+[Wed Oct 18 17:32:56 202] - white ASBS
+[Wed Oct 18 17:32:56 202] - black HLIK
+[Wed Oct 18 17:32:56 202] - white CSDS
+[Wed Oct 18 17:32:56 202] - black FNGM
+[Wed Oct 18 17:32:56 202] - white ESEO
+[Wed Oct 18 17:32:56 202] - next
+[Wed Oct 18 17:33:06 202] - new xxx
+[Wed Oct 18 17:33:06 202] - black JJJJ
+[Wed Oct 18 17:33:06 202] - white ASBS
+[Wed Oct 18 17:33:06 202] - black HLIK
+[Wed Oct 18 17:33:06 202] - white CSDS
+[Wed Oct 18 17:33:06 202] - black FNGM
+[Wed Oct 18 17:33:06 202] - white ESEO
+[Wed Oct 18 17:33:06 202] - black FSGN
+[Wed Oct 18 17:33:06 202] - next
+[Wed Oct 18 17:33:17 202] - new xxx
+[Wed Oct 18 17:33:17 202] - black JJJJ
+[Wed Oct 18 17:33:17 202] - white ASBS
+[Wed Oct 18 17:33:17 202] - black HLIK
+[Wed Oct 18 17:33:17 202] - white CSDS
+[Wed Oct 18 17:33:17 202] - black FNGM
+[Wed Oct 18 17:33:17 202] - white ESEO
+[Wed Oct 18 17:33:17 202] - black FSGN
+[Wed Oct 18 17:33:17 202] - white BRKI
+[Wed Oct 18 17:33:17 202] - next
+[Wed Oct 18 17:33:27 202] - new xxx
+[Wed Oct 18 17:33:27 202] - black JJJJ
+[Wed Oct 18 17:33:27 202] - white ASBS
+[Wed Oct 18 17:33:27 202] - black HLIK
+[Wed Oct 18 17:33:27 202] - white CSDS
+[Wed Oct 18 17:33:27 202] - black FNGM
+[Wed Oct 18 17:33:27 202] - white ESEO
+[Wed Oct 18 17:33:27 202] - black FSGN
+[Wed Oct 18 17:33:27 202] - white BRKI
+[Wed Oct 18 17:33:27 202] - black GOGL
+[Wed Oct 18 17:33:27 202] - next
+[Wed Oct 18 17:33:39 202] - new xxx
+[Wed Oct 18 17:33:39 202] - black JJJJ
+[Wed Oct 18 17:33:39 202] - white ASBS
+[Wed Oct 18 17:33:39 202] - black HLIK
+[Wed Oct 18 17:33:39 202] - white CSDS
+[Wed Oct 18 17:33:39 202] - black FNGM
+[Wed Oct 18 17:33:39 202] - white ESEO
+[Wed Oct 18 17:33:39 202] - black FSGN
+[Wed Oct 18 17:33:39 202] - white BRKI
+[Wed Oct 18 17:33:39 202] - black GOGL
+[Wed Oct 18 17:33:39 202] - white CQDP
+[Wed Oct 18 17:33:39 202] - next
+[Wed Oct 18 17:33:51 202] - new xxx
+[Wed Oct 18 17:33:51 202] - black JJJJ
+[Wed Oct 18 17:33:51 202] - white ASBS
+[Wed Oct 18 17:33:51 202] - black HLIK
+[Wed Oct 18 17:33:51 202] - white CSDS
+[Wed Oct 18 17:33:51 202] - black FNGM
+[Wed Oct 18 17:33:51 202] - white ESEO
+[Wed Oct 18 17:33:51 202] - black FSGN
+[Wed Oct 18 17:33:51 202] - white BRKI
+[Wed Oct 18 17:33:51 202] - black GOGL
+[Wed Oct 18 17:33:51 202] - white CQDP
+[Wed Oct 18 17:33:51 202] - black GKHK
+[Wed Oct 18 17:33:51 202] - next
+[Wed Oct 18 17:34:03 202] - new xxx
+[Wed Oct 18 17:34:03 202] - black JJJJ
+[Wed Oct 18 17:34:03 202] - white ASBS
+[Wed Oct 18 17:34:03 202] - black HLIK
+[Wed Oct 18 17:34:03 202] - white CSDS
+[Wed Oct 18 17:34:03 202] - black FNGM
+[Wed Oct 18 17:34:03 202] - white ESEO
+[Wed Oct 18 17:34:03 202] - black FSGN
+[Wed Oct 18 17:34:03 202] - white BRKI
+[Wed Oct 18 17:34:03 202] - black GOGL
+[Wed Oct 18 17:34:03 202] - white CQDP
+[Wed Oct 18 17:34:03 202] - black GKHK
+[Wed Oct 18 17:34:03 202] - white GPGJ
+[Wed Oct 18 17:34:03 202] - next
+[Wed Oct 18 17:34:16 202] - new xxx
+[Wed Oct 18 17:34:16 202] - black JJJJ
+[Wed Oct 18 17:34:16 202] - white ASBS
+[Wed Oct 18 17:34:16 202] - black HLIK
+[Wed Oct 18 17:34:16 202] - white CSDS
+[Wed Oct 18 17:34:16 202] - black FNGM
+[Wed Oct 18 17:34:16 202] - white ESEO
+[Wed Oct 18 17:34:16 202] - black FSGN
+[Wed Oct 18 17:34:16 202] - white BRKI
+[Wed Oct 18 17:34:16 202] - black GOGL
+[Wed Oct 18 17:34:16 202] - white CQDP
+[Wed Oct 18 17:34:16 202] - black GKHK
+[Wed Oct 18 17:34:16 202] - white GPGJ
+[Wed Oct 18 17:34:16 202] - black FKJK
+[Wed Oct 18 17:34:16 202] - next
+[Wed Oct 18 17:34:29 202] - new xxx
+[Wed Oct 18 17:34:29 202] - black JJJJ
+[Wed Oct 18 17:34:29 202] - white ASBS
+[Wed Oct 18 17:34:29 202] - black HLIK
+[Wed Oct 18 17:34:29 202] - white CSDS
+[Wed Oct 18 17:34:29 202] - black FNGM
+[Wed Oct 18 17:34:29 202] - white ESEO
+[Wed Oct 18 17:34:29 202] - black FSGN
+[Wed Oct 18 17:34:29 202] - white BRKI
+[Wed Oct 18 17:34:29 202] - black GOGL
+[Wed Oct 18 17:34:29 202] - white CQDP
+[Wed Oct 18 17:34:29 202] - black GKHK
+[Wed Oct 18 17:34:29 202] - white GPGJ
+[Wed Oct 18 17:34:29 202] - black FKJK
+[Wed Oct 18 17:34:29 202] - white EKKK
+[Wed Oct 18 17:34:29 202] - next
+[Wed Oct 18 17:52:24 202] - name
+[Wed Oct 18 17:52:24 202] - depth 4
+[Wed Oct 18 17:52:41 202] - name
+[Wed Oct 18 17:52:41 202] - depth 4
+[Wed Oct 18 17:52:43 202] - name
+[Wed Oct 18 17:52:43 202] - depth 4
+[Wed Oct 18 17:52:43 202] - vcf
+[Wed Oct 18 17:52:44 202] - name
+[Wed Oct 18 17:52:44 202] - depth 4
+[Wed Oct 18 17:52:44 202] - vcf
+[Wed Oct 18 17:52:45 202] - new xxx
+[Wed Oct 18 17:52:45 202] - next
+[Wed Oct 18 17:52:45 202] - new xxx
+[Wed Oct 18 17:52:45 202] - black JJJJ
+[Wed Oct 18 17:52:45 202] - next
+[Wed Oct 18 17:52:53 202] - new xxx
+[Wed Oct 18 17:52:53 202] - black JJJJ
+[Wed Oct 18 17:52:53 202] - white JKIJ
+[Wed Oct 18 17:52:53 202] - next
+[Wed Oct 18 17:53:01 202] - new xxx
+[Wed Oct 18 17:53:01 202] - black JJJJ
+[Wed Oct 18 17:53:01 202] - white JKIJ
+[Wed Oct 18 17:53:01 202] - black IIHH
+[Wed Oct 18 17:53:01 202] - next
+[Wed Oct 18 17:53:10 202] - new xxx
+[Wed Oct 18 17:53:10 202] - black JJJJ
+[Wed Oct 18 17:53:10 202] - white JKIJ
+[Wed Oct 18 17:53:10 202] - black IIHH
+[Wed Oct 18 17:53:10 202] - white HIGH
+[Wed Oct 18 17:53:10 202] - next
+[Wed Oct 18 17:53:20 202] - new xxx
+[Wed Oct 18 17:53:20 202] - black JJJJ
+[Wed Oct 18 17:53:20 202] - white JKIJ
+[Wed Oct 18 17:53:20 202] - black IIHH
+[Wed Oct 18 17:53:20 202] - white HIGH
+[Wed Oct 18 17:53:20 202] - black KLFG
+[Wed Oct 18 17:53:20 202] - next
+[Wed Oct 18 17:53:31 202] - new xxx
+[Wed Oct 18 17:53:31 202] - black JJJJ
+[Wed Oct 18 17:53:31 202] - white JKIJ
+[Wed Oct 18 17:53:31 202] - black IIHH
+[Wed Oct 18 17:53:31 202] - white HIGH
+[Wed Oct 18 17:53:31 202] - black KLFG
+[Wed Oct 18 17:53:31 202] - white IKKK
+[Wed Oct 18 17:53:31 202] - next
+[Wed Oct 18 17:53:43 202] - new xxx
+[Wed Oct 18 17:53:43 202] - black JJJJ
+[Wed Oct 18 17:53:43 202] - white JKIJ
+[Wed Oct 18 17:53:43 202] - black IIHH
+[Wed Oct 18 17:53:43 202] - white HIGH
+[Wed Oct 18 17:53:43 202] - black KLFG
+[Wed Oct 18 17:53:43 202] - white IKKK
+[Wed Oct 18 17:53:43 202] - black GGFF
+[Wed Oct 18 17:53:43 202] - next
+[Wed Oct 18 17:53:55 202] - new xxx
+[Wed Oct 18 17:53:55 202] - black JJJJ
+[Wed Oct 18 17:53:55 202] - white JKIJ
+[Wed Oct 18 17:53:55 202] - black IIHH
+[Wed Oct 18 17:53:55 202] - white HIGH
+[Wed Oct 18 17:53:55 202] - black KLFG
+[Wed Oct 18 17:53:55 202] - white IKKK
+[Wed Oct 18 17:53:55 202] - black GGFF
+[Wed Oct 18 17:53:55 202] - white LKMK
+[Wed Oct 18 17:53:55 202] - next
+[Wed Oct 18 17:54:08 202] - new xxx
+[Wed Oct 18 17:54:08 202] - black JJJJ
+[Wed Oct 18 17:54:08 202] - white JKIJ
+[Wed Oct 18 17:54:08 202] - black IIHH
+[Wed Oct 18 17:54:08 202] - white HIGH
+[Wed Oct 18 17:54:08 202] - black KLFG
+[Wed Oct 18 17:54:08 202] - white IKKK
+[Wed Oct 18 17:54:08 202] - black GGFF
+[Wed Oct 18 17:54:08 202] - white LKMK
+[Wed Oct 18 17:54:08 202] - black HKNK
+[Wed Oct 18 17:54:08 202] - next
+[Wed Oct 18 17:54:22 202] - new xxx
+[Wed Oct 18 17:54:22 202] - black JJJJ
+[Wed Oct 18 17:54:22 202] - white JKIJ
+[Wed Oct 18 17:54:22 202] - black IIHH
+[Wed Oct 18 17:54:22 202] - white HIGH
+[Wed Oct 18 17:54:22 202] - black KLFG
+[Wed Oct 18 17:54:22 202] - white IKKK
+[Wed Oct 18 17:54:22 202] - black GGFF
+[Wed Oct 18 17:54:22 202] - white LKMK
+[Wed Oct 18 17:54:22 202] - black HKNK
+[Wed Oct 18 17:54:22 202] - white IMIL
+[Wed Oct 18 17:54:22 202] - next
+[Wed Oct 18 17:58:00 202] - name
+[Wed Oct 18 17:58:09 202] - name
+[Wed Oct 18 17:58:09 202] - depth 4
+[Wed Oct 18 17:58:14 202] - name
+[Wed Oct 18 17:58:14 202] - depth 4
+[Wed Oct 18 17:58:14 202] - vcf
+[Wed Oct 18 17:58:15 202] - new xxx
+[Wed Oct 18 17:58:15 202] - black JJJJ
+[Wed Oct 18 17:58:15 202] - next
+[Wed Oct 18 17:58:29 202] - new xxx
+[Wed Oct 18 17:58:29 202] - black JJJJ
+[Wed Oct 18 17:58:29 202] - white JKIJ
+[Wed Oct 18 17:58:29 202] - black IIHH
+[Wed Oct 18 17:58:29 202] - next
+[Wed Oct 18 17:58:44 202] - new xxx
+[Wed Oct 18 17:58:44 202] - black JJJJ
+[Wed Oct 18 17:58:44 202] - white JKIJ
+[Wed Oct 18 17:58:44 202] - black IIHH
+[Wed Oct 18 17:58:44 202] - white HIGH
+[Wed Oct 18 17:58:44 202] - black FGGG
+[Wed Oct 18 17:58:44 202] - next
+[Wed Oct 18 18:11:23 202] - name
+[Wed Oct 18 18:11:23 202] - depth 4
+[Wed Oct 18 18:11:34 202] - name
+[Wed Oct 18 18:11:34 202] - depth 4
+[Wed Oct 18 18:11:38 202] - name
+[Wed Oct 18 18:11:38 202] - depth 4
+[Wed Oct 18 18:11:38 202] - vcf
+[Wed Oct 18 18:11:39 202] - new xxx
+[Wed Oct 18 18:11:39 202] - black JJJJ
+[Wed Oct 18 18:11:39 202] - next
+[Wed Oct 18 18:11:53 202] - new xxx
+[Wed Oct 18 18:11:53 202] - black JJJJ
+[Wed Oct 18 18:11:53 202] - white JKIJ
+[Wed Oct 18 18:11:53 202] - black KLHI
+[Wed Oct 18 18:11:53 202] - next
+[Wed Oct 18 18:12:08 202] - new xxx
+[Wed Oct 18 18:12:08 202] - black JJJJ
+[Wed Oct 18 18:12:08 202] - white JKIJ
+[Wed Oct 18 18:12:08 202] - black KLHI
+[Wed Oct 18 18:12:08 202] - white ILIK
+[Wed Oct 18 18:12:08 202] - black IIIN
+[Wed Oct 18 18:12:08 202] - next
+[Wed Oct 18 18:12:27 202] - new xxx
+[Wed Oct 18 18:12:27 202] - black JJJJ
+[Wed Oct 18 18:12:27 202] - white JKIJ
+[Wed Oct 18 18:12:27 202] - black KLHI
+[Wed Oct 18 18:12:27 202] - white ILIK
+[Wed Oct 18 18:12:27 202] - black IIIN
+[Wed Oct 18 18:12:27 202] - white HKKK
+[Wed Oct 18 18:12:27 202] - black LKGK
+[Wed Oct 18 18:12:27 202] - next
+[Wed Oct 18 18:12:47 202] - new xxx
+[Wed Oct 18 18:12:47 202] - black JJJJ
+[Wed Oct 18 18:12:47 202] - white JKIJ
+[Wed Oct 18 18:12:47 202] - black KLHI
+[Wed Oct 18 18:12:47 202] - white ILIK
+[Wed Oct 18 18:12:47 202] - black IIIN
+[Wed Oct 18 18:12:47 202] - white HKKK
+[Wed Oct 18 18:12:47 202] - black LKGK
+[Wed Oct 18 18:12:47 202] - white JMGJ
+[Wed Oct 18 18:12:47 202] - black JIKI
+[Wed Oct 18 18:12:47 202] - next
+[Wed Oct 18 18:13:21 202] - name
+[Wed Oct 18 18:13:21 202] - depth 4
+[Wed Oct 18 18:13:21 202] - vcf
+[Wed Oct 18 18:13:22 202] - new xxx
+[Wed Oct 18 18:13:22 202] - black JJJJ
+[Wed Oct 18 18:13:22 202] - next
+[Wed Oct 18 18:13:49 202] - new xxx
+[Wed Oct 18 18:13:49 202] - black JJJJ
+[Wed Oct 18 18:13:49 202] - white JKIJ
+[Wed Oct 18 18:13:49 202] - black KJLJ
+[Wed Oct 18 18:13:49 202] - next
+[Wed Oct 18 18:14:03 202] - new xxx
+[Wed Oct 18 18:14:03 202] - black JJJJ
+[Wed Oct 18 18:14:03 202] - white JKIJ
+[Wed Oct 18 18:14:03 202] - black KJLJ
+[Wed Oct 18 18:14:03 202] - white HIGH
+[Wed Oct 18 18:14:03 202] - black FGKL
+[Wed Oct 18 18:14:03 202] - next
+[Wed Oct 18 18:14:29 202] - new xxx
+[Wed Oct 18 18:14:29 202] - black JJJJ
+[Wed Oct 18 18:14:29 202] - white JKIJ
+[Wed Oct 18 18:14:29 202] - black KJLJ
+[Wed Oct 18 18:14:29 202] - white HIGH
+[Wed Oct 18 18:14:29 202] - black FGKL
+[Wed Oct 18 18:14:29 202] - white IIIH
+[Wed Oct 18 18:14:29 202] - black MJNJ
+[Wed Oct 18 18:14:29 202] - next
+[Wed Oct 18 18:15:09 202] - new xxx
+[Wed Oct 18 18:15:09 202] - black JJJJ
+[Wed Oct 18 18:15:09 202] - white JKIJ
+[Wed Oct 18 18:15:09 202] - black KJLJ
+[Wed Oct 18 18:15:09 202] - white HIGH
+[Wed Oct 18 18:15:09 202] - black FGKL
+[Wed Oct 18 18:15:09 202] - white IIIH
+[Wed Oct 18 18:15:09 202] - black MJNJ
+[Wed Oct 18 18:15:09 202] - white IKOJ
+[Wed Oct 18 18:15:09 202] - black LKJM
+[Wed Oct 18 18:15:09 202] - next
+[Wed Oct 18 18:15:44 202] - name
+[Wed Oct 18 18:15:44 202] - depth 4
+[Wed Oct 18 18:15:44 202] - vcf
+[Wed Oct 18 18:15:46 202] - new xxx
+[Wed Oct 18 18:15:46 202] - black JJJJ
+[Wed Oct 18 18:15:46 202] - next
+[Wed Oct 18 18:16:07 202] - new xxx
+[Wed Oct 18 18:16:07 202] - black JJJJ
+[Wed Oct 18 18:16:07 202] - white JKIJ
+[Wed Oct 18 18:16:07 202] - black KKDP
+[Wed Oct 18 18:16:07 202] - next
+[Wed Oct 18 18:16:20 202] - new xxx
+[Wed Oct 18 18:16:20 202] - black JJJJ
+[Wed Oct 18 18:16:20 202] - white JKIJ
+[Wed Oct 18 18:16:20 202] - black KKDP
+[Wed Oct 18 18:16:20 202] - white HIGH
+[Wed Oct 18 18:16:20 202] - black FGKL
+[Wed Oct 18 18:16:20 202] - next
+[Wed Oct 18 18:16:44 202] - new xxx
+[Wed Oct 18 18:16:44 202] - black JJJJ
+[Wed Oct 18 18:16:44 202] - white JKIJ
+[Wed Oct 18 18:16:44 202] - black KKDP
+[Wed Oct 18 18:16:44 202] - white HIGH
+[Wed Oct 18 18:16:44 202] - black FGKL
+[Wed Oct 18 18:16:44 202] - white IIIH
+[Wed Oct 18 18:16:44 202] - black LLJL
+[Wed Oct 18 18:16:44 202] - next
+[Wed Oct 18 18:17:05 202] - new xxx
+[Wed Oct 18 18:17:05 202] - black JJJJ
+[Wed Oct 18 18:17:05 202] - white JKIJ
+[Wed Oct 18 18:17:05 202] - black KKDP
+[Wed Oct 18 18:17:05 202] - white HIGH
+[Wed Oct 18 18:17:05 202] - black FGKL
+[Wed Oct 18 18:17:05 202] - white IIIH
+[Wed Oct 18 18:17:05 202] - black LLJL
+[Wed Oct 18 18:17:05 202] - white ILIK
+[Wed Oct 18 18:17:05 202] - black IGIM
+[Wed Oct 18 18:17:05 202] - next
+[Wed Oct 18 18:17:31 202] - new xxx
+[Wed Oct 18 18:17:31 202] - black JJJJ
+[Wed Oct 18 18:17:31 202] - white JKIJ
+[Wed Oct 18 18:17:31 202] - black KKDP
+[Wed Oct 18 18:17:31 202] - white HIGH
+[Wed Oct 18 18:17:31 202] - black FGKL
+[Wed Oct 18 18:17:31 202] - white IIIH
+[Wed Oct 18 18:17:31 202] - black LLJL
+[Wed Oct 18 18:17:31 202] - white ILIK
+[Wed Oct 18 18:17:31 202] - black IGIM
+[Wed Oct 18 18:17:31 202] - white JIKI
+[Wed Oct 18 18:17:31 202] - black LIGI
+[Wed Oct 18 18:17:31 202] - next
+[Wed Oct 18 18:17:59 202] - new xxx
+[Wed Oct 18 18:17:59 202] - black JJJJ
+[Wed Oct 18 18:17:59 202] - white JKIJ
+[Wed Oct 18 18:17:59 202] - black KKDP
+[Wed Oct 18 18:17:59 202] - white HIGH
+[Wed Oct 18 18:17:59 202] - black FGKL
+[Wed Oct 18 18:17:59 202] - white IIIH
+[Wed Oct 18 18:17:59 202] - black LLJL
+[Wed Oct 18 18:17:59 202] - white ILIK
+[Wed Oct 18 18:17:59 202] - black IGIM
+[Wed Oct 18 18:17:59 202] - white JIKI
+[Wed Oct 18 18:17:59 202] - black LIGI
+[Wed Oct 18 18:17:59 202] - white KJHG
+[Wed Oct 18 18:17:59 202] - black GFLK
+[Wed Oct 18 18:17:59 202] - next
+[Wed Oct 18 18:18:29 202] - new xxx
+[Wed Oct 18 18:18:29 202] - black JJJJ
+[Wed Oct 18 18:18:29 202] - white JKIJ
+[Wed Oct 18 18:18:29 202] - black KKDP
+[Wed Oct 18 18:18:29 202] - white HIGH
+[Wed Oct 18 18:18:29 202] - black FGKL
+[Wed Oct 18 18:18:29 202] - white IIIH
+[Wed Oct 18 18:18:29 202] - black LLJL
+[Wed Oct 18 18:18:29 202] - white ILIK
+[Wed Oct 18 18:18:29 202] - black IGIM
+[Wed Oct 18 18:18:29 202] - white JIKI
+[Wed Oct 18 18:18:29 202] - black LIGI
+[Wed Oct 18 18:18:29 202] - white KJHG
+[Wed Oct 18 18:18:29 202] - black GFLK
+[Wed Oct 18 18:18:29 202] - white HJHH
+[Wed Oct 18 18:18:29 202] - black HKHF
+[Wed Oct 18 18:18:29 202] - next
+[Wed Oct 18 18:18:56 202] - new xxx
+[Wed Oct 18 18:18:56 202] - black JJJJ
+[Wed Oct 18 18:18:56 202] - white JKIJ
+[Wed Oct 18 18:18:56 202] - black KKDP
+[Wed Oct 18 18:18:56 202] - white HIGH
+[Wed Oct 18 18:18:56 202] - black FGKL
+[Wed Oct 18 18:18:56 202] - white IIIH
+[Wed Oct 18 18:18:56 202] - black LLJL
+[Wed Oct 18 18:18:56 202] - white ILIK
+[Wed Oct 18 18:18:56 202] - black IGIM
+[Wed Oct 18 18:18:56 202] - white JIKI
+[Wed Oct 18 18:18:56 202] - black LIGI
+[Wed Oct 18 18:18:56 202] - white KJHG
+[Wed Oct 18 18:18:56 202] - black GFLK
+[Wed Oct 18 18:18:56 202] - white HJHH
+[Wed Oct 18 18:18:56 202] - black HKHF
+[Wed Oct 18 18:18:56 202] - white JHKH
+[Wed Oct 18 18:18:56 202] - black FHLH
+[Wed Oct 18 18:18:56 202] - next
+[Wed Oct 18 18:19:24 202] - new xxx
+[Wed Oct 18 18:19:24 202] - black JJJJ
+[Wed Oct 18 18:19:24 202] - white JKIJ
+[Wed Oct 18 18:19:24 202] - black KKDP
+[Wed Oct 18 18:19:24 202] - white HIGH
+[Wed Oct 18 18:19:24 202] - black FGKL
+[Wed Oct 18 18:19:24 202] - white IIIH
+[Wed Oct 18 18:19:24 202] - black LLJL
+[Wed Oct 18 18:19:24 202] - white ILIK
+[Wed Oct 18 18:19:24 202] - black IGIM
+[Wed Oct 18 18:19:24 202] - white JIKI
+[Wed Oct 18 18:19:24 202] - black LIGI
+[Wed Oct 18 18:19:24 202] - white KJHG
+[Wed Oct 18 18:19:24 202] - black GFLK
+[Wed Oct 18 18:19:24 202] - white HJHH
+[Wed Oct 18 18:19:24 202] - black HKHF
+[Wed Oct 18 18:19:24 202] - white JHKH
+[Wed Oct 18 18:19:24 202] - black FHLH
+[Wed Oct 18 18:19:24 202] - white KGLF
+[Wed Oct 18 18:19:24 202] - black GKME
+[Wed Oct 18 18:19:24 202] - next
+[Wed Oct 18 18:20:07 202] - name
+[Wed Oct 18 18:20:07 202] - depth 4
+[Wed Oct 18 18:20:07 202] - vcf
+[Wed Oct 18 18:20:07 202] - new xxx
+[Wed Oct 18 18:20:07 202] - black JJJJ
+[Wed Oct 18 18:20:07 202] - next
+[Wed Oct 18 18:20:15 202] - new xxx
+[Wed Oct 18 18:20:16 202] - black JJJJ
+[Wed Oct 18 18:20:16 202] - white JKIJ
+[Wed Oct 18 18:20:16 202] - black KLKK
+[Wed Oct 18 18:20:16 202] - next
+[Wed Oct 18 18:20:25 202] - new xxx
+[Wed Oct 18 18:20:25 202] - black JJJJ
+[Wed Oct 18 18:20:25 202] - white JKIJ
+[Wed Oct 18 18:20:25 202] - black KLKK
+[Wed Oct 18 18:20:25 202] - white HIGH
+[Wed Oct 18 18:20:25 202] - black FGJL
+[Wed Oct 18 18:20:25 202] - next
+[Wed Oct 18 18:20:43 202] - new xxx
+[Wed Oct 18 18:20:43 202] - black JJJJ
+[Wed Oct 18 18:20:43 202] - white JKIJ
+[Wed Oct 18 18:20:43 202] - black KLKK
+[Wed Oct 18 18:20:43 202] - white HIGH
+[Wed Oct 18 18:20:43 202] - black FGJL
+[Wed Oct 18 18:20:43 202] - white IIIH
+[Wed Oct 18 18:20:43 202] - black KIKJ
+[Wed Oct 18 18:20:43 202] - next
+[Wed Oct 18 18:21:15 202] - name
+[Wed Oct 18 18:21:15 202] - depth 4
+[Wed Oct 18 18:21:15 202] - vcf
+[Wed Oct 18 18:21:16 202] - new xxx
+[Wed Oct 18 18:21:16 202] - black JJJJ
+[Wed Oct 18 18:21:16 202] - next
+[Wed Oct 18 18:21:24 202] - new xxx
+[Wed Oct 18 18:21:24 202] - black JJJJ
+[Wed Oct 18 18:21:24 202] - white JKIJ
+[Wed Oct 18 18:21:24 202] - black KLKK
+[Wed Oct 18 18:21:24 202] - next
+[Wed Oct 18 18:21:33 202] - new xxx
+[Wed Oct 18 18:21:33 202] - black JJJJ
+[Wed Oct 18 18:21:33 202] - white JKIJ
+[Wed Oct 18 18:21:33 202] - black KLKK
+[Wed Oct 18 18:21:33 202] - white HIGH
+[Wed Oct 18 18:21:33 202] - black FGJL
+[Wed Oct 18 18:21:33 202] - next
+[Wed Oct 18 18:21:51 202] - new xxx
+[Wed Oct 18 18:21:51 202] - black JJJJ
+[Wed Oct 18 18:21:51 202] - white JKIJ
+[Wed Oct 18 18:21:51 202] - black KLKK
+[Wed Oct 18 18:21:51 202] - white HIGH
+[Wed Oct 18 18:21:51 202] - black FGJL
+[Wed Oct 18 18:21:51 202] - white IIIH
+[Wed Oct 18 18:21:51 202] - black KIKJ
+[Wed Oct 18 18:21:51 202] - next
+[Wed Oct 18 18:30:39 202] - name
+[Wed Oct 18 18:30:39 202] - depth 4
+[Wed Oct 18 18:30:43 202] - name
+[Wed Oct 18 18:30:43 202] - depth 4
+[Wed Oct 18 18:30:43 202] - vcf
+[Wed Oct 18 18:30:44 202] - new xxx
+[Wed Oct 18 18:30:44 202] - black JJJJ
+[Wed Oct 18 18:30:44 202] - next
+[Wed Oct 18 18:30:59 202] - new xxx
+[Wed Oct 18 18:30:59 202] - black JJJJ
+[Wed Oct 18 18:30:59 202] - white JKIJ
+[Wed Oct 18 18:30:59 202] - black KLKK
+[Wed Oct 18 18:30:59 202] - next
+[Wed Oct 18 18:31:15 202] - new xxx
+[Wed Oct 18 18:31:15 202] - black JJJJ
+[Wed Oct 18 18:31:15 202] - white JKIJ
+[Wed Oct 18 18:31:15 202] - black KLKK
+[Wed Oct 18 18:31:15 202] - white HIGH
+[Wed Oct 18 18:31:15 202] - black FGJL
+[Wed Oct 18 18:31:15 202] - next
+[Wed Oct 18 18:31:33 202] - new xxx
+[Wed Oct 18 18:31:33 202] - black JJJJ
+[Wed Oct 18 18:31:33 202] - white JKIJ
+[Wed Oct 18 18:31:33 202] - black KLKK
+[Wed Oct 18 18:31:33 202] - white HIGH
+[Wed Oct 18 18:31:33 202] - black FGJL
+[Wed Oct 18 18:31:33 202] - white IIIH
+[Wed Oct 18 18:31:33 202] - black KIKJ
+[Wed Oct 18 18:31:33 202] - next
+[Wed Oct 18 19:14:26 202] - name
+[Wed Oct 18 19:14:40 202] - name
+[Wed Oct 18 19:14:40 202] - depth 4
+[Wed Oct 18 19:14:40 202] - vcf
+[Wed Oct 18 19:14:40 202] - new xxx
+[Wed Oct 18 19:14:40 202] - black JJJJ
+[Wed Oct 18 19:14:40 202] - next
+[Wed Oct 18 19:14:52 202] - new xxx
+[Wed Oct 18 19:14:52 202] - black JJJJ
+[Wed Oct 18 19:14:52 202] - white JKIJ
+[Wed Oct 18 19:14:52 202] - black KLKK
+[Wed Oct 18 19:14:52 202] - next
+[Wed Oct 18 19:15:09 202] - new xxx
+[Wed Oct 18 19:15:09 202] - black JJJJ
+[Wed Oct 18 19:15:09 202] - white JKIJ
+[Wed Oct 18 19:15:09 202] - black KLKK
+[Wed Oct 18 19:15:09 202] - white HIGH
+[Wed Oct 18 19:15:09 202] - black FGJL
+[Wed Oct 18 19:15:09 202] - next
+[Wed Oct 18 19:15:28 202] - new xxx
+[Wed Oct 18 19:15:28 202] - black JJJJ
+[Wed Oct 18 19:15:28 202] - white JKIJ
+[Wed Oct 18 19:15:28 202] - black KLKK
+[Wed Oct 18 19:15:28 202] - white HIGH
+[Wed Oct 18 19:15:28 202] - black FGJL
+[Wed Oct 18 19:15:28 202] - white IIIH
+[Wed Oct 18 19:15:28 202] - black KIKJ
+[Wed Oct 18 19:15:28 202] - next
