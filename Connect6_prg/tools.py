@@ -377,24 +377,32 @@ def offensive_evaluate_state(board):
                     scores[current_cell] += score_increment
 
     return scores[1] - scores[2]
-def get_center_multiplier(x, y, board_size=19):
+def get_center_multiplier(x, y, mult,board_size=19):
     center = board_size // 2
     distance_to_center = abs(x - center) + abs(y - center)
     max_distance = 2 * center
-    return 1 + (max_distance - distance_to_center) / max_distance
+    return mult + (max_distance - distance_to_center) / max_distance
 
 def defensive_evaluate_state(board):
     """
     A heuristic for evaluating the board state with an offensive priority.
     Positive values favor player 1, negative values favor player 2.
     """
+    with open("cromosoma.txt", "r") as f:
+        valores = []
+        for line in f.readlines():
+            line = line.strip()
+            if '.' in line:
+                valores.append(float(line))
+            else:
+                valores.append(int(line))
     board = board[1:-1, 1:-1]
 
     WINNING_SCORE = 100000000
     BOARD_SIZE = 19
     directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
-    offensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500, 6: WINNING_SCORE}
-    defensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500, 6: 750}
+    offensive_values = {j+1: valores[j+1] for j in range(6)}
+    defensive_values = {j+1: valores[j+7] for j in range(6)}
 
     scores = {1: 0, 2: 0}
     player1_count = np.count_nonzero(board == 1)
@@ -421,8 +429,8 @@ def defensive_evaluate_state(board):
             current_cell = board[x, y]
             if current_cell == 0:
                 continue
-            if player1_count > 3:
-                center_multiplier = get_center_multiplier(x, y)
+            if player1_count < 3:
+                center_multiplier = get_center_multiplier(x, y,valores[-1])
             else:
                 center_multiplier=1
             for dx, dy in directions:

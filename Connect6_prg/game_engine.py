@@ -12,7 +12,7 @@ class GameEngine:
                 self.m_engine_name = name
             else:
                 print(f"Too long Engine Name: {name}, should be less than: {Defines.MSG_LENGTH}")
-        self.m_alphabeta_depth = 2
+        # self.m_alphabeta_depth = 2
         self.m_board = t = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))
         self.init_game()
         
@@ -26,7 +26,15 @@ class GameEngine:
 
         elif name == "MiniMaxAlphaBeta":
             self.m_search_engine = MiniMaxAlphaBeta()
-            self.m_alphabeta_depth = 6
+            with open("cromosoma.txt", "r") as f:
+                valores = []
+                for line in f.readlines():
+                    line = line.strip()
+                    if '.' in line:
+                        valores.append(float(line))
+                    else:
+                        valores.append(int(line))
+                self.m_alphabeta_depth = valores[0]
 
         elif name == "NegaMaxAlphaBeta":
             self.m_search_engine = NegaMaxAlphaBeta()
@@ -132,7 +140,6 @@ class GameEngine:
             elif msg == "help":
                 self.on_help()
         return 0
-
     def search_a_move(self, ourColor, bestMove):
         score = 0
         start = 0
