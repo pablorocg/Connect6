@@ -1,0 +1,115 @@
+[Mon Nov 20 18:45:17 202] - new black
+[Mon Nov 20 18:45:26 202] - white JKJM
+[Mon Nov 20 18:45:45 202] - next
+[Mon Nov 20 18:45:54 202] - print
+[Mon Nov 20 18:46:31 202] - white HJLJ
+[Mon Nov 20 18:46:34 202] - next
+[Mon Nov 20 18:46:39 202] - print
+[Mon Nov 20 18:47:28 202] - white LKLI
+[Mon Nov 20 18:47:30 202] - next
+[Mon Nov 20 18:47:37 202] - print
+[Mon Nov 20 18:48:21 202] - white INIH
+[Mon Nov 20 18:48:24 202] - next
+[Mon Nov 20 18:48:30 202] - print
+[Mon Nov 20 18:49:02 202] - white MMHH
+[Mon Nov 20 18:49:11 202] - next
+[Mon Nov 20 18:49:18 202] - print
+[Mon Nov 20 18:50:12 202] - white MGHL
+[Mon Nov 20 18:50:16 202] - next
+[Mon Nov 20 18:50:27 202] - print
+[Mon Nov 20 18:51:19 202] - white KNKH
+[Mon Nov 20 18:51:23 202] - next
+[Mon Nov 20 18:51:33 202] - print
+[Mon Nov 20 18:52:16 202] - white NLGH
+[Mon Nov 20 18:52:22 202] - next
+[Mon Nov 20 18:52:38 202] - print
+[Mon Nov 20 18:53:25 202] - print
+[Mon Nov 20 18:53:35 202] - white JHFH
+[Mon Nov 20 18:53:43 202] - next
+[Mon Nov 20 18:54:01 202] - print
+[Mon Nov 20 20:28:27 202] - new white
+[Mon Nov 20 20:28:35 202] - black MNKL
+[Mon Nov 20 20:28:37 202] - next
+[Mon Nov 20 20:29:14 202] - new white
+[Mon Nov 20 20:29:20 202] - black MN
+[Mon Nov 20 20:29:25 202] - next
+[Mon Nov 20 20:29:43 202] - print
+[Mon Nov 20 20:30:09 202] - black MLLJ
+[Mon Nov 20 20:30:11 202] - next
+[Mon Nov 20 20:30:19 202] - print
+[Mon Nov 20 20:30:37 202] - black GJMJ
+[Mon Nov 20 20:30:40 202] - next
+[Mon Nov 20 20:30:48 202] - print
+[Mon Nov 20 20:31:07 202] - black MMJH
+[Mon Nov 20 20:31:10 202] - next
+[Mon Nov 20 20:31:23 202] - print
+[Mon Nov 20 20:31:58 202] - black MKMI
+[Mon Nov 20 20:32:02 202] - next
+[Mon Nov 20 20:32:13 202] - print
+[Mon Nov 20 20:41:47 202] - new black
+[Mon Nov 20 20:41:56 202] - white JKJL
+[Mon Nov 20 20:42:00 202] - next
+[Mon Nov 20 20:42:23 202] - & C:/Users/pablo/anaconda3/envs/tia-1/python.exe c:/Users/pablo/GitHub/Connect6/Connect6_original/game_engine.py
+[Mon Nov 20 21:01:59 202] - new black
+[Tue Nov 21 13:26:50 202] - new black
+[Tue Nov 21 13:27:04 202] - white JKJL
+[Tue Nov 21 13:27:06 202] - next
+[Tue Nov 21 13:27:08 202] - print
+[Tue Nov 21 14:31:04 202] - new black
+[Tue Nov 21 14:31:14 202] - white JKJL
+[Tue Nov 21 14:31:17 202] - next
+[Tue Nov 21 14:31:59 202] - white KLIJ
+[Tue Nov 21 14:32:01 202] - next
+[Tue Nov 21 14:50:46 202] - new black
+[Tue Nov 21 14:50:54 202] - white JKJL
+[Tue Nov 21 14:50:56 202] - next
+[Tue Nov 21 14:51:28 202] - white IKKL
+[Tue Nov 21 14:51:31 202] - next
+[Tue Nov 21 14:57:01 202] - new white
+[Tue Nov 21 14:57:04 202] - black JK
+[Tue Nov 21 14:57:07 202] - next
+[Tue Nov 21 14:57:26 202] - white JKJL
+[Tue Nov 21 14:57:32 202] - next
+[Tue Nov 21 15:16:42 202] - new white
+[Tue Nov 21 15:16:46 202] - black JK
+[Tue Nov 21 15:16:47 202] - next
+[Tue Nov 21 15:16:51 202] - white JKJL
+[Tue Nov 21 15:16:53 202] - next
+[Tue Nov 21 15:18:51 202] - new white
+[Tue Nov 21 15:18:52 202] - black JK
+[Tue Nov 21 15:18:54 202] - next
+[Tue Nov 21 15:20:17 202] - new white
+[Tue Nov 21 15:20:19 202] - black JK
+[Tue Nov 21 15:20:21 202] - next
+[Tue Nov 21 15:23:42 202] - new white
+[Tue Nov 21 15:23:45 202] - black JK
+[Tue Nov 21 15:23:47 202] - next
+[Tue Nov 21 15:24:48 202] - black KKJN
+[Tue Nov 21 15:24:51 202] - next
+[Tue Nov 21 15:27:55 202] - new black
+[Tue Nov 21 15:28:03 202] - white JKJL
+[Tue Nov 21 15:28:08 202] - next
+[Tue Nov 21 15:28:46 202] - new white
+[Tue Nov 21 15:28:49 202] - black JJ
+[Tue Nov 21 15:28:51 202] - next
+[Tue Nov 21 15:32:37 202] - black JJ
+[Tue Nov 21 15:32:49 202] - white JKJL
+[Tue Nov 21 15:33:02 202] - new black
+[Tue Nov 21 15:33:10 202] - next
+[Tue Nov 21 15:33:13 202] - next
+[Tue Nov 21 15:33:22 202] - white MKNJ
+[Tue Nov 21 15:33:24 202] - next
+[Tue Nov 21 15:38:02 202] - new black
+[Tue Nov 21 15:38:05 202] - white MKNJ
+[Tue Nov 21 15:38:06 202] - next
+[Tue Nov 21 15:44:18 202] - new black
+[Tue Nov 21 15:44:21 202] - white MKNJ
+[Tue Nov 21 15:44:22 202] - next
+[Tue Nov 21 15:52:55 202] - new black
+[Tue Nov 21 15:53:06 202] - white JKJL
+[Tue Nov 21 15:53:09 202] - next
+[Tue Nov 21 15:54:00 202] - white JNKJ
+[Tue Nov 21 15:54:02 202] - next
+[Tue Nov 21 16:53:33 202] - print
+[Tue Nov 21 16:54:26 202] - print
+[Tue Nov 21 16:55:18 202] - print

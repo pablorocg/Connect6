@@ -1,6 +1,11 @@
 from defines import *
 import time
 import numpy as np
+# import pandas as pd
+# import random
+import itertools as it
+
+
 
 
 def isValidPos(x,y):
@@ -15,9 +20,9 @@ def isValidPos(x,y):
     bool: True if the position is valid, False otherwise.
     """
     return x>0 and x<Defines.GRID_NUM-1 and y>0 and y<Defines.GRID_NUM-1
- 
 
-def init_board(board):
+
+def init_board(board):    
     """
     Initializes the game board with NOSTONE values, and sets the border values to BORDER.
 
@@ -25,50 +30,48 @@ def init_board(board):
     board (numpy.ndarray): The game board to be initialized.
 
     Returns:
-    None
+    numpy.ndarray: The initialized game board.
     """
     board[:] = Defines.NOSTONE
     board[0, :] = board[-1, :] = board[:, 0] = board[:, -1] = Defines.BORDER
+    return board
 
-
-def make_move(board, move, color):
-    """
-    Updates the board with the given move and color.
-
-    Args:
-        board (numpy.ndarray): The Connect6 board.
-        move (tuple): The move to make ((x1, y1), (x2, y2)).
-        color (int): The color of the player making the move.
-
-    Returns:
-        None
-    """
-    
-    board[move.positions[0].x, move.positions[0].y] = color
-    board[move.positions[1].x, move.positions[1].y] = color
-    
-
-def unmake_move(board, move):
-    """
-    Undo a move on the board by setting the positions of the move to Defines.NOSTONE.
-
-    Args:
-    - board (numpy.ndarray): The Connect6 board
-    - move (Move): a Move object representing the move to be undone
-
-    Returns:
-    - None
-    """
-    board[move.positions[0].x, move.positions[0].y] = Defines.NOSTONE
-    board[move.positions[1].x, move.positions[1].y] = Defines.NOSTONE
 
 def create_move(positions):
+    """
+    Creates a move from the given positions.
+
+    Args:
+    positions (list): A list of positions ((x1, y1), (x2, y2)).
+
+    """
     move = StoneMove()
     move.positions[0].x = positions[0][0]
     move.positions[0].y = positions[0][1]
     move.positions[1].x = positions[1][0]
     move.positions[1].y = positions[1][1]
+
+    
     return move
+
+
+def make_move(board, move, color):
+    """
+    Hacer un movimiento sobre board
+    """
+    board[move.positions[0].x, move.positions[0].y] = color
+    board[move.positions[1].x, move.positions[1].y] = color
+
+    return board
+
+
+def unmake_move(board, move):
+    """
+    Deshacer un movimiento sobre board
+    """
+    board[move.positions[0].x, move.positions[0].y] = Defines.NOSTONE
+    board[move.positions[1].x, move.positions[1].y] = Defines.NOSTONE
+
 
 def is_win_by_premove(board, preMove):
     """
@@ -111,70 +114,45 @@ def is_win_by_premove(board, preMove):
 
     return False
 
-# Define the is_win function based on is_win_by_premove
 
-def is_win(board):
+def check_winner(board):
     """
-    Determines if a player has won the game.
+    Check if there is a winner on the Connect6 board.
 
     Args:
-    - board (numpy.ndarray): The game board
+      board (numpy.ndarray): The Connect6 board.
 
     Returns:
-    - True if there is a win for a player, False otherwise
+      int: The winner's value (1 or 2) if there is a winner, otherwise 0.
     """
-    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+    board = board[1:-1, 1:-1]
     rows, cols = board.shape
-
-    for row in range(rows):
-        for col in range(cols):
-            position = (row, col)
-            movStone = board[row, col]
-
-            if (movStone == Defines.BORDER or movStone == Defines.NOSTONE):
-                continue
-
-            for direction in directions:
-                count = 0
-                x, y = position
-
-                while 0 <= x < rows and 0 <= y < cols and board[x, y] == movStone:
-                    x += direction[0]
-                    y += direction[1]
-                    count += 1
-
-                x, y = position
-                x -= direction[0]
-                y -= direction[1]
-
-                while 0 <= x < rows and 0 <= y < cols and board[x, y] == movStone:
-                    x -= direction[0]
-                    y -= direction[1]
-                    count += 1
-
-                # We subtract 1 because the position itself is counted twice
-                if count - 1 >= 6:
-                    return True
-
-    return False
-
-
-
+    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+    
+    for x in range(rows):
+        for y in range(cols):
+            if board[x, y] != 0:
+                for dx, dy in directions:
+                    if 0 <= x + 5*dx < rows and 0 <= y + 5*dy < cols:
+                        if all(board[x + i*dx, y + i*dy] == board[x, y] for i in range(6)):
+                            return board[x, y]
+    return 0
 
 
 
 def get_msg(max_len):
     """
-    Reads a string from standard input and returns a substring of it with a maximum length of max_len.
+    Input a message from the console.
 
     Args:
-        max_len (int): The maximum length of the substring to return.
+        max_len (int): The maximum length of the message to be input.
 
     Returns:
-        str: A substring of the input string with a maximum length of max_len.
+        str: The input message, truncated to the specified maximum length.
     """
     buf = input().strip()
     return buf[:max_len]
+
 
 def log_to_file(msg):
     """
@@ -186,6 +164,7 @@ def log_to_file(msg):
     Returns:
         int: 0 if the message was successfully logged, -1 otherwise.
     """
+
     g_log_file_name = Defines.LOG_FILE
     try:
         with open(g_log_file_name, "a") as file:
@@ -198,16 +177,8 @@ def log_to_file(msg):
         print(f"Error: Can't open log file - {g_log_file_name}")
         return -1
 
+
 def move2msg(move):
-    """
-    Converts a move object to a message string.
-
-    Args:
-        move (Move): A move object containing two Position objects.
-
-    Returns:
-        str: A message string representing the move.
-    """
     if move.positions[0].x == move.positions[1].x and move.positions[0].y == move.positions[1].y:
         msg = f"{chr(ord('S') - move.positions[0].x + 1)}{chr(move.positions[0].y + ord('A') - 1)}"
         return msg
@@ -217,15 +188,6 @@ def move2msg(move):
         return msg
 
 def msg2move(msg):
-    """
-    Converts a message string to a StoneMove object.
-
-    Args:
-        msg (str): A string representing the move.
-
-    Returns:
-        StoneMove: A StoneMove object representing the move.
-    """
     move = StoneMove()
     if len(msg) == 2:
         move.positions[0].x = move.positions[1].x = ord('S') - ord(msg[1]) + 1
@@ -240,14 +202,13 @@ def msg2move(msg):
         move.score = 0
         return move
 
-def print_board(board, preMove=None):
+def print_board(board):
     """
     Prints the Connect6 board with the current state of the game.
 
     Args:
     - board (numpy.ndarray): The Connect6 board
-    - preMove (Move): Previous move made on the board (optional)
-
+    
     Returns:
     - None
     """
@@ -266,80 +227,220 @@ def print_board(board, preMove=None):
         print(row_char)
     print(header)
 
+def display(board):
+    """
+    Prints the Connect6 board in a more visual format.
 
-def print_score(move_list, n):
-    board_scores = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM), dtype=int)
-    
-    for move in move_list:
-        board_scores[move.x, move.y] = move.score
+    Args:
+        board (list): The Connect6 board represented as a list of lists.
 
-    header = "  " + "".join([f"{i:4}" for i in range(1, Defines.GRID_NUM - 1)])
-    print(header)
+    Returns:
+        None
+    """
+
+    symbols = {
+        0: '.',
+        1: '○',
+        2: '●',
+        3: 'X'
+    }
+
+    for row in board:
+        print(' '.join(symbols[cell] for cell in row))
+    print("\n")
+
+
+
+
+def positions_within_distance(x, y, distance=5):
+    """
+    Function that returns the positions within a radius of distance from the position (x,y)
+
+    Args:
+        x (int): The x-coordinate of the center position.
+        y (int): The y-coordinate of the center position.
+        distance (int, optional): The radius within which to find positions. Defaults to 5.
+
+    Returns:
+        list: A list of positions within the specified distance from the center position.
+    """
+    positions = set()
+
+    for dx in range(-distance, distance + 1):
+        for dy in range(-distance, distance + 1):
+            nx, ny = x + dx, y + dy
+            if 0 < nx < 20 and 0 < ny < 20:
+                positions.add((nx, ny))
+
+    positions.discard((x, y))  # Optionally remove the center point if not needed
+    return list(positions)
+
+
+def get_available_moves_with_score(board, color, valores):
+    """
+    Get a list of available moves with their corresponding scores.
+
+    Args:
+        board (numpy.ndarray): The game board.
+        color (int): The color of the player making the moves.
+        valores (dict): A dictionary containing the values for different game elements.
+
+    Returns:
+        list: A list of moves with their scores.
+    """
+    board_1 = np.copy(board)
+    piece_coords = np.argwhere((board == 1) | (board == 2))# Obtiene las coordenadas de las piezas sobre el tablero
     
-    for i in range(1, Defines.GRID_NUM - 1):
-        print(f"{i:2}", end="")
+    # Filtra las coordenadas de las piezas para obtener solo las que estan a una distancia de 2 de una pieza
+    piece_coords = [coord for coord in piece_coords if 
+                    board_1[coord[0] - 1, coord[1]] == 0 or 
+                    board_1[coord[0] + 1, coord[1]] == 0 or 
+                    board_1[coord[0], coord[1] - 1] == 0 or 
+                    board_1[coord[0], coord[1] + 1] == 0 or 
+                    board_1[coord[0] - 1, coord[1] - 1] == 0 or
+                    board_1[coord[0] - 1, coord[1] + 1] == 0 or
+                    board_1[coord[0] + 1, coord[1] - 1] == 0 or
+                    board_1[coord[0] + 1, coord[1] + 1] == 0]
+    
+    # Obtiene las coordenadas vacias a una distancia de 2 de una pieza
+    empty_coords = list(set(pos for x, y in piece_coords for pos in positions_within_distance(x, y, 2) if board[pos[0], pos[1]] == 0))
+    moves = []
+    
+    # Crea las combinaciones de movimientos posibles
+    comb_moves = it.combinations(empty_coords, 2)
+    for move_coords in comb_moves:
+        move = create_move(move_coords)
+        board_1 = board.copy()
+        make_move(board_1, move, color)
+        # Evaluacion del estado del tablero
+        move.score = defensive_evaluate_state(board_1, color, valores)
         
-        # Using numpy array slicing for efficient access
-        row_data = board_scores[i, 1:Defines.GRID_NUM - 1]
-        row_strings = np.where(row_data == 0, "   -", row_data.astype(str))
-        print("".join(row_strings))
+        moves.append(move)
+    return moves
 
 
-# ------------------------------------------------------------
 
 
-def get_window_scoring(window, player):
-    k=0
+def get_center_multiplier(x, y, mult, board_size=19):
     """
-    Calcula el score de una ventana de 6 fichas, para un jugador dado. 
+    Calculates the center multiplier for a given position on the board (Manhattan).
+
+    Args:
+        x (int): The x-coordinate of the position.
+        y (int): The y-coordinate of the position.
+        mult (float): The initial multiplier.
+        board_size (int, optional): The size of the board. Defaults to 19.
+
+    Returns:
+        float: The center multiplier.
     """
-    player_count = np.count_nonzero(window == player)
-    empty_count = np.count_nonzero(window == 0)
-    
-    if player_count + empty_count == 6:
-        return player_count ** (player_count + k)
-    return 0
-    
 
-def get_score(m_board, player):
+    center = board_size // 2
+    distance_to_center = abs(x - center) + abs(y - center)
+    max_distance = 2 * center
+    return mult + (max_distance - distance_to_center) / max_distance
+
+
+def defensive_evaluate_state(board, color):
     """
-    Función que evalúa el estado de una partida basándose en el número de amenazas de cada
-    jugador y la diferencia entre ellas para determinar quién tiene ventaja en la partida.
+    Heuristica: Evaluate the state of the board from a defensive perspective.
+
+    Args:
+        board (numpy.ndarray): The game board represented as a 2D numpy array.
+        color (int): The color of the player.
+        valores (dict): A dictionary containing the values for different sequence lengths.
+
+    Returns:
+        int: The score difference between the defensive player and the offensive player.
     """
-    board = m_board[1:-1, 1:-1]
-    
-    JUGADOR = player
-    OPONENTE = 1 if JUGADOR == 2 else 2
-    
-    score = 0
-    
-    # Iterar sobre todas las posibles ventanas de 6 fichas en el tablero
-    for i in range(board.shape[0] - 5):
-        for j in range(board.shape[1] - 5):
-            
-            # Amenazas horizontales
-            horizontal_window = board[i,j:j+6]
-            score += get_window_scoring(horizontal_window, JUGADOR)
-            score -= get_window_scoring(horizontal_window, OPONENTE)
-            
-            # Amenazas verticales
-            vertical_window = board[j:j+6,i]
-            score += get_window_scoring(vertical_window, JUGADOR)
-            score -= get_window_scoring(vertical_window, OPONENTE)   
-            
-            # Amenazas diagonales
-            diagonal_window = [board[i+k,j+k] for k in range(6)]
-            score += get_window_scoring(diagonal_window, JUGADOR)
-            score -= get_window_scoring(diagonal_window, OPONENTE)
-            
-            anti_diagonal_window = [board[i+k,j+5-k] for k in range(6)]
-            score += get_window_scoring(anti_diagonal_window, JUGADOR)
-            score -= get_window_scoring(anti_diagonal_window, OPONENTE)
 
-    return score
+    board = board[1:-1, 1:-1]
+
+    directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
+    offensive_values = {1: 1, 2: 5, 3: 25, 4: 100, 5: 500, 6: 10000000}
+    defensive_values = {1: 1, 2: 10, 3: 60, 4: 600, 5: 2500, 6: 10000000}
+
+    scores = {1: 0, 2: 0}
+
+    for x in range(19):
+        for y in range(19):
+            current_cell = board[x, y]
+            if current_cell == 0:  # Skip empty cells
+                continue
+
+            for dx, dy in directions:
+                # Check if the sequence in this direction has already been counted
+                if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] == current_cell:
+                    continue
+                
+                sequence_length = 1
+                blocked_left = False
+                blocked_right = False
+                if np.count_nonzero(board != 0) < 5:
+                    multiplier_center = get_center_multiplier(x, y, 2)
+                else: 
+                    multiplier_center = 1
+
+                # Check left
+                if 0 <= x - dx < 19 and 0 <= y - dy < 19 and board[x - dx, y - dy] != 0:
+                    blocked_left = True
+
+                # Count sequence length
+                nx, ny = x + dx, y + dy
+                while 0 <= nx < 19 and 0 <= ny < 19 and board[nx, ny] == current_cell:
+                    sequence_length += 1
+                    nx += dx
+                    ny += dy
+
+                # Check right
+                if 0 <= nx < 19 and 0 <= ny < 19 and board[nx, ny] != 0:
+                    blocked_right = True
+
+                # Update score based on sequence length
+                if current_cell != color:
+                    values = defensive_values  
+                    if sequence_length in values:
+                        score_increment = values[sequence_length]
+                        if (not blocked_left and not blocked_right):
+                            score_increment *= 1.5
+                        elif (blocked_left and not blocked_right) or (not blocked_left and blocked_right):
+                            score_increment *= 1.25    
+                        elif blocked_left and blocked_right:
+                            score_increment *= 0.5
+                        scores[current_cell] += score_increment * multiplier_center
+                if current_cell == color:
+                    values = offensive_values  
+                    if sequence_length in values:
+                        score_increment = values[sequence_length]
+                        scores[current_cell] += score_increment * multiplier_center
+
+    return scores[1] - scores[2]
 
 
-        
+
+
+
+
+def check_first_move(board):
+    """
+    Check if it is the first move on the board.
+
+    Args:
+        board (list): The game board.
+
+    Returns:
+        bool: True if it is the first move, False otherwise.
+    """
+    for i in range(1,len(board)-1):
+        for j in range(1, len(board[i])-1):
+            if(board[i][j] != Defines.NOSTONE):
+                return False
+    return True
+
+
+
+
+
 def mide_tiempo(funcion):
     def funcion_medida(*args, **kwargs):
         inicio = time.time()
@@ -347,4 +448,6 @@ def mide_tiempo(funcion):
         print(time.time() - inicio)
         return c
     return funcion_medida
+
+
 

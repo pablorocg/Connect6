@@ -714,3 +714,34 @@
 [Wed Oct 11 17:16:41 202] - quit
 [Wed Oct 11 17:17:14 202] - name
 [Wed Oct 11 17:23:23 202] - quit
+[Tue Oct 17 20:14:46 202] - new black
+[Tue Oct 17 20:14:58 202] - move JKJM
+[Tue Oct 17 20:15:06 202] - print
+[Tue Oct 17 20:15:17 202] - quit
+[Tue Oct 17 20:15:24 202] - new black
+[Tue Oct 17 20:15:34 202] - white JKJL
+[Tue Oct 17 20:15:36 202] - next
+[Tue Oct 17 20:15:41 202] - print
+[Tue Oct 17 20:15:54 202] - quit
+[Tue Oct 17 20:16:06 202] - new white
+[Tue Oct 17 20:16:14 202] - black JJ
+[Tue Oct 17 20:16:17 202] - next
+[Tue Oct 17 20:16:23 202] - print
+[Tue Oct 17 21:00:55 202] - & C:/Users/pablo/anaconda3/envs/TIA/python.exe c:/Users/pablo/GitHub/Connect6/connect6_using_DQL/main.py
+[Thu Nov  9 13:08:36 202] - new white
+[Thu Nov  9 13:08:46 202] - black JKJL
+[Thu Nov  9 13:08:57 202] - next
+[Thu Nov  9 13:09:12 202] - print
+[Thu Nov  9 13:09:29 202] - black KLHO
+[Thu Nov  9 13:09:30 202] - next
+[Thu Nov  9 13:09:41 202] - print
+[Thu Nov  9 13:10:01 202] - black LMIJ
+[Thu Nov  9 13:10:04 202] - next
+[Thu Nov  9 13:10:27 202] - print
+[Thu Nov  9 13:10:50 202] - black MNHI
+[Thu Nov  9 13:10:53 202] - next
+[Thu Nov  9 13:11:11 202] - print
+[Thu Nov 16 17:46:40 202] - new black
+[Thu Nov 16 17:46:48 202] - white JKJL
+[Thu Nov 16 17:46:53 202] - next
+[Thu Nov 16 17:47:02 202] - print

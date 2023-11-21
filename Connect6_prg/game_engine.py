@@ -20,16 +20,11 @@ class GameEngine:
             self.m_search_engine = MiniMax()
             self.m_alphabeta_depth = 1
 
-        elif name == "MiniMaxParalelizado":
-            self.m_search_engine = MiniMaxParalelizado()
-            self.m_alphabeta_depth = 1
-
         elif name == "MiniMaxAlphaBeta":
             self.m_search_engine = MiniMaxAlphaBeta()
-            self.m_alphabeta_depth = 6
+            self.m_alphabeta_depth = 1
 
-        elif name == "NegaMaxAlphaBeta":
-            self.m_search_engine = NegaMaxAlphaBeta()
+        
 
         
         
