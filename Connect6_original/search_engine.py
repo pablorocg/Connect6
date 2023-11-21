@@ -2,6 +2,7 @@ import numpy as np
 # import random
 import tools as tl
 from defines import *
+import time
 # from joblib import Parallel, delayed
 
 # MINIMAX IMPLEMENTATION-------------------------------------------------------------------------
@@ -205,25 +206,13 @@ class MiniMaxAlphaBeta:
         return tl.defensive_evaluate_state(board, self.m_chess_type)
 
     def search(self, state, depth, is_maximizing, alpha=-np.inf, beta=np.inf):
-        """
-        Performs the MiniMax search with Alpha-Beta pruning.
-
-        Args:
-            state (Board): The current game board state.
-            depth (int): The remaining depth to search in the game tree.
-            is_maximizing (bool): Flag indicating whether the current player is maximizing or minimizing.
-            alpha (float): The alpha value for Alpha-Beta pruning (default: -inf).
-            beta (float): The beta value for Alpha-Beta pruning (default: inf).
-
-        Returns:
-            float: The evaluation score of the best move found.
-        """
+        start_time = time.time()  # Start timing
+        
         self.node_count += 1
-
         winner = tl.check_winner(state)
-        available_moves = np.any(state == 0)#tl.get_available_moves(state)
+        available_moves = np.any(state == 0)  # tl.get_available_moves(state)
 
-        if depth == 0 or winner != 0 or available_moves == False:
+        if depth == 0 or winner != 0 or not available_moves:
             return self.evaluate_board(state)
 
         children = self.get_ordered_children(state, is_maximizing)
@@ -231,48 +220,30 @@ class MiniMaxAlphaBeta:
         if is_maximizing:
             max_value = -np.inf
             for child in children:
-                
-                value = self.search(child, depth-1, False, alpha, beta)
+                value = self.search(child, depth - 1, False, alpha, beta)
                 max_value = max(max_value, value)
                 alpha = max(alpha, value)
                 if beta <= alpha:
                     break
+            end_time = time.time()  # End timing
+            # print(f"search (maximizing) took {end_time - start_time} seconds")
             return max_value
         else:
             min_value = np.inf
             for child in children:
-                value = self.search(child, depth-1, True, alpha, beta)
+                value = self.search(child, depth - 1, True, alpha, beta)  # Note: changed to False
                 min_value = min(min_value, value)
                 beta = min(beta, value)
                 if beta <= alpha:
                     break
+            end_time = time.time()  # End timing
+            # print(f"search (minimizing) took {end_time - start_time} seconds")
             return min_value
 
-    # def get_best_move(self):
-    #     """
-    #     Returns the best move found by the search algorithm.
-
-    #     Returns:
-    #         tuple: A tuple containing the evaluation score and the best move.
-    #     """
-    #     best_score = -np.inf if self.m_is_maximizing else np.inf
-    #     best_move = None
-
-    #     if tl.check_first_move(self.m_board):
-    #         best_move = tl.create_move(((10, 10), (10, 10)))
-    #         return 0, best_move
-
-    #     moves = tl.get_available_moves_with_score(self.m_board, self.m_chess_type)
-    #     # Ordenamos los movimientos basados en los scores
-    #     moves.sort(key=lambda x: x.score, reverse=self.m_is_maximizing)
-    #     for move in moves:
-    #         if (self.m_is_maximizing and move.score > best_score) or (not self.m_is_maximizing and move.score < best_score):
-    #             best_score = move.score
-    #             best_move = move
-
-    #     return best_score, best_move
 
     def get_best_move(self):
+        start_time = time.time()  # Start timing
+        
         best_score = -np.inf if self.m_is_maximizing else np.inf
         best_move = None
 
@@ -280,35 +251,38 @@ class MiniMaxAlphaBeta:
             child_state = self.m_board.copy()
             tl.make_move(child_state, move, self.m_chess_type)
 
-            score = self.search(child_state, self.m_depth-1, not self.m_is_maximizing)
+            score = self.search(child_state, self.m_depth - 1, not self.m_is_maximizing)
             if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
                 best_score = score
                 best_move = move
 
+        end_time = time.time()  # End timing
+        print(f"get_best_move took {end_time - start_time} seconds")
         return best_score, best_move
 
     def get_ordered_children(self, state, is_maximizing) -> list[StoneMove]:
-        """
-        Returns the ordered list of child states based on heuristic scores.
+            """
+            Returns the ordered list of child states based on heuristic scores.
 
-        Args:
-            state (Board): The current game board state.
-            is_maximizing (bool): Flag indicating whether the current player is maximizing or minimizing.
+            Args:
+                state (Board): The current game board state.
+                is_maximizing (bool): Flag indicating whether the current player is maximizing or minimizing.
 
-        Returns:
-            list: The ordered list of child states.
-        """
-        children = []
-        moves = tl.get_available_moves(state)
-        for move in moves:
-            child_state = state.copy()
-            tl.make_move(child_state, move, self.m_chess_type)
-            # move.score = self.evaluate_board(child_state)  # Set heuristic score for sorting
-            children.append(child_state)
+            Returns:
+                list: The ordered list of child states.
+            """
+            children = []
+            moves = tl.get_available_moves_optimizada(state)
+            moves.sort(key=lambda x: x.score, reverse=is_maximizing)
+            for move in moves[:2]:
+                child_state = state.copy()
+                tl.make_move(child_state, move, self.m_chess_type)
+                # move.score = self.evaluate_board(child_state)  # Set heuristic score for sorting
+                children.append(child_state)
 
-        # Order children based on heuristic scores
-        # children.sort(key=lambda x: x.score, reverse=is_maximizing)
-        return children
+            # Order children based on heuristic scores
+            # children.sort(key=lambda x: x.score, reverse=is_maximizing)
+            return children
 
     # def get_ordered_children(self, state, is_maximizing):
     #     children = []

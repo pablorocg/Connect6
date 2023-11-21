@@ -4,6 +4,7 @@ import sys
 
 from search_engine import *
 import time
+from extra_tools import show_m_board
 
 class GameEngine:
     def __init__(self, name=Defines.ENGINE_NAME):
@@ -30,7 +31,7 @@ class GameEngine:
 
         elif name == "MiniMaxAlphaBeta":
             self.m_search_engine = MiniMaxAlphaBeta()
-            self.m_alphabeta_depth = 2
+            self.m_alphabeta_depth = 3
             
         
         self.m_best_move = StoneMove()
@@ -69,8 +70,8 @@ class GameEngine:
             elif msg == "exit" or msg == "quit":
                 break
             elif msg == "print":
-                print_board(self.m_board)
-                # show_m_board(self.m_board)
+                #print_board(self.m_board)
+                show_m_board(self.m_board)
                 print(f"Best move: {move2msg(self.m_best_move)}")
                 print(f"Chess type: {self.m_chess_type}")
             elif msg == "vcf":
