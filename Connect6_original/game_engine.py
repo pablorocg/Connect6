@@ -21,13 +21,10 @@ class GameEngine:
         self.m_board = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))
         self.init_game()
 
-        if name == "MiniMax":
-            self.m_search_engine = MiniMax()
-            self.m_alphabeta_depth = 1
+        if name == "HeuristicSearch":
+            self.m_search_engine = HeuristicSearch()
+            self.m_alphabeta_depth = 0
 
-        elif name == "MiniMaxParalelizado":
-            self.m_search_engine = MiniMaxParalelizado()
-            self.m_alphabeta_depth = 1
 
         elif name == "MiniMaxAlphaBeta":
             self.m_search_engine = MiniMaxAlphaBeta()

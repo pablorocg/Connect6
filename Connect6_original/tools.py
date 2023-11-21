@@ -339,7 +339,7 @@ def get_available_moves_with_score(board, color):
                     board_1[coord[0] + 1, coord[1] + 1] == 0]
     
     # Obtiene las coordenadas vacias a una distancia de 2 de una pieza
-    empty_coords = list(set(pos for x, y in piece_coords for pos in positions_within_distance(x, y, 2) if board[pos[0], pos[1]] == 0))
+    empty_coords = list(set(pos for x, y in piece_coords for pos in positions_within_distance(x, y, 3) if board[pos[0], pos[1]] == 0))
     moves = []
     
     # Crea las combinaciones de movimientos posibles
@@ -349,7 +349,7 @@ def get_available_moves_with_score(board, color):
         board_1 = board.copy()
         make_move(board_1, move, color)
         # Evaluacion del estado del tablero
-        move.score = defensive_evaluate_state(board_1, color, valores)
+        move.score = defensive_evaluate_state(board_1, color)
         
         moves.append(move)
     return moves
