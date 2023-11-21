@@ -1,6 +1,7 @@
 import numpy as np
 # import random
 import tools as tl
+from defines import *
 # from joblib import Parallel, delayed
 
 # MINIMAX IMPLEMENTATION-------------------------------------------------------------------------
@@ -220,9 +221,9 @@ class MiniMaxAlphaBeta:
         self.node_count += 1
 
         winner = tl.check_winner(state)
-        available_moves = tl.get_available_moves(state)
+        available_moves = np.any(state == 0)#tl.get_available_moves(state)
 
-        if depth == 0 or winner != 0 or len(available_moves) == 0:
+        if depth == 0 or winner != 0 or available_moves == False:
             return self.evaluate_board(state)
 
         children = self.get_ordered_children(state, is_maximizing)
@@ -230,6 +231,7 @@ class MiniMaxAlphaBeta:
         if is_maximizing:
             max_value = -np.inf
             for child in children:
+                
                 value = self.search(child, depth-1, False, alpha, beta)
                 max_value = max(max_value, value)
                 alpha = max(alpha, value)
@@ -274,7 +276,7 @@ class MiniMaxAlphaBeta:
         best_score = -np.inf if self.m_is_maximizing else np.inf
         best_move = None
 
-        for move in tl.get_available_moves(self.m_board):
+        for move in tl.get_available_moves_optimizada(self.m_board):
             child_state = self.m_board.copy()
             tl.make_move(child_state, move, self.m_chess_type)
 
@@ -285,7 +287,7 @@ class MiniMaxAlphaBeta:
 
         return best_score, best_move
 
-    def get_ordered_children(self, state, is_maximizing):
+    def get_ordered_children(self, state, is_maximizing) -> list[StoneMove]:
         """
         Returns the ordered list of child states based on heuristic scores.
 
@@ -301,12 +303,21 @@ class MiniMaxAlphaBeta:
         for move in moves:
             child_state = state.copy()
             tl.make_move(child_state, move, self.m_chess_type)
-            move.score = self.evaluate_board(child_state)  # Set heuristic score for sorting
-            children.append(move)
+            # move.score = self.evaluate_board(child_state)  # Set heuristic score for sorting
+            children.append(child_state)
 
         # Order children based on heuristic scores
-        children.sort(key=lambda x: x.score, reverse=is_maximizing)
+        # children.sort(key=lambda x: x.score, reverse=is_maximizing)
         return children
+
+    # def get_ordered_children(self, state, is_maximizing):
+    #     children = []
+
+    #     for move in tl.get_available_moves(state):
+    #         child_state = state.copy()
+    #         tl.make_move(child_state, tl.create_move(move), self.m_chess_type)
+    #         children.append(child_state)
+    #     return children
 
 
 

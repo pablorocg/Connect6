@@ -30,7 +30,7 @@ class GameEngine:
 
         elif name == "MiniMaxAlphaBeta":
             self.m_search_engine = MiniMaxAlphaBeta()
-            self.m_alphabeta_depth = 3
+            self.m_alphabeta_depth = 2
             
         
         self.m_best_move = StoneMove()

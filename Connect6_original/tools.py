@@ -276,7 +276,43 @@ def positions_within_distance(x, y, distance=5):
     return list(positions)
 
 
-def get_available_moves_with_score(board, color, valores):
+def get_available_moves_optimizada(board):
+    """
+    Get a list of available moves with their corresponding scores.
+
+    Args:
+        board (numpy.ndarray): The game board.
+        color (int): The color of the player making the moves.
+        valores (dict): A dictionary containing the values for different game elements.
+
+    Returns:
+        list: A list of moves with their scores.
+    """
+    board_1 = np.copy(board)
+    piece_coords = np.argwhere((board == 1) | (board == 2))# Obtiene las coordenadas de las piezas sobre el tablero
+    
+    # Filtra las coordenadas de las piezas para obtener solo las que estan a una distancia de 2 de una pieza
+    piece_coords = [coord for coord in piece_coords if 
+                    board_1[coord[0] - 1, coord[1]] == 0 or 
+                    board_1[coord[0] + 1, coord[1]] == 0 or 
+                    board_1[coord[0], coord[1] - 1] == 0 or 
+                    board_1[coord[0], coord[1] + 1] == 0 or 
+                    board_1[coord[0] - 1, coord[1] - 1] == 0 or
+                    board_1[coord[0] - 1, coord[1] + 1] == 0 or
+                    board_1[coord[0] + 1, coord[1] - 1] == 0 or
+                    board_1[coord[0] + 1, coord[1] + 1] == 0]
+    
+    # Obtiene las coordenadas vacias a una distancia de 2 de una pieza
+    empty_coords = list(set(pos for x, y in piece_coords for pos in positions_within_distance(x, y, 2) if board[pos[0], pos[1]] == 0))
+    
+    # Crea las combinaciones de movimientos posibles
+    moves = it.combinations(empty_coords, 2)
+    
+    return [create_move(move) for move in moves]
+
+
+
+def get_available_moves_with_score(board, color):
     """
     Get a list of available moves with their corresponding scores.
 
@@ -319,9 +355,7 @@ def get_available_moves_with_score(board, color, valores):
     return moves
 
 
-
-
-def get_center_multiplier(x, y, mult, board_size=19):
+def get_center_multiplier(x, y, mult, board_size=19) -> float:
     """
     Calculates the center multiplier for a given position on the board (Manhattan).
 
@@ -341,7 +375,7 @@ def get_center_multiplier(x, y, mult, board_size=19):
     return mult + (max_distance - distance_to_center) / max_distance
 
 
-def defensive_evaluate_state(board, color):
+def defensive_evaluate_state(board, color) -> int:
     """
     Heuristica: Evaluate the state of the board from a defensive perspective.
 
@@ -418,7 +452,7 @@ def defensive_evaluate_state(board, color):
 
 
 
-def get_available_moves(board):
+def get_available_moves(board) -> list[StoneMove]:
     """
     Returns a list of available moves on the board.
 
@@ -438,7 +472,7 @@ def get_available_moves(board):
     return [create_move(coord) for coord in coords]
 
 
-def check_first_move(board):
+def check_first_move(board) -> bool:
     """
     Check if it is the first move on the board.
 
