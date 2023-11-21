@@ -31,7 +31,7 @@ class GameEngine:
         elif name == "MiniMaxAlphaBeta":
             self.m_search_engine = MiniMaxAlphaBeta()
             self.m_alphabeta_depth = 3
-            self.valores=0
+            
         
         self.m_best_move = StoneMove()
 
@@ -138,7 +138,7 @@ class GameEngine:
 
         start = time.perf_counter()
         self.m_search_engine.before_search(self.m_board, self.m_chess_type, self.m_alphabeta_depth)
-        score, bestMove = self.m_search_engine.get_best_move(self.valores)
+        score, bestMove = self.m_search_engine.get_best_move()
         self.m_best_move = bestMove
        
         

@@ -4,149 +4,149 @@ import tools as tl
 # from joblib import Parallel, delayed
 
 # MINIMAX IMPLEMENTATION-------------------------------------------------------------------------
-class MiniMax:
-    """
-    Implementacion del algoritmo de busqueda MiniMax sin optimizaciones. No poner a mas de 1 de profundidad, ya que es muy lento. 
+# class MiniMax:
+#     """
+#     Implementacion del algoritmo de busqueda MiniMax sin optimizaciones. No poner a mas de 1 de profundidad, ya que es muy lento. 
 
-    Atributos:
-    m_board (np.ndarray): El estado del juego.
-    m_chess_type (int): El color del jugador (1 o 2).
-    m_depth (int): La profundidad de busqueda.
+#     Atributos:
+#     m_board (np.ndarray): El estado del juego.
+#     m_chess_type (int): El color del jugador (1 o 2).
+#     m_depth (int): La profundidad de busqueda.
 
-    """
+#     """
     
-    def __init__(self):
-        self.m_board = None
-        self.m_chess_type = None
-        self.m_depth = None
-        self.m_is_maximizing = None
+#     def __init__(self):
+#         self.m_board = None
+#         self.m_chess_type = None
+#         self.m_depth = None
+#         self.m_is_maximizing = None
 
 
-    def before_search(self, board, color, depth):
-        self.m_board = board.copy() # Actualiza el tablero
-        self.m_chess_type = color # Actualiza el color del jugador (1 o 2)
-        self.m_depth = depth # Actualiza la profundidad de búsqueda
-        self.m_is_maximizing = True if self.m_chess_type == 1 else False
+#     def before_search(self, board, color, depth):
+#         self.m_board = board.copy() # Actualiza el tablero
+#         self.m_chess_type = color # Actualiza el color del jugador (1 o 2)
+#         self.m_depth = depth # Actualiza la profundidad de búsqueda
+#         self.m_is_maximizing = True if self.m_chess_type == 1 else False
 
-    def evaluate_board(self, board):
-        return tl.defensive_evaluate_state(board)
+#     def evaluate_board(self, board):
+#         return tl.defensive_evaluate_state(board)
 
-    def search(self, state, depth, is_maximizing):
+#     def search(self, state, depth, is_maximizing):
         
-        if depth == 0 or tl.check_winner(state) != 0 or len(tl.get_available_moves(state)) == 0:
-            return self.evaluate_board(state)
+#         if depth == 0 or tl.check_winner(state) != 0 or len(tl.get_available_moves(state)) == 0:
+#             return self.evaluate_board(state)
 
-        if is_maximizing:
-            max_value = -np.inf
-            for child in self.get_children(state):
-                value = self.search(child, depth-1, False)
-                max_value = max(max_value, value)
-            return max_value
-        else:
-            min_value = np.inf
-            for child in self.get_children(state):
-                value = self.search(child, depth-1, True)
-                min_value = min(min_value, value)
-            return min_value
+#         if is_maximizing:
+#             max_value = -np.inf
+#             for child in self.get_children(state):
+#                 value = self.search(child, depth-1, False)
+#                 max_value = max(max_value, value)
+#             return max_value
+#         else:
+#             min_value = np.inf
+#             for child in self.get_children(state):
+#                 value = self.search(child, depth-1, True)
+#                 min_value = min(min_value, value)
+#             return min_value
 
-    def get_best_move(self):
-        best_score = -np.inf if self.m_is_maximizing else np.inf
-        best_move = None
+#     def get_best_move(self):
+#         best_score = -np.inf if self.m_is_maximizing else np.inf
+#         best_move = None
 
-        for move in tl.get_available_moves(self.m_board):
-            child_state = self.m_board.copy()
-            tl.make_move(child_state, move, self.m_chess_type)
+#         for move in tl.get_available_moves(self.m_board):
+#             child_state = self.m_board.copy()
+#             tl.make_move(child_state, move, self.m_chess_type)
             
-            score = self.search(child_state, self.m_depth-1, not self.m_is_maximizing)
-            if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
-                best_score = score
-                best_move = move
+#             score = self.search(child_state, self.m_depth-1, not self.m_is_maximizing)
+#             if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
+#                 best_score = score
+#                 best_move = move
 
-        return best_score, best_move
+#         return best_score, best_move
 
 
-    def get_children(self, state):
-        children = []
-        for move in tl.get_available_moves(state):
-            child_state = state.copy()
-            tl.make_move(child_state, move, self.m_chess_type)
-            children.append(child_state)
-        return children
+#     def get_children(self, state):
+#         children = []
+#         for move in tl.get_available_moves(state):
+#             child_state = state.copy()
+#             tl.make_move(child_state, move, self.m_chess_type)
+#             children.append(child_state)
+#         return children
     
 # MINIMAX PARALELIZADO IMPLEMENTATION-------------------------------------------------------------------------
-class MiniMaxParalelizado:
-    """
-    Implementacion del algoritmo de busqueda MiniMax. 
+# class MiniMaxParalelizado:
+#     """
+#     Implementacion del algoritmo de busqueda MiniMax. 
 
-    Atributos:
-    m_board (np.ndarray): El estado del juego.
-    m_chess_type (int): El color del jugador (1 o 2).
-    m_depth (int): La profundidad de busqueda.
+#     Atributos:
+#     m_board (np.ndarray): El estado del juego.
+#     m_chess_type (int): El color del jugador (1 o 2).
+#     m_depth (int): La profundidad de busqueda.
 
-    """
+#     """
     
-    def __init__(self):
-        self.m_board = None
-        self.m_chess_type = None
-        self.m_depth = None
-        self.m_is_maximizing = None
+#     def __init__(self):
+#         self.m_board = None
+#         self.m_chess_type = None
+#         self.m_depth = None
+#         self.m_is_maximizing = None
 
 
-    def before_search(self, board, color, depth):
-        self.m_board = board.copy() # Actualiza el tablero
-        self.m_chess_type = color # Actualiza el color del jugador (1 o 2)
-        self.m_depth = depth # Actualiza la profundidad de búsqueda
-        self.m_is_maximizing = True if self.m_chess_type == 1 else False
+#     def before_search(self, board, color, depth):
+#         self.m_board = board.copy() # Actualiza el tablero
+#         self.m_chess_type = color # Actualiza el color del jugador (1 o 2)
+#         self.m_depth = depth # Actualiza la profundidad de búsqueda
+#         self.m_is_maximizing = True if self.m_chess_type == 1 else False
 
-    def evaluate_board(self, board):
-        return tl.defensive_evaluate_state(board)
+#     def evaluate_board(self, board):
+#         return tl.defensive_evaluate_state(board)
 
-    def search(self, state, depth, is_maximizing):
+#     def search(self, state, depth, is_maximizing):
         
-        if depth == 0 or tl.check_winner(state) != 0 or len(tl.get_available_moves(state)) == 0:
-            return self.evaluate_board(state)
+#         if depth == 0 or tl.check_winner(state) != 0 or len(tl.get_available_moves(state)) == 0:
+#             return self.evaluate_board(state)
 
-        if is_maximizing:
-            max_value = -np.inf
-            for child in self.get_children(state):
-                value = self.search(child, depth-1, False)
-                max_value = max(max_value, value)
-            return max_value
-        else:
-            min_value = np.inf
-            for child in self.get_children(state):
-                value = self.search(child, depth-1, True)
-                min_value = min(min_value, value)
-            return min_value
+#         if is_maximizing:
+#             max_value = -np.inf
+#             for child in self.get_children(state):
+#                 value = self.search(child, depth-1, False)
+#                 max_value = max(max_value, value)
+#             return max_value
+#         else:
+#             min_value = np.inf
+#             for child in self.get_children(state):
+#                 value = self.search(child, depth-1, True)
+#                 min_value = min(min_value, value)
+#             return min_value
 
-    def get_best_move(self):
-        best_score = -np.inf if self.m_is_maximizing else np.inf
-        best_move = None
+#     def get_best_move(self):
+#         best_score = -np.inf if self.m_is_maximizing else np.inf
+#         best_move = None
 
-        # Paralelizamos la búsqueda usando joblib
-        moves = tl.get_available_moves(self.m_board)
-        scores = Parallel(n_jobs=-1)(delayed(self.search_parallel)(move) for move in moves)
+#         # Paralelizamos la búsqueda usando joblib
+#         moves = tl.get_available_moves(self.m_board)
+#         scores = Parallel(n_jobs=-1)(delayed(self.search_parallel)(move) for move in moves)
 
-        # Buscamos el mejor movimiento basado en los resultados
-        for score, move in zip(scores, moves):
-            if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
-                best_score = score
-                best_move = move
+#         # Buscamos el mejor movimiento basado en los resultados
+#         for score, move in zip(scores, moves):
+#             if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
+#                 best_score = score
+#                 best_move = move
 
-        return best_score, best_move
+#         return best_score, best_move
 
-    def search_parallel(self, move):
-        board_copy = self.m_board.copy()
-        tl.make_move(board_copy, move, self.m_chess_type)
-        return self.search(board_copy, self.m_depth-1, not self.m_is_maximizing)
+#     def search_parallel(self, move):
+#         board_copy = self.m_board.copy()
+#         tl.make_move(board_copy, move, self.m_chess_type)
+#         return self.search(board_copy, self.m_depth-1, not self.m_is_maximizing)
 
-    def get_children(self, state):
-        children = []
-        for move in tl.get_available_moves(state):
-            child_state = state.copy()
-            tl.make_move(child_state, move, self.m_chess_type)
-            children.append(child_state)
-        return children
+#     def get_children(self, state):
+#         children = []
+#         for move in tl.get_available_moves(state):
+#             child_state = state.copy()
+#             tl.make_move(child_state, move, self.m_chess_type)
+#             children.append(child_state)
+#         return children
 
 
 
@@ -201,7 +201,7 @@ class MiniMaxAlphaBeta:
         Returns:
             float: The evaluation score for the given board state.
         """
-        return tl.defensive_evaluate_state(board)
+        return tl.defensive_evaluate_state(board, self.m_chess_type)
 
     def search(self, state, depth, is_maximizing, alpha=-np.inf, beta=np.inf):
         """
@@ -222,7 +222,7 @@ class MiniMaxAlphaBeta:
         winner = tl.check_winner(state)
         available_moves = tl.get_available_moves(state)
 
-        if depth == 0 or winner != 0 or not available_moves:
+        if depth == 0 or winner != 0 or len(available_moves) == 0:
             return self.evaluate_board(state)
 
         children = self.get_ordered_children(state, is_maximizing)
@@ -246,26 +246,41 @@ class MiniMaxAlphaBeta:
                     break
             return min_value
 
-    def get_best_move(self):
-        """
-        Returns the best move found by the search algorithm.
+    # def get_best_move(self):
+    #     """
+    #     Returns the best move found by the search algorithm.
 
-        Returns:
-            tuple: A tuple containing the evaluation score and the best move.
-        """
+    #     Returns:
+    #         tuple: A tuple containing the evaluation score and the best move.
+    #     """
+    #     best_score = -np.inf if self.m_is_maximizing else np.inf
+    #     best_move = None
+
+    #     if tl.check_first_move(self.m_board):
+    #         best_move = tl.create_move(((10, 10), (10, 10)))
+    #         return 0, best_move
+
+    #     moves = tl.get_available_moves_with_score(self.m_board, self.m_chess_type)
+    #     # Ordenamos los movimientos basados en los scores
+    #     moves.sort(key=lambda x: x.score, reverse=self.m_is_maximizing)
+    #     for move in moves:
+    #         if (self.m_is_maximizing and move.score > best_score) or (not self.m_is_maximizing and move.score < best_score):
+    #             best_score = move.score
+    #             best_move = move
+
+    #     return best_score, best_move
+
+    def get_best_move(self):
         best_score = -np.inf if self.m_is_maximizing else np.inf
         best_move = None
 
-        if tl.check_first_move(self.m_board):
-            best_move = tl.create_move(((10, 10), (10, 10)))
-            return 0, best_move
+        for move in tl.get_available_moves(self.m_board):
+            child_state = self.m_board.copy()
+            tl.make_move(child_state, move, self.m_chess_type)
 
-        moves = tl.get_available_moves_with_score(self.m_board, self.m_chess_type)
-        # Ordenamos los movimientos basados en los scores
-        moves.sort(key=lambda x: x.score, reverse=self.m_is_maximizing)
-        for move in moves:
-            if (self.m_is_maximizing and move.score > best_score) or (not self.m_is_maximizing and move.score < best_score):
-                best_score = move.score
+            score = self.search(child_state, self.m_depth-1, not self.m_is_maximizing)
+            if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
+                best_score = score
                 best_move = move
 
         return best_score, best_move

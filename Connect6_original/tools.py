@@ -115,7 +115,7 @@ def is_win_by_premove(board, preMove):
     return False
 
 
-def check_winner(board):
+def check_winner(board: np.ndarray):
     """
     Check if there is a winner on the Connect6 board.
 
@@ -125,8 +125,8 @@ def check_winner(board):
     Returns:
       int: The winner's value (1 or 2) if there is a winner, otherwise 0.
     """
-    board = board[1:-1, 1:-1]
-    rows, cols = board.shape
+    board_1 = board[1:-1, 1:-1]
+    rows, cols = board_1.shape
     directions = [(1, 0), (0, 1), (1, 1), (1, -1)]
     
     for x in range(rows):
@@ -134,8 +134,8 @@ def check_winner(board):
             if board[x, y] != 0:
                 for dx, dy in directions:
                     if 0 <= x + 5*dx < rows and 0 <= y + 5*dy < cols:
-                        if all(board[x + i*dx, y + i*dy] == board[x, y] for i in range(6)):
-                            return board[x, y]
+                        if all(board_1[x + i*dx, y + i*dy] == board_1[x, y] for i in range(6)):
+                            return board_1[x, y]
     return 0
 
 
@@ -418,7 +418,24 @@ def defensive_evaluate_state(board, color):
 
 
 
+def get_available_moves(board):
+    """
+    Returns a list of available moves on the board.
 
+    Parameters:
+    board (numpy.ndarray): A numpy array representing the Connect6 board.
+
+    Returns:
+    list: A list of tuples representing the available moves on the board.
+    """
+    
+    # Encuentra las coordenadas de las casillas vacías
+    empty_coords = np.argwhere(board == Defines.NOSTONE)
+
+    # Devuelve todas las combinaciones de 2 movimientos posibles
+    coords = list(it.combinations(map(tuple, empty_coords), 2))
+    
+    return [create_move(coord) for coord in coords]
 
 
 def check_first_move(board):
