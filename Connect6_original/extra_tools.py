@@ -1,7 +1,7 @@
 # Visualizacion del tablero
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-import numpy as np
+# import matplotlib.pyplot as plt
+# import matplotlib.colors as mcolors
+# import numpy as np
 
 def show_m_board(m_board):
     """

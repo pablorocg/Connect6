@@ -4,7 +4,7 @@ import sys
 
 from search_engine import *
 import time
-from extra_tools import show_m_board
+# from extra_tools import show_m_board
 
 class GameEngine:
     def __init__(self, name=Defines.ENGINE_NAME):
@@ -67,10 +67,10 @@ class GameEngine:
             elif msg == "exit" or msg == "quit":
                 break
             elif msg == "print":
-                #print_board(self.m_board)
-                show_m_board(self.m_board)
-                print(f"Best move: {move2msg(self.m_best_move)}")
-                print(f"Chess type: {self.m_chess_type}")
+                print_board(self.m_board)
+                # show_m_board(self.m_board)
+                # print(f"Best move: {move2msg(self.m_best_move)}")
+                # print(f"Chess type: {self.m_chess_type}")
             elif msg == "vcf":
                 self.m_vcf = True
             elif msg == "unvcf":
@@ -141,19 +141,17 @@ class GameEngine:
        
         
         end = time.perf_counter()
-
+        
+        
         print(f"AB Time:\t{end - start:.3f}")
         print(f"Score:\t{score:.3f}")
 
         return True
     
         
-
-
-        
 def flush_output():
     sys.stdout.flush()
 # Create an instance of GameEngine and run the game
 if __name__ == "__main__":
-    game_engine = GameEngine(name="MiniMaxAlphaBeta")
+    game_engine = GameEngine(name="HeuristicSearch")
     game_engine.run()

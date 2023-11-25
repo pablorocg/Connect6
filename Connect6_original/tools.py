@@ -324,34 +324,34 @@ def get_available_moves_with_score(board, color):
     Returns:
         list: A list of moves with their scores.
     """
-    board_1 = np.copy(board)
+    # board_1 = np.copy(board)
     piece_coords = np.argwhere((board == 1) | (board == 2))# Obtiene las coordenadas de las piezas sobre el tablero
     
     # Filtra las coordenadas de las piezas para obtener solo las que estan a una distancia de 2 de una pieza
-    piece_coords = [coord for coord in piece_coords if 
-                    board_1[coord[0] - 1, coord[1]] == 0 or 
-                    board_1[coord[0] + 1, coord[1]] == 0 or 
-                    board_1[coord[0], coord[1] - 1] == 0 or 
-                    board_1[coord[0], coord[1] + 1] == 0 or 
-                    board_1[coord[0] - 1, coord[1] - 1] == 0 or
-                    board_1[coord[0] - 1, coord[1] + 1] == 0 or
-                    board_1[coord[0] + 1, coord[1] - 1] == 0 or
-                    board_1[coord[0] + 1, coord[1] + 1] == 0]
+    # piece_coords = [coord for coord in piece_coords if 
+    #                 board_1[coord[0] - 1, coord[1]] == 0 or 
+    #                 board_1[coord[0] + 1, coord[1]] == 0 or 
+    #                 board_1[coord[0], coord[1] - 1] == 0 or 
+    #                 board_1[coord[0], coord[1] + 1] == 0 or 
+    #                 board_1[coord[0] - 1, coord[1] - 1] == 0 or
+    #                 board_1[coord[0] - 1, coord[1] + 1] == 0 or
+    #                 board_1[coord[0] + 1, coord[1] - 1] == 0 or
+    #                 board_1[coord[0] + 1, coord[1] + 1] == 0]
     
     # Obtiene las coordenadas vacias a una distancia de 2 de una pieza
-    empty_coords = list(set(pos for x, y in piece_coords for pos in positions_within_distance(x, y, 3) if board[pos[0], pos[1]] == 0))
+    empty_coords = list(set(pos for x, y in piece_coords for pos in positions_within_distance(x, y, 2) if board[pos[0], pos[1]] == 0))
     moves = []
     
     # Crea las combinaciones de movimientos posibles
     comb_moves = it.combinations(empty_coords, 2)
     for move_coords in comb_moves:
         move = create_move(move_coords)
-        board_1 = board.copy()
-        make_move(board_1, move, color)
-        # Evaluacion del estado del tablero
-        move.score = defensive_evaluate_state(board_1, color)
+        # board_1 = board.copy()
+        make_move(board, move, color)
         
+        move.score = defensive_evaluate_state(board, color)
         moves.append(move)
+        unmake_move(board, move)
     return moves
 
 

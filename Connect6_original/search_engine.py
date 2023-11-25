@@ -46,13 +46,17 @@ class HeuristicSearch:
         if tl.check_first_move(self.m_board):
             best_move = tl.create_move(((10, 10), (10, 10)))
             return 0, best_move
-
+        # Obtener tiempo de ejecucion de get_available_moves_with_score
+        start_time = time.time()  # Start timing
         moves = tl.get_available_moves_with_score(self.m_board, self.m_chess_type)
+        end_time = time.time()  # End timing
         # Ordenamos los movimientos basados en los scores
         moves.sort(key=lambda x: x.score, reverse=self.m_is_maximizing)
+
         for move in moves:
             if (self.m_is_maximizing and move.score > best_score) or (not self.m_is_maximizing and move.score < best_score):
                 best_score = move.score
+                print(f"best_score: {best_score}, time: {end_time - start_time} seconds")
                 best_move = move
 
         return best_score, best_move
@@ -118,10 +122,11 @@ class MiniMaxAlphaBeta:
         winner = tl.check_winner(state)
         available_moves = np.any(state == 0)  # tl.get_available_moves(state)
 
+        #Stop searching if the game is over or the maximum depth is reached (Nodo terminal)
         if depth == 0 or winner != 0 or not available_moves:
             return self.evaluate_board(state)
 
-        children = self.get_ordered_children(state, is_maximizing)
+        children = self.get_ordered_children(state, is_maximizing)# Obtener los hijos ordenados por score (heuristica)
 
         if is_maximizing:
             max_value = -np.inf
@@ -131,7 +136,7 @@ class MiniMaxAlphaBeta:
                 alpha = max(alpha, value)
                 if beta <= alpha:
                     break
-            end_time = time.time()  # End timing
+            
             # print(f"search (maximizing) took {end_time - start_time} seconds")
             return max_value
         else:
@@ -142,7 +147,7 @@ class MiniMaxAlphaBeta:
                 beta = min(beta, value)
                 if beta <= alpha:
                     break
-            end_time = time.time()  # End timing
+            
             # print(f"search (minimizing) took {end_time - start_time} seconds")
             return min_value
 
@@ -179,8 +184,8 @@ class MiniMaxAlphaBeta:
             """
             children = []
             moves = tl.get_available_moves_optimizada(state)
-            moves.sort(key=lambda x: x.score, reverse=is_maximizing)
-            for move in moves[:2]:
+            moves.sort(key=lambda x: x.score, reverse=not is_maximizing)
+            for move in moves[:4]:
                 child_state = state.copy()
                 tl.make_move(child_state, move, self.m_chess_type)
                 # move.score = self.evaluate_board(child_state)  # Set heuristic score for sorting
