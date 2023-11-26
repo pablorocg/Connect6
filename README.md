@@ -2,7 +2,7 @@
 
 _Bienvenido al repositorio del proyecto "Connect6 Game Engine". Este motor de juego está diseñado para el juego Connect6. En Connect6, dos jugadores se turnan para colocar sus fichas en un tablero de 19x19, y el objetivo es ser el primero en formar una línea ininterrumpida de seis fichas, ya sea horizontal, vertical o diagonalmente._
 
-![Output](output.png)
+![screenshot](output.png)
 
 ## Comenzando 🚀
 
@@ -44,11 +44,10 @@ source activate connect6
 _4. Navega hasta la carpeta del proyecto:_
 
 ```
-cd /ruta/a/tu/proyecto/connect6/
+cd ./Connect6/Connect6_original
 ```
 
 _5. Instala las dependencias del proyecto:_
-
 
 
 ```
@@ -77,7 +76,7 @@ conda activate connect6
 _2. Navega hasta la carpeta del proyecto:_
 
 ```
-cd /ruta/a/tu/proyecto/connect6-game-engine
+cd ./Connect6/Connect6_original
 ```
 
 _3. Utiliza pyinstaller para compilar el proyecto en un ejecutable:_
