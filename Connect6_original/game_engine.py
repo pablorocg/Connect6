@@ -21,14 +21,12 @@ class GameEngine:
         self.m_board = np.zeros((Defines.GRID_NUM, Defines.GRID_NUM))
         self.init_game()
 
-        if name == "HeuristicSearch":
-            self.m_search_engine = HeuristicSearch()
-            self.m_alphabeta_depth = 0
-
-
-        elif name == "MiniMaxAlphaBeta":
-            self.m_search_engine = MiniMaxAlphaBeta()
-            self.m_alphabeta_depth = 3
+        self.m_alphabeta_depth = 3
+        self.m_search_engine = HeuristicSearch()
+        
+        
+        # self.m_search_engine = MiniMaxAlphaBeta()
+        # self.m_alphabeta_depth = 2
             
         
         self.m_best_move = StoneMove()
@@ -67,10 +65,10 @@ class GameEngine:
             elif msg == "exit" or msg == "quit":
                 break
             elif msg == "print":
+                # show_m_board(self.m_board) # Uncomment this line to show the board using matplotlib
                 print_board(self.m_board)
-                # show_m_board(self.m_board)
-                # print(f"Best move: {move2msg(self.m_best_move)}")
-                # print(f"Chess type: {self.m_chess_type}")
+                print(f"Best move: {move2msg(self.m_best_move)}")
+                print(f"Chess type: {self.m_chess_type}")
             elif msg == "vcf":
                 self.m_vcf = True
             elif msg == "unvcf":
@@ -153,5 +151,5 @@ def flush_output():
     sys.stdout.flush()
 # Create an instance of GameEngine and run the game
 if __name__ == "__main__":
-    game_engine = GameEngine(name="HeuristicSearch")
+    game_engine = GameEngine()
     game_engine.run()

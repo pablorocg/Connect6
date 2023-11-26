@@ -1,37 +1,41 @@
 import numpy as np
-# import random
 import tools as tl
 from defines import *
 import time
-# from joblib import Parallel, delayed
-
-
-#         scores = Parallel(n_jobs=-1)(delayed(self.search_parallel)(move) for move in moves)
-
-
 
 class HeuristicSearch:
+    """
+    Represents a heuristic search algorithm for finding the best move in a game.
+
+    Attributes:
+        m_board (numpy.ndarray): The current game board.
+        m_chess_type (int): The type of chess piece for the AI player.
+        m_depth (int): The maximum depth to search in the game tree.
+        m_is_maximizing (bool): Indicates whether the AI player is maximizing or minimizing.
+        node_count (int): The number of nodes visited during the search.
+    """
+
     def __init__(self):
         self.m_board = None
         self.m_chess_type = None
         self.m_depth = None
         self.m_is_maximizing = None
-        self.node_count = 0
+        
 
     def before_search(self, board, color, depth):
         """
         Initializes the search parameters before starting the search.
 
         Args:
-            board (Board): The current game board.
+            board (numpy.ndarray): The current game board.
             color (int): The type of chess piece for the AI player.
             depth (int): The maximum depth to search in the game tree.
         """
-        self.m_board = board.copy()
+        self.m_board = np.copy(board)
         self.m_chess_type = color
         self.m_depth = depth
         self.m_is_maximizing = True if self.m_chess_type == 1 else False
-        self.node_count = 0
+        
 
     def get_best_move(self):
         """
@@ -46,17 +50,15 @@ class HeuristicSearch:
         if tl.check_first_move(self.m_board):
             best_move = tl.create_move(((10, 10), (10, 10)))
             return 0, best_move
-        # Obtener tiempo de ejecucion de get_available_moves_with_score
-        start_time = time.time()  # Start timing
+        
         moves = tl.get_available_moves_with_score(self.m_board, self.m_chess_type)
-        end_time = time.time()  # End timing
+        
         # Ordenamos los movimientos basados en los scores
         moves.sort(key=lambda x: x.score, reverse=self.m_is_maximizing)
 
         for move in moves:
             if (self.m_is_maximizing and move.score > best_score) or (not self.m_is_maximizing and move.score < best_score):
                 best_score = move.score
-                print(f"best_score: {best_score}, time: {end_time - start_time} seconds")
                 best_move = move
 
         return best_score, best_move
@@ -97,7 +99,7 @@ class MiniMaxAlphaBeta:
             color (int): The type of chess piece for the AI player.
             depth (int): The maximum depth to search in the game tree.
         """
-        self.m_board = board.copy()
+        self.m_board = np.copy(board)
         self.m_chess_type = color
         self.m_depth = depth
         self.m_is_maximizing = True if self.m_chess_type == 1 else False
@@ -116,9 +118,7 @@ class MiniMaxAlphaBeta:
         return tl.defensive_evaluate_state(board, self.m_chess_type)
 
     def search(self, state, depth, is_maximizing, alpha=-np.inf, beta=np.inf):
-        start_time = time.time()  # Start timing
         
-        self.node_count += 1
         winner = tl.check_winner(state)
         available_moves = np.any(state == 0)  # tl.get_available_moves(state)
 
@@ -136,8 +136,6 @@ class MiniMaxAlphaBeta:
                 alpha = max(alpha, value)
                 if beta <= alpha:
                     break
-            
-            # print(f"search (maximizing) took {end_time - start_time} seconds")
             return max_value
         else:
             min_value = np.inf
@@ -147,13 +145,10 @@ class MiniMaxAlphaBeta:
                 beta = min(beta, value)
                 if beta <= alpha:
                     break
-            
-            # print(f"search (minimizing) took {end_time - start_time} seconds")
             return min_value
 
 
     def get_best_move(self):
-        start_time = time.time()  # Start timing
         
         best_score = -np.inf if self.m_is_maximizing else np.inf
         best_move = None
@@ -166,9 +161,7 @@ class MiniMaxAlphaBeta:
             if (self.m_is_maximizing and score > best_score) or (not self.m_is_maximizing and score < best_score):
                 best_score = score
                 best_move = move
-
-        end_time = time.time()  # End timing
-        print(f"get_best_move took {end_time - start_time} seconds")
+        
         return best_score, best_move
 
     def get_ordered_children(self, state, is_maximizing) -> list[StoneMove]:
@@ -184,29 +177,12 @@ class MiniMaxAlphaBeta:
             """
             children = []
             moves = tl.get_available_moves_optimizada(state)
-            moves.sort(key=lambda x: x.score, reverse=not is_maximizing)
+            moves.sort(key=lambda x: x.score, reverse=is_maximizing)
             for move in moves[:4]:
                 child_state = state.copy()
                 tl.make_move(child_state, move, self.m_chess_type)
-                # move.score = self.evaluate_board(child_state)  # Set heuristic score for sorting
                 children.append(child_state)
-
-            # Order children based on heuristic scores
-            # children.sort(key=lambda x: x.score, reverse=is_maximizing)
             return children
-
-    # def get_ordered_children(self, state, is_maximizing):
-    #     children = []
-
-    #     for move in tl.get_available_moves(state):
-    #         child_state = state.copy()
-    #         tl.make_move(child_state, tl.create_move(move), self.m_chess_type)
-    #         children.append(child_state)
-    #     return children
-
-
-
-
 
 def flush_output():
     import sys
